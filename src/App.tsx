@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Title from './component/atoms/Title';
+import Button from './component/atoms/Button';
+import { styled } from "styled-components";
 
-function App() {
+const CenterStyled = styled(Title)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
+const App = ():React.ReactElement => {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CenterStyled>
+        통장관리 프로그램 v0.1.0
+      </CenterStyled>
+      <Button label="확인" />
+        
     </div>
   );
 }

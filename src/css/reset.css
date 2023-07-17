@@ -1,0 +1,20 @@
+* {
+    font-family: 'Pretendard';
+    font-size: 10px;
+}
+
+a,
+strong, 
+span, 
+em {
+    display: block;
+}
+
+ul,ol,li {
+    list-style-type: none;
+}
+
+button {
+    outline: none;
+}
+
