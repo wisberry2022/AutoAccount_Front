@@ -1,8 +1,11 @@
 import React from 'react';
-import { Scale } from './classes/types/StyleTypes';
-import { CenterLayout } from './component/atoms/div/Flex';
+import { CenterLayout } from './component/atoms/div/StyledFlex';
 import { CenterTitle } from './component/atoms/title/TitleStyle';
 import { styled } from 'styled-components';
+import { HorizonFlex } from './component/atoms/div/StyledFlex';
+import Button from './component/atoms/buttons/Button';
+import { CustomColoringButton } from './component/atoms/buttons/StyledButton';
+import { ColorSet } from './classes/types/StyleTypes';
 
 const CustomSizeTitle = styled(CenterTitle)`
   width: 50rem;
@@ -10,13 +13,16 @@ const CustomSizeTitle = styled(CenterTitle)`
 `
 
 const App = ():React.ReactElement => {
-  const size:Scale = {width: "15", height: "5"};
+
+
   return (
     <div className="App">
       <CenterLayout>
         <CustomSizeTitle>
           통장관리 프로그램 v0.1.0
         </CustomSizeTitle>
+        <HorizonFlex>
+        </HorizonFlex>
       </CenterLayout>
     </div>
   );
