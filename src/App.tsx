@@ -1,29 +1,30 @@
 import React from 'react';
-import { CenterLayout } from './component/atoms/div/StyledFlex';
-import { CenterTitle } from './component/atoms/title/TitleStyle';
 import { styled } from 'styled-components';
-import { HorizonFlex } from './component/atoms/div/StyledFlex';
-import Button from './component/atoms/buttons/Button';
-import { CustomColoringButton } from './component/atoms/buttons/StyledButton';
-import { ColorSet } from './classes/types/StyleTypes';
+import { VerticalFlex } from './component/atoms/div/StyledFlex';
+import FormInput from './component/molecules/FormInput';
+import Title from './component/atoms/title/Title';
+import Flex from './component/atoms/div/Flex';
+import Bundle from './component/molecules/Bundle';
 
-const CustomSizeTitle = styled(CenterTitle)`
-  width: 50rem;
-  text-align: center;
-`
+const CenterVerticalFlex = styled(VerticalFlex)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const App = ():React.ReactElement => {
-
-
   return (
     <div className="App">
-      <CenterLayout>
-        <CustomSizeTitle>
-          통장관리 프로그램 v0.1.0
-        </CustomSizeTitle>
-        <HorizonFlex>
-        </HorizonFlex>
-      </CenterLayout>
+      <CenterVerticalFlex>
+        <Title>통장관리 프로그램</Title>
+        <VerticalFlex>
+          <FormInput gap={10} border={true} />
+          <VerticalFlex>
+            <Bundle serial="1122008177401" name="일반통장"/>
+          </VerticalFlex>
+        </VerticalFlex>
+      </CenterVerticalFlex>
     </div>
   );
 }

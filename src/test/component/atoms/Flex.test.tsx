@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { FlexSet, Scale } from "../../../classes/types/StyleTypes";
 import Flex from "../../../component/atoms/div/Flex";
-import { CenterLayout, CustomSizingFlex, HorizonFlex, VerticalFlex } from "../../../component/atoms/div/StyledFlex";
+import { ViewCenterFlex, CustomSizingFlex, HorizonFlex, VerticalFlex } from "../../../component/atoms/div/StyledFlex";
 
 describe('Flex Component Test', () => {
     it('Normal Flex Test', () => {
@@ -16,7 +16,7 @@ describe('Flex Component Test', () => {
     });
 
     it('Styled Flex Test - Center', () => {
-        const view = render(<CenterLayout />);
+        const view = render(<ViewCenterFlex />);
         expect(view.baseElement).toBeInTheDocument();
     });
 

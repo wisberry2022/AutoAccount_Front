@@ -24,7 +24,7 @@ type Scale = {
 	padding?: string
 	margin?: string
 	width: string
-	height: string
+	height?: string
 }
 
 export type {Scale};

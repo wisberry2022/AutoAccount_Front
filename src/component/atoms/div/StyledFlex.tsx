@@ -12,14 +12,14 @@ const CustomSizingFlex = styled.div<{debug?:boolean, size:Scale}>`
 
 export { CustomSizingFlex };
 
-const CenterLayout = styled(Flex)`
+const ViewCenterFlex = styled(Flex)`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `
 
-export { CenterLayout };
+export { ViewCenterFlex };
 
 const VerticalFlex = styled(Flex)<{option?:FlexSet}>`
   flex-direction: column;
@@ -37,3 +37,9 @@ const HorizonFlex = styled(Flex)<{option?:FlexSet}>`
 `
 
 export { HorizonFlex };
+
+const GapFlex = styled(Flex)<{gap:number}>`
+  gap: ${prop => prop.gap + "rem"};
+`
+
+export {GapFlex};
