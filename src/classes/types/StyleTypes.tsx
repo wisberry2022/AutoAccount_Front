@@ -29,20 +29,36 @@ type Scale = {
 
 export type {Scale};
 
+type Margin = {
+	top?: number,
+	right?: number,
+	bottom?: number,
+	left?: number
+}
+
+export type {Margin};
+
+
+
 type FlexSet = {
-	justifyContent: string
-	alignItems: string
-	gap: string	
+	justifyContent?: string
+	alignItems?: string
+	gap?: string	
 }
 
 export type {FlexSet};
 
 type BorderSet = {
+	top?: number;
+	right?: number;
+	bottom?: number;
+	left?: number;
 	border?: string;
 	radius?: string;
 }
 
 export type {BorderSet};
+
 
 type FontSet = {
 	fontSize?: string;
