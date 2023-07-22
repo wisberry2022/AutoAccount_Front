@@ -11,6 +11,13 @@ export type {ColorSet};
 
 type InputType = "checkbox" | "radio" | "hidden" | "tel" | "text" | "password";
 
+type LabelOption = {
+	htmlFor: string;
+	label: string;
+}
+
+export type {LabelOption};
+
 type InputOption = {
 	id: string;
 	type: InputType;
@@ -38,8 +45,6 @@ type Margin = {
 
 export type {Margin};
 
-
-
 type FlexSet = {
 	justifyContent?: string
 	alignItems?: string
@@ -59,6 +64,12 @@ type BorderSet = {
 
 export type {BorderSet};
 
+type ButtonSet = {
+	color: ColorSet;
+	name: string;
+}
+
+export type {ButtonSet};
 
 type FontSet = {
 	fontSize?: string;

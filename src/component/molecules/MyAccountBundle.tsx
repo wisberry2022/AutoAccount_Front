@@ -17,7 +17,7 @@ const FlexItem = styled(Item)<{gap:number}>`
   padding: 2rem 0;
 ;`
 
-const Bundle:React.FC<PropType> = ({serial, name}:PropType) => {
+const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
   const font:FontSet = {fontSize:"1.7", fontWeight:"600"}
   const subFont:FontSet = {fontSize:"1.1", fontWeight: "400"};
   return (
@@ -34,4 +34,4 @@ const Bundle:React.FC<PropType> = ({serial, name}:PropType) => {
   )
 }
 
-export default Bundle;
+export default MyAccountBundle;

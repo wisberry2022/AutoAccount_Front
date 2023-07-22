@@ -31,7 +31,7 @@ const Inner:React.FC<PropGap> = ({gap, option}:PropGap) => {
   )
 }
 
-const FormInput:React.FC<PropGap> = ({gap, border, option}:PropGap) => {
+const SingleInputForm:React.FC<PropGap> = ({gap, border, option}:PropGap) => {
 
   if(border){
     return (
@@ -47,4 +47,4 @@ const FormInput:React.FC<PropGap> = ({gap, border, option}:PropGap) => {
   )
 }
 
-export default FormInput;
+export default SingleInputForm;
