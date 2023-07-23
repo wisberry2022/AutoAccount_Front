@@ -4,8 +4,12 @@ import { FlexSet, FontSet, Margin } from "../../classes/types/StyleTypes";
 import Emphasize from "../atoms/Text/Emphasize";
 import Button from "../atoms/buttons/Button";
 import { GapFlex, HorizonFlex, VerticalFlex } from "../atoms/div/StyledFlex";
-import Item from "../atoms/list/Item";
 import { MarginItem } from "../atoms/list/StyledItem";
+
+const PaddingItem = styled(MarginItem)`
+  padding: 2rem 1.5rem;
+  border: .1rem solid #aaa;
+`;
 
 const TextAlignEmphasize = styled(Emphasize)`
   text-align: left;
@@ -59,10 +63,10 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
   }
 
   const margin:Margin = {
-    bottom: 3
+    bottom: 1.5,
   }
   return (
-    <MarginItem margin={margin} debug={false}>
+    <PaddingItem margin={margin}>
       <GapFlex gap={8} >
         <HorizonFlex option={horizonOption}>
           <VerticalFlex option={option}>
@@ -77,7 +81,7 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
           <AlignSelfButton color="BW">삭제</AlignSelfButton>
         </GapFlex>        
       </GapFlex>
-    </MarginItem>
+    </PaddingItem>
   )
 }
 

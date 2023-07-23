@@ -1,5 +1,10 @@
 import { InputOption, LabelOption } from "./StyleTypes";
 
+type dataId = {
+  id: number;
+};
+
+
 type Debit = {
   deposit: string,
   name: string,
@@ -9,7 +14,7 @@ type Debit = {
 
 export type {Debit};
 
-type LabelInputPair = {
+type LabelInputPair = dataId & {
   id: number;
   label: LabelOption;
   input: InputOption;
@@ -24,3 +29,10 @@ type AccountData = {
 }
 
 export type {AccountData};
+
+type DetailData = dataId & {
+  main: string;
+  sub: string;
+}
+
+export type {DetailData};
