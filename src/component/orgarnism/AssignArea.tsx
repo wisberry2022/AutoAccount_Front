@@ -1,23 +1,13 @@
 import { styled } from "styled-components";
 import { ButtonSet, FlexSet } from "../../classes/types/StyleTypes";
-import Emphasize from "../atoms/Text/Emphasize";
 import { HorizonFlex, VerticalFlex } from "../atoms/div/StyledFlex";
-import Button from "../atoms/buttons/Button";
 import LabelInput from "../molecules/LabelInput";
 import { LabelInputPair } from "../../classes/types/DataTypes";
 import ButtonBox from "../molecules/ButtonBox";
+import SectionHead from "../molecules/SectionHead";
+import ModifyBox from "../molecules/ModifyBox";
 
 const VerticalSizingFlex = styled(VerticalFlex)`
-  width: 100%;
-`;
-
-const VerticalMarginFlex = styled(VerticalFlex)`
-  margin-bottom: 1.5rem;
-`
-
-const InputSizingFlex = styled(VerticalFlex)`
-  border: .1rem solid #aaa;
-  padding: 2rem 1rem;
   width: 100%;
 `;
 
@@ -26,10 +16,6 @@ const HorizonSizingFlex = styled(HorizonFlex)`
   padding: 1.5rem 1rem;
   width: 100%;
 `
-
-const SizingButton = styled(Button)`
-  width: 14rem;
-`;
 
 const AssignArea:React.FC = () => {
  
@@ -92,29 +78,14 @@ const AssignArea:React.FC = () => {
     }
   ];
 
-  const buttons:ButtonSet[] = [
-    {color:{bgColor: "#000", color: "#fff"}, name:"등록"},
-    {color:{bgColor: "#fff", color: "#000"}, name:"취소"}
-  ];
+
 
   return (
     <VerticalSizingFlex option={option}>
       <HorizonSizingFlex option={{justifyContent:"center", gap:"15"}}>
-        <Emphasize font={{fontSize:"1.8"}}>내 계좌 등록하기</Emphasize>
-        <SizingButton color="BW">계좌 등록하기</SizingButton>
+        <SectionHead title="내 계좌 등록하기" btn="계좌 등록하기" />
       </HorizonSizingFlex>
-      <InputSizingFlex>
-        <VerticalMarginFlex>
-        {
-          dataArr.map(val => {
-            return (
-              <LabelInput key={val.id} label={val.label} input={val.input} />
-            )
-          })
-        }
-        </VerticalMarginFlex>
-        <ButtonBox gap={.5} names={buttons} />
-      </InputSizingFlex>
+      <ModifyBox dataArr={dataArr} />
     </VerticalSizingFlex>
   )
 }

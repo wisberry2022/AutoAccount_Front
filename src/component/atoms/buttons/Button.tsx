@@ -6,6 +6,7 @@ const Button = styled.button<{color:Colors}>`
     padding: .5rem 2rem;
     width: 7rem;
     font-size: 1.3rem;
+    cursor: pointer;
     ${prop => prop.color === 'BW' ? css `    
         background-color: #000;
         color: #fff;

@@ -4,7 +4,18 @@ import List from "../atoms/list/List";
 import DebitBundle from "../molecules/DebitBundle";
 
 const WrapperBorderList = styled(List)`
+  margin-block-end: 0;
+  border-top: .1rem solid #aaa;
+  border-bottom: .1rem solid #aaa;
+  padding: 1rem 0;
   width: 100%;
+  height: 75%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 const DebitArea:React.FC = () => {
@@ -22,10 +33,13 @@ const DebitArea:React.FC = () => {
     debitDate: new Date().toLocaleDateString()
   };
   
-  
-  return (
+  return (  
     <WrapperBorderList>
       <DebitBundle data={normalDebit} />
+      <DebitBundle data={installmentDebit} />
+      <DebitBundle data={installmentDebit} />
+      <DebitBundle data={installmentDebit} />
+      <DebitBundle data={installmentDebit} />
       <DebitBundle data={installmentDebit} />
     </WrapperBorderList>
   )

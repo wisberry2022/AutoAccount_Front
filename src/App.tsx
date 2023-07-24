@@ -1,14 +1,9 @@
 import React from 'react';
-import { Debit } from './classes/types/DataTypes';
 import { styled } from 'styled-components';
-import { ButtonSet, InputOption, LabelOption } from './classes/types/StyleTypes';
 import { GapFlex, VerticalFlex } from './component/atoms/div/StyledFlex';
-import DebitBundle from './component/molecules/DebitBundle';
 import MainTitle from './component/orgarnism/MainTitle';
-import AssignArea from './component/orgarnism/AssignArea';
-import MyAccounts from './component/orgarnism/MyAccounts';
-import AccountDetail from './component/orgarnism/AccountsDetail';
-import DebitArea from './component/orgarnism/DebitArea';
+import MyAccount from './component/templates/MyAccount';
+import Debit from './component/templates/Debit';
 
 const CenterVerticalFlex = styled(VerticalFlex)`
   position: absolute;
@@ -20,21 +15,20 @@ const CenterVerticalFlex = styled(VerticalFlex)`
   height: 75vh;
 `;
 
+const FixedSizingGapFlex = styled(GapFlex)`
+  align-items: flex-start;
+  height: 70vh;
+`
+
 const App = ():React.ReactElement => {
   return (
     <div className="App">
       <CenterVerticalFlex>
         <MainTitle />
-        <GapFlex gap={5}>
-          <VerticalFlex>
-            <AssignArea />
-            <MyAccounts />
-            <AccountDetail />
-          </VerticalFlex>
-          <VerticalFlex>
-            <DebitArea />
-          </VerticalFlex>
-        </GapFlex>
+        <FixedSizingGapFlex gap={5}>
+          <MyAccount />
+          <Debit/>
+        </FixedSizingGapFlex>
       </CenterVerticalFlex>
     </div>
   );
