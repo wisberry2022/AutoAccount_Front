@@ -1,21 +1,39 @@
 import { styled } from "styled-components";
-import { AccountData } from "../../classes/types/DataTypes";
+import { AccountData, DetailData } from "../../classes/types/DataTypes";
 import List from "../atoms/list/List";
 import MyAccountBundle from "../molecules/MyAccountBundle";
+import ModalFrame from "../../pages/modal/ModalFrame";
+import AccountDetail from "./AccountsDetail";
 
 const OuterList = styled(List)`
-  display: flex; 
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  justify-content: flex-start;
+  align-items: center;
   border: .1rem solid #aaa;
-  padding: 0 1rem;
+  padding: 1.5rem 1rem;
   width: 100%;
+  height: 50vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MyAccounts:React.FC = () => {
 
   const accountArr:AccountData[] = [
-    {id:1, name:"일반통장", serial:"1122008177401"}
-  ]
+    {id:1, name:"일반통장", serial:"1122008177401"},
+  ];
+
+  const details:DetailData[] = [
+    {id:1, main:"잔액", sub:"15000원"},
+    {id:2, main:"계좌주", sub:"왕인서"},
+    {id:3, main:"등록된 자동이체 수", sub:"2개"}
+  ];
 
   return (
     <OuterList>
@@ -26,6 +44,7 @@ const MyAccounts:React.FC = () => {
           )
         })
       }
+      {/* <ModalFrame title="계좌 상세보기" target={<AccountDetail detail={details} />} /> */}
     </OuterList>
   )
 }

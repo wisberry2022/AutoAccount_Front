@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import Title from "../atoms/title/Title";
+import {Title} from "../atoms/title/Title";
 
 const PaddingTitle = styled(Title)`
     margin-bottom: 2.5rem;

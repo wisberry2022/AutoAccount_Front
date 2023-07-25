@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import Title from "./Title";
+import {ThirdTitle, Title} from "./Title";
 
 const CenterTitle = styled(Title)`
     position: absolute;
@@ -9,3 +9,13 @@ const CenterTitle = styled(Title)`
 `;
 
 export {CenterTitle};
+
+type PropType = {
+    title: string
+}
+
+const ModalTitle:React.FC<PropType> = ({title}:PropType) => {
+    return <ThirdTitle>{title}</ThirdTitle>
+}
+
+export {ModalTitle};

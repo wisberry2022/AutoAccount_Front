@@ -1,11 +1,10 @@
 import { styled } from "styled-components";
 import { ButtonSet, FlexSet } from "../../classes/types/StyleTypes";
 import { HorizonFlex, VerticalFlex } from "../atoms/div/StyledFlex";
-import LabelInput from "../molecules/LabelInput";
 import { LabelInputPair } from "../../classes/types/DataTypes";
-import ButtonBox from "../molecules/ButtonBox";
 import SectionHead from "../molecules/SectionHead";
-import ModifyBox from "../molecules/ModifyBox";
+import ModalFrame from "../../pages/modal/ModalFrame";
+import AlertFrame from "../../pages/modal/AlertFrame";
 
 const VerticalSizingFlex = styled(VerticalFlex)`
   width: 100%;
@@ -78,14 +77,17 @@ const AssignArea:React.FC = () => {
     }
   ];
 
-
+	const buttons:ButtonSet[] = [
+		{color:{bgColor: "#000", color: "#fff"}, name:"등록"},
+		{color:{bgColor: "#fff", color: "#000"}, name:"취소"}
+  ];
 
   return (
     <VerticalSizingFlex option={option}>
       <HorizonSizingFlex option={{justifyContent:"center", gap:"15"}}>
         <SectionHead title="내 계좌 등록하기" btn="계좌 등록하기" />
       </HorizonSizingFlex>
-      <ModifyBox dataArr={dataArr} />
+      {/* <ModalFrame title="내 계좌 등록하기 " target={<ModifyBox dataArr={dataArr} buttonArr={buttons} />} /> */}
     </VerticalSizingFlex>
   )
 }

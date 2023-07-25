@@ -43,3 +43,16 @@ const GapFlex = styled(Flex)<{gap:number}>`
 `
 
 export {GapFlex};
+
+const VerticalModalFlex = styled(VerticalFlex)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border: .1rem solid #aaa;
+  padding: 3rem;
+  background-color: #fff;
+`;
+
+export {VerticalModalFlex};

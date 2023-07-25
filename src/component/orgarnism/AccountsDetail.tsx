@@ -9,13 +9,12 @@ const DetailWrapperFlex = styled(VerticalFlex)`
   width: 100%;
 `
 
-const AccountDetail:React.FC = () => {
+type PropType = {
+  detail:DetailData[];
+}
 
-  const detail:DetailData[] = [
-    {id:1, main:"잔액", sub:"15000원"},
-    {id:2, main:"계좌주", sub:"왕인서"},
-    {id:3, main:"등록된 자동이체 수", sub:"2개"}
-  ];
+
+const AccountDetail:React.FC<PropType> = ({detail}:PropType) => {
 
   return (
     <DetailWrapperFlex option={{gap:"1"}}>
