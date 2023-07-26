@@ -4,6 +4,7 @@ import List from "../atoms/list/List";
 import MyAccountBundle from "../molecules/MyAccountBundle";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import AccountDetail from "./AccountsDetail";
+import AlertFrame from "../../pages/modal/AlertFrame";
 
 const OuterList = styled(List)`
   display: flex;
