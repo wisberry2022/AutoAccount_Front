@@ -4,7 +4,7 @@ import List from "../atoms/list/List";
 import MyAccountBundle from "../molecules/MyAccountBundle";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import AccountDetail from "./AccountsDetail";
-import AlertFrame from "../../pages/modal/AlertFrame";
+import useModalState from "../../hooks/recoil/useModalState";
 
 const OuterList = styled(List)`
   display: flex;
@@ -25,6 +25,7 @@ const OuterList = styled(List)`
 `;
 
 const MyAccounts:React.FC = () => {
+  const [ACCOUNT_DETAIL, _] = useModalState('isAccountDetail');
 
   const accountArr:AccountData[] = [
     {id:1, name:"일반통장", serial:"1122008177401"},
@@ -45,7 +46,10 @@ const MyAccounts:React.FC = () => {
           )
         })
       }
-      {/* <ModalFrame title="계좌 상세보기" target={<AccountDetail detail={details} />} /> */}
+      {
+        ACCOUNT_DETAIL &&
+        <ModalFrame title="계좌 상세보기" close={true} target={<AccountDetail detail={details} />} />
+      }
     </OuterList>
   )
 }

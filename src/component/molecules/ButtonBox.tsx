@@ -1,4 +1,6 @@
 import { ButtonSet, FlexSet } from "../../classes/types/StyleTypes";
+import useFindCurrentModal from "../../hooks/recoil/useFindCurrentModal";
+import useModalState from "../../hooks/recoil/useModalState";
 import Button from "../atoms/buttons/Button";
 import { CustomColoringButton } from "../atoms/buttons/StyledButton";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
@@ -9,7 +11,9 @@ type PropType = {
 };
 
 const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
-  
+  const [_, setState] = useModalState('isAccountAssign');
+  const modal = useFindCurrentModal();
+
   const option:FlexSet = {
    justifyContent: "center",
    gap: gap.toString() 
@@ -19,7 +23,13 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
     <HorizonFlex option={option}>
       {names.map((val,idx) => {
         return (
-          <CustomColoringButton key={idx} color={val.color}>{val.name}</CustomColoringButton>
+          <CustomColoringButton onClick={
+            () => {
+              if(idx === names.length-1) {
+                setState(modal);
+              }
+            }
+          } key={idx} color={val.color}>{val.name}</CustomColoringButton>
         )
       })}
     </HorizonFlex>

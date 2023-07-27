@@ -7,10 +7,14 @@ const ModalStates = atom<ModalState>({
     isAccountAssign: false,
     isAccountUpdate: false,
     isAccountDelete: false,
+    isAccountDetail: false,
     isDebitAssign: false,
     isDebitUpdate: false,
     isDebitDelete: false,
+    isDebitDetail: false,
   }
 });
 
 export {ModalStates};
+
+

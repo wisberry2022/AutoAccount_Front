@@ -5,8 +5,8 @@ import { LabelInputPair } from "../../classes/types/DataTypes";
 const DefaultModalButtons = atom<ButtonSet[]>({
   key:"ModalButtons",
   default: [
-    {color:{bgColor:"#ddd", color:"#111"}, name:"수정"},
-    {color:{bgColor:"#111", color:"#ddd"}, name:"취소"},
+    {color:{bgColor:"#111", color:"#ddd"}, name:"수정"},
+    {color:{bgColor:"#ddd", color:"#111"}, name:"취소"},
   ]
 });
 
@@ -29,7 +29,6 @@ const SerialFormSet = atom<LabelInputPair>({
   }
 });
 
-// export {SerialFormSet};
 
 const BalanceFormSet = atom<LabelInputPair>({
   key: "BalanceFormSet",
@@ -48,7 +47,6 @@ const BalanceFormSet = atom<LabelInputPair>({
   }
 });
 
-// export {BalanceFormSet};
 
 const AccountNameFormSet = atom<LabelInputPair>({
   key: "AccountNameFormSet",
@@ -67,7 +65,6 @@ const AccountNameFormSet = atom<LabelInputPair>({
   }
 });
 
-// export {AccountNameFormSet};
 
 const OwnerFormSet = atom<LabelInputPair>({
   key: "OwnerFormSet",
@@ -85,8 +82,6 @@ const OwnerFormSet = atom<LabelInputPair>({
     } 
   }
 });
-
-// export {OwnerFormSet};
 
 const getInputComponent = atomFamily<LabelInputPair, string>({
   key: "getInputComponent",
