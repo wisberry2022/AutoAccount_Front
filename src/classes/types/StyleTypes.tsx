@@ -9,7 +9,7 @@ type ColorSet = {
 
 export type {ColorSet};
 
-type InputType = "checkbox" | "radio" | "hidden" | "tel" | "text" | "password";
+type InputType = "checkbox" | "radio" | "hidden" | "tel" | "text" | "password" | "date";
 
 type LabelOption = {
 	htmlFor: string;

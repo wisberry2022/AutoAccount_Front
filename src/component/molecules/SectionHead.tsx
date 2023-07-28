@@ -8,17 +8,18 @@ const SizingButton = styled(Button)`
 `;
 
 type PropType = {
+  assignType: string
   title: string,
-  btn: string
+  btn: string,
 }
 
-const SectionHead:React.FC<PropType> = ({title, btn}:PropType) => {
-  const [_, setModalState] = useModalState('isAccountAssign') 
+const SectionHead:React.FC<PropType> = ({assignType, title, btn}:PropType) => {
+  const [_, setModalState] = useModalState(assignType) 
   
   return (
    <>
     <Emphasize font={{fontSize:"1.8"}}>{title}</Emphasize>
-    <SizingButton onClick={() => {setModalState('isAccountAssign')}} color="BW">계좌 등록하기</SizingButton>
+    <SizingButton onClick={() => {setModalState(assignType)}} color="BW">계좌 등록하기</SizingButton>
    </>   
   )
 }

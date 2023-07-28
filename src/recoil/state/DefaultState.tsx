@@ -12,6 +12,16 @@ const DefaultModalButtons = atom<ButtonSet[]>({
 
 export {DefaultModalButtons};
 
+const AssignModalButtons = atom<ButtonSet[]>({
+  key:"ModalButtons",
+  default: [
+    {color:{bgColor:"#111", color:"#ddd"}, name:"등록"},
+    {color:{bgColor:"#ddd", color:"#111"}, name:"취소"},
+  ]
+}); 
+
+export {AssignModalButtons};
+
 const SerialFormSet = atom<LabelInputPair>({
   key: "LabelInputSet",
   default: {
@@ -83,6 +93,23 @@ const OwnerFormSet = atom<LabelInputPair>({
   }
 });
 
+const DebitDateFormSet = atom<LabelInputPair>({
+  key: "DebitDateFormSet",
+  default: {
+    id:5, 
+    label:{
+      htmlFor: "date",
+      label: "이체일자"
+    },
+    input:{
+      id: "date",
+      name: "date",
+      type: "date",
+      placeholder: "자동이체 날짜를 선택하세요"
+    } 
+  }
+});
+
 const getInputComponent = atomFamily<LabelInputPair, string>({
   key: "getInputComponent",
   default: selectorFamily({
@@ -92,7 +119,8 @@ const getInputComponent = atomFamily<LabelInputPair, string>({
         'serial':SerialFormSet,
         'balance':BalanceFormSet,
         'owner':OwnerFormSet,
-        'name':AccountNameFormSet
+        'name':AccountNameFormSet,
+        'date':DebitDateFormSet
       }
       
       const targetState = Object.keys(stateMap)

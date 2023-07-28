@@ -23,16 +23,16 @@ type PropType = {
 const ModifyBox:React.FC<PropType> = ({dataArr, buttonArr}:PropType) => {
 	return (
 		<InputSizingFlex>
-		<VerticalMarginFlex>
-		{
-			dataArr.map(val => {
-				return (
-					<LabelInput key={val.id} label={val.label} input={val.input} />
-				)
-			})
-		}
-		</VerticalMarginFlex>
-		<ButtonBox gap={.5} names={buttonArr} />
+			<VerticalMarginFlex>
+			{
+				dataArr.map(val => {
+					return (
+						<LabelInput key={val.id} label={val.label} input={val.input} />
+					)
+				})
+			}
+			</VerticalMarginFlex>
+			<ButtonBox gap={.5} names={buttonArr} />
 	</InputSizingFlex>
 	)
 }

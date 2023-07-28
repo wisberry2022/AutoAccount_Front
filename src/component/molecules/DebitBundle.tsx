@@ -1,10 +1,16 @@
 import { styled } from "styled-components";
-import { Debit } from "../../classes/types/DataTypes";
-import { FlexSet, FontSet, Margin } from "../../classes/types/StyleTypes";
+import { Debit, LabelInputPair } from "../../classes/types/DataTypes";
+import { ButtonSet, FlexSet, FontSet, Margin } from "../../classes/types/StyleTypes";
 import Emphasize from "../atoms/Text/Emphasize";
 import Button from "../atoms/buttons/Button";
 import { GapFlex, HorizonFlex, VerticalFlex } from "../atoms/div/StyledFlex";
 import { MarginItem } from "../atoms/list/StyledItem";
+import useModalState from "../../hooks/recoil/useModalState";
+import ModalFrame from "../../pages/modal/ModalFrame";
+import ModifyBox from "./ModifyBox";
+import { useRecoilValue } from "recoil";
+import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import AlertFrame from "../../pages/modal/AlertFrame";
 
 const PaddingItem = styled(MarginItem)`
   padding: 2rem 1.5rem;
@@ -65,6 +71,19 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
   const margin:Margin = {
     bottom: 1.5,
   }
+
+  const [DEBIT_UPDATE, setDebitUpdate] = useModalState('isDebitUpdate');
+  const [DEBIT_DELETE, setDebitDelete] = useModalState('isDebitDelete');
+
+  const dataArr:LabelInputPair[] = [
+    useRecoilValue(getInputComponent('serial')),
+    useRecoilValue(getInputComponent('balance')),
+    useRecoilValue(getInputComponent('name'))
+
+  ];
+
+  const buttons:ButtonSet[] = useRecoilValue(DefaultModalButtons)
+
   return (
     <PaddingItem margin={margin}>
       <GapFlex gap={8} >
@@ -77,9 +96,17 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
           <Emphasize font={dateFont}>{data.debitDate}</Emphasize>
         </HorizonFlex>
         <GapFlex gap={.5}>
-          <AlignSelfButton color="WB">수정</AlignSelfButton>
-          <AlignSelfButton color="BW">삭제</AlignSelfButton>
-        </GapFlex>        
+          <AlignSelfButton color="WB" onClick={() => setDebitUpdate('isDebitUpdate')}>수정</AlignSelfButton>
+          <AlignSelfButton color="BW" onClick={() => setDebitDelete('isDebitDelete')}>삭제</AlignSelfButton>
+        </GapFlex>
+        {
+          DEBIT_UPDATE &&
+         <ModalFrame title="자동이체 계좌 수정하기" target={<ModifyBox dataArr={dataArr} buttonArr={buttons} />} />
+        }        
+        {
+          DEBIT_DELETE &&
+          <AlertFrame title="정말 자동이체를 삭제하시겠습니까?"/>
+        }
       </GapFlex>
     </PaddingItem>
   )
