@@ -17,3 +17,4 @@ const CustomSizingInput = styled(Input)<{size:Scale}>`
 `;
 
 export {CustomSizingInput};
+

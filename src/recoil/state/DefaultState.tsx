@@ -2,6 +2,7 @@ import { RecoilState, atom, atomFamily, selectorFamily } from "recoil";
 import { ButtonSet } from "../../classes/types/StyleTypes";
 import { LabelInputPair } from "../../classes/types/DataTypes";
 
+
 const DefaultModalButtons = atom<ButtonSet[]>({
   key:"ModalButtons",
   default: [
@@ -48,10 +49,27 @@ const BalanceFormSet = atom<LabelInputPair>({
       id:"balance", 
       type:"text", 
       name:"balance", 
-      placeholder:"이체 금액을 입력하세요"
+      placeholder:"잔액을 입력하세요"
     },
     label:{
       htmlFor: "balance",
+      label: "잔액"
+    } 
+  }
+});
+
+const AmountFormSet = atom<LabelInputPair>({
+  key: "AmountFormSet",
+  default: {
+    id:3, 
+    input:{
+      id:"amount", 
+      type:"text", 
+      name:"amount", 
+      placeholder:"이체 금액을 입력하세요"
+    },
+    label:{
+      htmlFor: "amount",
       label: "이체 금액"
     } 
   }
@@ -61,7 +79,7 @@ const BalanceFormSet = atom<LabelInputPair>({
 const AccountNameFormSet = atom<LabelInputPair>({
   key: "AccountNameFormSet",
   default: {
-    id:3, 
+    id:4, 
     input:{
       id:"name", 
       type:"text", 
@@ -79,7 +97,7 @@ const AccountNameFormSet = atom<LabelInputPair>({
 const OwnerFormSet = atom<LabelInputPair>({
   key: "OwnerFormSet",
   default: {
-    id:4, 
+    id:5, 
     label:{
       htmlFor: "owner",
       label: "계좌주"
@@ -96,7 +114,7 @@ const OwnerFormSet = atom<LabelInputPair>({
 const DebitDateFormSet = atom<LabelInputPair>({
   key: "DebitDateFormSet",
   default: {
-    id:5, 
+    id:6, 
     label:{
       htmlFor: "date",
       label: "이체일자"
@@ -118,6 +136,7 @@ const getInputComponent = atomFamily<LabelInputPair, string>({
       const stateMap:{[key : string]:RecoilState<LabelInputPair>} = {
         'serial':SerialFormSet,
         'balance':BalanceFormSet,
+        'amount':AmountFormSet, 
         'owner':OwnerFormSet,
         'name':AccountNameFormSet,
         'date':DebitDateFormSet
