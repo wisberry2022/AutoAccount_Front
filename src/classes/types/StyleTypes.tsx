@@ -64,9 +64,12 @@ type BorderSet = {
 
 export type {BorderSet};
 
+type ButtonType = "ASSIGN" | "MODIFY" | "CANCEL" | "REMOVE" | "OKAY";
+
 type ButtonSet = {
 	color: ColorSet;
 	name: string;
+	type: ButtonType;
 }
 
 export type {ButtonSet};

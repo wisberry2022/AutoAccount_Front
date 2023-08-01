@@ -1,17 +1,18 @@
-import { SetterOrUpdater, useRecoilState, useRecoilValue } from "recoil";
-import { InputStateMap, getInputState } from "../../recoil/state/InputState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { getInputState } from "../../recoil/state/InputState";
 import useFindCurrentModal from "./useFindCurrentModal";
-import { InfoState, InputAtom } from "../../classes/types/RecoilStateTypes";
+import { InfoState } from "../../classes/types/RecoilStateTypes";
+
 
 type CustomSetterType = (value:string) => void;
-type CustomHookType = (name:string | undefined) => CustomSetterType;
+type SetterHookType = (name:string | undefined) => CustomSetterType;
 
-const useFindCurrentInputState:CustomHookType = name => {
+// input state 변경을 위한 custom hook
+
+const useFindCurrentInputStateSetter:SetterHookType = name => {
   const target = useFindCurrentModal();
-  const states = useRecoilValue(InputStateMap);
-  const [stateMap, setMap] = useRecoilState(getInputState(states[target]));
+  const setMap = useSetRecoilState(getInputState(target));
 
-  console.log(stateMap);
   const setState:CustomSetterType = (value:string) => {
     setMap(prev => ({
       ...prev,
@@ -22,4 +23,16 @@ const useFindCurrentInputState:CustomHookType = name => {
   return setState;
 }
 
-export default useFindCurrentInputState;
+export {useFindCurrentInputStateSetter};
+
+type ValueHookType = () => InfoState;
+
+// input state를 가져오기 위한 custom hook
+const useFindCurrentInputState:ValueHookType = () => {
+  const target = useFindCurrentModal();
+  const result = useRecoilValue(getInputState(target));
+  return result;
+}
+
+export {useFindCurrentInputState};
+

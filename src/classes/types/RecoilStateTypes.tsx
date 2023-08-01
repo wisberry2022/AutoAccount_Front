@@ -21,3 +21,9 @@ type InputAtom = {
 }
 
 export type {InputAtom};
+
+type URLType = {
+  [key in string]:string
+}
+
+export type {URLType};

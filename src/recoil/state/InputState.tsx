@@ -1,26 +1,25 @@
 import { RecoilState, atom, atomFamily, selectorFamily } from "recoil";
-import { InfoState, StateMap } from "../../classes/types/RecoilStateTypes";
-
-const InputStateMap = atom<StateMap>({
-  key: "InputStateMap",
-  default: {
-    isAccountAssign: "AccountAssignState"
-  }
-});
-
-export {InputStateMap};
+import { InfoState } from "../../classes/types/RecoilStateTypes";
 
 const AccountAssignState = atom<InfoState>({
   key: "AccountAssignState",
-  default: {
-    serial: "",
-    name: "",
-    owner: "",
-    balance: 0,
-  }
+  default: {}
 });
 
-export {AccountAssignState};
+const AccountModifyState = atom<InfoState>({
+  key: "AccountModifyState",
+  default: {}
+});
+
+const DebitAssignState = atom<InfoState>({
+  key: "DebitAssignState",
+  default: {}
+}); 
+
+const DebitModifyState = atom<InfoState>({
+  key: "DebitUpdateState",
+  default: {}
+});
 
 const getInputState = atomFamily<InfoState, string>({
   key: "getInputState",
@@ -28,7 +27,10 @@ const getInputState = atomFamily<InfoState, string>({
     key: "InputStateSelector",
     get: param => ({get}) => {
       const stateMap:{[key : string]:RecoilState<InfoState>} = {
-        'AccountAssignState': AccountAssignState,
+        'isAccountAssign': AccountAssignState,
+        'isAccountUpdate': AccountModifyState,
+        'isDebitAssign': DebitAssignState,
+        'isDebitUpdate': DebitModifyState
       }
       
       const targetState = Object.keys(stateMap)

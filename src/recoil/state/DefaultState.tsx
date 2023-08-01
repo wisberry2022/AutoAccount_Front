@@ -6,8 +6,8 @@ import { LabelInputPair } from "../../classes/types/DataTypes";
 const DefaultModalButtons = atom<ButtonSet[]>({
   key:"ModalButtons",
   default: [
-    {color:{bgColor:"#111", color:"#ddd"}, name:"수정"},
-    {color:{bgColor:"#ddd", color:"#111"}, name:"취소"},
+    {color:{bgColor:"#111", color:"#ddd"}, name:"수정", type:"MODIFY"},
+    {color:{bgColor:"#ddd", color:"#111"}, name:"취소", type:"CANCEL"},
   ]
 });
 
@@ -16,8 +16,8 @@ export {DefaultModalButtons};
 const AssignModalButtons = atom<ButtonSet[]>({
   key:"ModalButtons",
   default: [
-    {color:{bgColor:"#111", color:"#ddd"}, name:"등록"},
-    {color:{bgColor:"#ddd", color:"#111"}, name:"취소"},
+    {color:{bgColor:"#111", color:"#ddd"}, name:"등록", type:"ASSIGN"},
+    {color:{bgColor:"#ddd", color:"#111"}, name:"취소", type:"CANCEL"},
   ]
 }); 
 
