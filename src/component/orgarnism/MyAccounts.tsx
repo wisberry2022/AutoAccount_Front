@@ -1,10 +1,13 @@
 import { styled } from "styled-components";
-import { AccountData, DetailData } from "../../classes/types/DataTypes";
+import { DetailData, ListData } from "../../classes/types/DataTypes";
 import List from "../atoms/list/List";
 import MyAccountBundle from "../molecules/MyAccountBundle";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import AccountDetail from "./AccountsDetail";
 import useModalState from "../../hooks/recoil/useModalState";
+import useAjaxState from "../../hooks/ajax/useAjaxState";
+import { useEffect, useState } from "react";
+import { useGetAjax } from "../../hooks/ajax/useAjax";
 
 const OuterList = styled(List)`
   display: flex;
@@ -26,10 +29,14 @@ const OuterList = styled(List)`
 
 const MyAccounts:React.FC = () => {
   const [ACCOUNT_DETAIL, _] = useModalState('isAccountDetail');
+  const ajaxState:boolean = useAjaxState('isAccountAssign');
+  const getList = useGetAjax('isAccountList');
+  const [list, setList] = useState<ListData[]>([]);
 
-  const accountArr:AccountData[] = [
-    {id:1, name:"일반통장", serial:"1122008177401"},
-  ];
+  useEffect(() => {
+    const result = getList();
+    result.then(res => setList(res));
+  }, [ajaxState, getList]);
 
   const details:DetailData[] = [
     {id:1, main:"잔액", sub:"15000원"},
@@ -40,10 +47,10 @@ const MyAccounts:React.FC = () => {
   return (
     <OuterList>
       {
-        accountArr.map(val => {
-          return (
-            <MyAccountBundle key={val.id} name={val.name} serial={val.serial}/>
-          )
+        list?.map((val,idx) => {
+            return (
+              <MyAccountBundle key={idx} name={val.name} serial={val.serial} />
+            )
         })
       }
       {

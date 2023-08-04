@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import Item from "../atoms/list/Item";
 import { GapFlex } from "../atoms/div/StyledFlex";
-import Emphasize from "../atoms/Text/Emphasize";
 import Button from "../atoms/buttons/Button";
 import { ButtonSet, FontSet } from "../../classes/types/StyleTypes";
 import useModalState from "../../hooks/recoil/useModalState";
@@ -11,6 +10,8 @@ import { LabelInputPair } from "../../classes/types/DataTypes";
 import { useRecoilValue } from "recoil";
 import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import AlertFrame from "../../pages/modal/AlertFrame";
+import { EllipsisEmphasize } from "../atoms/Text/StyledEmphasize";
+import { forwardRef, useRef } from "react";
 
 const FlexItem = styled(Item)<{gap:number}>`
   outline: 1px solid #111;
@@ -18,6 +19,7 @@ const FlexItem = styled(Item)<{gap:number}>`
   align-items: center;
   gap: ${prop => prop.gap + "rem"};
   padding: 2rem 1rem;
+  width: 40rem;
 ;`
 
 type PropType = {
@@ -40,10 +42,10 @@ const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
   const subFont:FontSet = {fontSize:"1.1", fontWeight: "400"};
   
   return (
-    <FlexItem gap={8}>
+    <FlexItem gap={2}>
       <GapFlex onClick={() => setState('isAccountDetail')} gap={1}>
-        <Emphasize font={font}>{serial}</Emphasize>
-        <Emphasize font={subFont}>{name}</Emphasize>
+        <EllipsisEmphasize size={{width: "15"}} font={font}>{serial}</EllipsisEmphasize>
+        <EllipsisEmphasize size={{width: "7"}} font={subFont}>{name}</EllipsisEmphasize>
       </GapFlex>
       <GapFlex gap={1}>
         <Button color="BW" onClick={() => setUpdate('isAccountUpdate')}>수정</Button>

@@ -22,8 +22,15 @@ type InputAtom = {
 
 export type {InputAtom};
 
+type AjaxType = {
+  url: string;
+  state: boolean;
+}
+
+export type {AjaxType};
+
 type URLType = {
-  [key in string]:string
+  [key in string]:AjaxType
 }
 
 export type {URLType};

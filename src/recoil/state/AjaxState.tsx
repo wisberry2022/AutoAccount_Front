@@ -4,8 +4,16 @@ import { URLType } from "../../classes/types/RecoilStateTypes";
 const AjaxState = atom<URLType>({
   key: "AjaxState",
   default: {
-    isAccountAssign: "/mysalary/api/v1/account"
+    isAccountAssign: {
+      url: "/mysalary/api/v1/account",
+      state: false
+    },
+    isAccountList: {
+      url: "/mysalary/api/v1/account",
+      state: false
+    }
   }
 });
 
 export {AjaxState};
+

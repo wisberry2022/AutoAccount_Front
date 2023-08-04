@@ -36,3 +36,12 @@ type DetailData = dataId & {
 }
 
 export type {DetailData};
+
+type ListData = {
+  name: string;
+  serial: string;
+  balance: number;
+  owner: string;
+}
+
+export type {ListData};

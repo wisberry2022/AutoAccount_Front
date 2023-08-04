@@ -10,3 +10,14 @@ const CustomSizingEmphasize = styled(Emphasize)<{size:Scale}>`
 `;
 
 export {CustomSizingEmphasize}
+
+const EllipsisEmphasize = styled(Emphasize)<{size:Scale}>`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: ${prop => prop.size ? prop.size.width + "rem" : "10rem"};
+  height: 2rem;
+  line-height: 100%;
+`;
+
+export {EllipsisEmphasize};
