@@ -3,25 +3,25 @@ import { ButtonSet } from "../../classes/types/StyleTypes";
 import { LabelInputPair } from "../../classes/types/DataTypes";
 
 
-const DefaultModalButtons = atom<ButtonSet[]>({
-  key:"ModalButtons",
-  default: [
-    {color:{bgColor:"#111", color:"#ddd"}, name:"수정", type:"MODIFY"},
-    {color:{bgColor:"#ddd", color:"#111"}, name:"취소", type:"CANCEL"},
-  ]
-});
-
-export {DefaultModalButtons};
-
 const AssignModalButtons = atom<ButtonSet[]>({
-  key:"ModalButtons",
+  key:"AssignModalButtons",
   default: [
     {color:{bgColor:"#111", color:"#ddd"}, name:"등록", type:"ASSIGN"},
     {color:{bgColor:"#ddd", color:"#111"}, name:"취소", type:"CANCEL"},
   ]
-}); 
+});
 
 export {AssignModalButtons};
+
+const ModifyModalButtons = atom<ButtonSet[]>({
+  key:"ModifyModalButtons",
+  default: [
+    {color:{bgColor:"#111", color:"#ddd"}, name:"수정", type:"MODIFY"},
+    {color:{bgColor:"#ddd", color:"#111"}, name:"취소", type:"CANCEL"},
+  ]
+}); 
+
+export {ModifyModalButtons};
 
 const SerialFormSet = atom<LabelInputPair>({
   key: "LabelInputSet",
@@ -128,6 +128,23 @@ const DebitDateFormSet = atom<LabelInputPair>({
   }
 });
 
+const BeforeNameFormSet = atom<LabelInputPair>({
+  key: "BeforeNameFormSet",
+  default: {
+    id:7, 
+    input:{
+      id:"after", 
+      type:"text", 
+      name:"after", 
+      placeholder:"변경 할 계좌 이름을 입력하세요"
+    },
+    label:{
+      htmlFor: "after",
+      label: "계좌이름"
+    }
+  }
+});
+
 const getInputComponent = atomFamily<LabelInputPair, string>({
   key: "getInputComponent",
   default: selectorFamily({
@@ -139,6 +156,7 @@ const getInputComponent = atomFamily<LabelInputPair, string>({
         'amount':AmountFormSet, 
         'owner':OwnerFormSet,
         'name':AccountNameFormSet,
+        'nameForUpdate': BeforeNameFormSet,
         'date':DebitDateFormSet
       }
       

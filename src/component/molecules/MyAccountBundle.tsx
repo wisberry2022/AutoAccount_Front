@@ -7,11 +7,12 @@ import useModalState from "../../hooks/recoil/useModalState";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import ModifyBox from "./ModifyBox";
 import { LabelInputPair } from "../../classes/types/DataTypes";
-import { useRecoilValue } from "recoil";
-import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { ModifyModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import AlertFrame from "../../pages/modal/AlertFrame";
 import { EllipsisEmphasize } from "../atoms/Text/StyledEmphasize";
 import { forwardRef, useRef } from "react";
+import { UserClickedAccount } from "../../recoil/state/AccountState";
 
 const FlexItem = styled(Item)<{gap:number}>`
   outline: 1px solid #111;
@@ -27,29 +28,44 @@ type PropType = {
   name: string
 }
 
+type ForwardedProps = {
+  name: string;
+}
+
+const RefEmphasize = forwardRef<HTMLElement, ForwardedProps>((prop, ref) => {
+  const {name} = prop;
+  return (
+    <EllipsisEmphasize size={{width: "7"}} font={{fontSize:"1.1", fontWeight: "400"}} ref={ref} >{name}</EllipsisEmphasize>
+  )
+})
+
 const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
   const [_, setState] = useModalState('isAccountDetail');
   const [update, setUpdate] = useModalState('isAccountUpdate');
   const [remove, setRemove] = useModalState('isAccountDelete');
+  const [clicked, setClicked] = useRecoilState(UserClickedAccount);
+  const nameRef = useRef<HTMLElement>(null);
 
   const inputDatas:LabelInputPair[] = [
-    useRecoilValue(getInputComponent('name'))
+    useRecoilValue(getInputComponent('nameForUpdate'))
   ];
 
-  const buttons:ButtonSet[] = useRecoilValue(DefaultModalButtons);
-
+  const buttons:ButtonSet[] = useRecoilValue(ModifyModalButtons);
   const font:FontSet = {fontSize:"1.7", fontWeight:"600"}
-  const subFont:FontSet = {fontSize:"1.1", fontWeight: "400"};
-  
+
   return (
     <FlexItem gap={2}>
-      <GapFlex onClick={() => setState('isAccountDetail')} gap={1}>
+      <GapFlex onClick={() => {setState('isAccountDetail')}} gap={1}>
         <EllipsisEmphasize size={{width: "15"}} font={font}>{serial}</EllipsisEmphasize>
-        <EllipsisEmphasize size={{width: "7"}} font={subFont}>{name}</EllipsisEmphasize>
+        <RefEmphasize ref={nameRef} name={name} />
       </GapFlex>
       <GapFlex gap={1}>
-        <Button color="BW" onClick={() => setUpdate('isAccountUpdate')}>수정</Button>
-        <Button color="WB" onClick={() => setRemove('isAccountDelete')}>삭제</Button>
+        <Button color="BW" onClick={() => {
+          setClicked({clicked:nameRef.current?.textContent});
+          setUpdate('isAccountUpdate');
+        }}>수정</Button>
+        <Button color="WB" onClick={() => (
+          setRemove('isAccountDelete'))}>삭제</Button>
       </GapFlex>
       {
         update &&

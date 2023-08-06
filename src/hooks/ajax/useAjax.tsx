@@ -1,4 +1,4 @@
-import { SetterOrUpdater, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import useFindCurrentModal from "../recoil/useFindCurrentModal";
 import axios from "axios";
 import { AjaxState } from "../../recoil/state/AjaxState";
@@ -39,6 +39,20 @@ const usePostAjax:AjaxHookType = () => {
 
 export {usePostAjax};
 
+const usePutAjax:AjaxHookType = (sendData:any) => {
+  const [_, ajax, ajaxFunc] = _initialAjax();
+  const doPut = async (beforeData:any, afterData:any) => {
+    await axios.put(ajax.url, {
+      before: beforeData.before,
+      ...afterData,
+    });
+    ajaxFunc();
+  }
+  return doPut;
+}
+
+export {usePutAjax};
+
 type AjaxGetResultHookType = (sendData?:any) => ReturnToDataFuncType;
 type ReturnToDataFuncType = (sendData?:any) => Promise<ListData[]>
 
@@ -53,3 +67,4 @@ const useGetAjax:AjaxGetResultHookType = (target) => {
 }
 
 export {useGetAjax};
+

@@ -5,7 +5,7 @@ import DebitBundle from "../molecules/DebitBundle";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import ModifyBox from "../molecules/ModifyBox";
 import { ButtonSet } from "../../classes/types/StyleTypes";
-import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import { getInputComponent } from "../../recoil/state/DefaultState";
 import { useRecoilValue } from "recoil";
 import useModalState from "../../hooks/recoil/useModalState";
 

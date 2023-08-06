@@ -6,7 +6,7 @@ import ModalFrame from "../../pages/modal/ModalFrame";
 import ModifyBox from "../molecules/ModifyBox";
 import { LabelInputPair } from "../../classes/types/DataTypes";
 import { useRecoilValue } from "recoil";
-import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import { AssignModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import { ButtonSet } from "../../classes/types/StyleTypes";
 
 const BorderingHorizonFlex = styled(HorizonFlex)`
@@ -26,7 +26,7 @@ const DebitAssign:React.FC = () => {
 		useRecoilValue(getInputComponent('date'))
 	]
 
-	const buttons:ButtonSet[] = useRecoilValue(DefaultModalButtons);
+	const buttons:ButtonSet[] = useRecoilValue(AssignModalButtons);
 
 	return (
 	<BorderingHorizonFlex option={{justifyContent:"center", gap:"15"}}>

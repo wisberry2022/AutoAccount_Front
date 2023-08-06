@@ -33,12 +33,20 @@ const getInputState = atomFamily<InfoState, string>({
         'isDebitUpdate': DebitModifyState
       }
       
-      const targetState = Object.keys(stateMap)
-      .filter(v => v === param)
-      .map(v => stateMap[v])[0];
+      console.log(param);
 
-      const target = get(targetState)
-      return target;
+      if(['isAccountAssign', 
+        'isAccountUpdate', 
+        'isDebitAssign',
+        'isDebitUpdate'].includes(param)) {
+          const targetState = Object.keys(stateMap)
+          .filter(v => v === param)
+          .map(v => stateMap[v])[0];
+    
+          const target = get(targetState)
+          return target;
+        }
+      return AccountAssignState;
     }
   })
 });

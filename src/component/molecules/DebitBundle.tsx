@@ -9,7 +9,7 @@ import useModalState from "../../hooks/recoil/useModalState";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import ModifyBox from "./ModifyBox";
 import { useRecoilValue } from "recoil";
-import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import { AssignModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import AlertFrame from "../../pages/modal/AlertFrame";
 
 const PaddingItem = styled(MarginItem)`
@@ -82,7 +82,7 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
 
   ];
 
-  const buttons:ButtonSet[] = useRecoilValue(DefaultModalButtons)
+  const buttons:ButtonSet[] = useRecoilValue(AssignModalButtons)
 
   return (
     <PaddingItem margin={margin}>

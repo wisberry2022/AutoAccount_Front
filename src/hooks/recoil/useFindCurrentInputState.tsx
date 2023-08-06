@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { SetterOrUpdater, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getInputState } from "../../recoil/state/InputState";
 import useFindCurrentModal from "./useFindCurrentModal";
 import { InfoState } from "../../classes/types/RecoilStateTypes";
@@ -25,13 +25,14 @@ const useFindCurrentInputStateSetter:SetterHookType = name => {
 
 export {useFindCurrentInputStateSetter};
 
-type ValueHookType = () => InfoState;
+type ValueHookType = () => [InfoState, SetterOrUpdater<InfoState>];
 
 // input state를 가져오기 위한 custom hook
 const useFindCurrentInputState:ValueHookType = () => {
   const target = useFindCurrentModal();
-  const result = useRecoilValue(getInputState(target));
-  return result;
+  const [data, setData] = useRecoilState(getInputState(target));
+
+  return [data, setData];
 }
 
 export {useFindCurrentInputState};

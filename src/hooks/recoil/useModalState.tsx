@@ -8,7 +8,7 @@ const useModalState:CustomHookType = state => {
   const [states, setState] = useRecoilState(ModalStates);
 
   const setModalState:SetterType = state => {
-    setState(
+     setState(
       prev => ({...prev, [state]:!prev[state]})
     );
   }

@@ -5,7 +5,7 @@ import { LabelInputPair } from "../../classes/types/DataTypes";
 import SectionHead from "../molecules/SectionHead";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import { useRecoilValue } from "recoil";
-import { DefaultModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import { AssignModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import ModifyBox from "../molecules/ModifyBox";
 import useModalState from "../../hooks/recoil/useModalState";
 
@@ -29,7 +29,7 @@ const AssignArea:React.FC = () => {
     useRecoilValue(getInputComponent('owner'))
   ];
 
-  const buttons:ButtonSet[] = useRecoilValue(DefaultModalButtons);
+  const buttons:ButtonSet[] = useRecoilValue(AssignModalButtons);
 
   const option:FlexSet = {
     gap: "1.5"
