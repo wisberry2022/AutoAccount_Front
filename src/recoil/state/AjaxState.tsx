@@ -15,6 +15,10 @@ const AjaxState = atom<URLType>({
     isAccountUpdate: {
       url: "/mysalary/api/v1/account",
       state: false
+    },
+    isAccountDelete: {
+      url: "/mysalary/api/v1/account/",
+      state: false
     }
   }
 });

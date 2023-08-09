@@ -10,7 +10,7 @@ type PropType = {
 const AlertFrame:React.FC<PropType> = ({title}:PropType) => {
 
 	const buttons:ButtonSet[] = [
-		{color:{bgColor: "#000", color: "#fff"}, name:"확인", type:"OKAY"},
+		{color:{bgColor: "#000", color: "#fff"}, name:"확인", type:"REMOVE"},
 		{color:{bgColor: "#fff", color: "#000"}, name:"취소", type:"CANCEL"}
 	];
 

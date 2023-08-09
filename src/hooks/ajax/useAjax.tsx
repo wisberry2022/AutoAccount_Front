@@ -68,3 +68,20 @@ const useGetAjax:AjaxGetResultHookType = (target) => {
 
 export {useGetAjax};
 
+type AjaxDeleteHookType = () => ReturnToAnyType;
+type ReturnToAnyType = (sendData?:any) => Promise<any>
+
+const useDeleteAjax:AjaxDeleteHookType = () => {
+  const target:string = useFindCurrentModal(); 
+  const current:URLType = useRecoilValue(AjaxState);
+  const ajaxData:AjaxType = current[target];
+  const deleteFunc:ReturnToAnyType = async (sendData?:any) => {
+    const result = await axios.delete(ajaxData.url, sendData && {
+      data:sendData
+    })
+    return result.data
+  }
+  return deleteFunc;
+}
+
+export {useDeleteAjax};

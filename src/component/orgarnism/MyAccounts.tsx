@@ -8,6 +8,8 @@ import useModalState from "../../hooks/recoil/useModalState";
 import useAjaxState from "../../hooks/ajax/useAjaxState";
 import { useEffect, useState } from "react";
 import { useGetAjax } from "../../hooks/ajax/useAjax";
+import { useRecoilValue } from "recoil";
+import { UserClickedAccount } from "../../recoil/state/AccountState";
 
 const OuterList = styled(List)`
   display: flex;
@@ -32,6 +34,7 @@ const MyAccounts:React.FC = () => {
   const ajaxState:boolean = useAjaxState('isAccountAssign');
   const getList = useGetAjax('isAccountList');
   const [list, setList] = useState<ListData[]>([]);
+  const clicked = useRecoilValue(UserClickedAccount);
 
   useEffect(() => {
     const result = getList();

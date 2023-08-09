@@ -32,19 +32,11 @@ type ForwardedProps = {
   name: string;
 }
 
-const RefEmphasize = forwardRef<HTMLElement, ForwardedProps>((prop, ref) => {
-  const {name} = prop;
-  return (
-    <EllipsisEmphasize size={{width: "7"}} font={{fontSize:"1.1", fontWeight: "400"}} ref={ref} >{name}</EllipsisEmphasize>
-  )
-})
-
 const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
   const [_, setState] = useModalState('isAccountDetail');
   const [update, setUpdate] = useModalState('isAccountUpdate');
   const [remove, setRemove] = useModalState('isAccountDelete');
   const [clicked, setClicked] = useRecoilState(UserClickedAccount);
-  const nameRef = useRef<HTMLElement>(null);
 
   const inputDatas:LabelInputPair[] = [
     useRecoilValue(getInputComponent('nameForUpdate'))
@@ -57,14 +49,15 @@ const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
     <FlexItem gap={2}>
       <GapFlex onClick={() => {setState('isAccountDetail')}} gap={1}>
         <EllipsisEmphasize size={{width: "15"}} font={font}>{serial}</EllipsisEmphasize>
-        <RefEmphasize ref={nameRef} name={name} />
+        <EllipsisEmphasize size={{width: "7"}} font={{fontSize:"1.1", fontWeight: "400"}}>{name}</EllipsisEmphasize>
       </GapFlex>
       <GapFlex gap={1}>
         <Button color="BW" onClick={() => {
-          setClicked({clicked:nameRef.current?.textContent});
+          setClicked({clicked:name, serial:serial});
           setUpdate('isAccountUpdate');
         }}>수정</Button>
         <Button color="WB" onClick={() => (
+          setClicked({clicked:name, serial:serial}),
           setRemove('isAccountDelete'))}>삭제</Button>
       </GapFlex>
       {

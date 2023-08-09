@@ -26,4 +26,5 @@ export type URLType = {
 
 export type ClickedAccount = {
   clicked: string | undefined | null;
+  serial?: string;
 }

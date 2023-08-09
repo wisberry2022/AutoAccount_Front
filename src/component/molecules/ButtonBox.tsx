@@ -4,7 +4,7 @@ import useFindCurrentModal from "../../hooks/recoil/useFindCurrentModal";
 import useModalState from "../../hooks/recoil/useModalState";
 import { CustomColoringButton } from "../atoms/buttons/StyledButton";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
-import { usePostAjax, usePutAjax } from "../../hooks/ajax/useAjax";
+import { useDeleteAjax, usePostAjax, usePutAjax } from "../../hooks/ajax/useAjax";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getInputState } from "../../recoil/state/InputState";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
@@ -14,13 +14,22 @@ type PropType = {
   gap: number
 };
 
+type Flag = {
+  [key in string]: string
+};
+
 const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
   const [_, setState] = useModalState('isAccountAssign');
-  const modal = useFindCurrentModal();
+  const modal:string = useFindCurrentModal();
   const clicked = useRecoilValue(UserClickedAccount);
   const [data, setData] = useFindCurrentInputState();
   const doPost = usePostAjax();
   const doPut = usePutAjax();
+  const doDelete = useDeleteAjax();
+  const deleteFlag:Flag = {
+    isAccountDelete: "serial",
+    isDebitDelete: "id"
+  }
 
   const option:FlexSet = {
    justifyContent: "center",
@@ -42,6 +51,13 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
                 setState(modal);
               }
               if(["CANCEL", "OKAY"].includes(val.type)) {
+                setState(modal);
+              }
+              if(val.type === "REMOVE") {
+                console.log('삭제 버튼 클릭~');
+                await doDelete({
+                  [deleteFlag[modal]] : clicked.serial
+                });
                 setState(modal);
               }
             }
