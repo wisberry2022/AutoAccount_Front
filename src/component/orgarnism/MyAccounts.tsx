@@ -37,28 +37,22 @@ const MyAccounts:React.FC = () => {
   const clicked = useRecoilValue(UserClickedAccount);
 
   useEffect(() => {
-    const result = getList();
+    const result:Promise<ListData[]> = getList();
     result.then(res => setList(res));
   }, [ajaxState, getList]);
-
-  const details:DetailData[] = [
-    {id:1, main:"잔액", sub:"15000원"},
-    {id:2, main:"계좌주", sub:"왕인서"},
-    {id:3, main:"등록된 자동이체 수", sub:"2개"}
-  ];
 
   return (
     <OuterList>
       {
         list?.map((val,idx) => {
             return (
-              <MyAccountBundle key={idx} name={val.name} serial={val.serial} />
+              <MyAccountBundle key={idx} id={val.id} name={val.name} serial={val.serial} />
             )
         })
       }
       {
         ACCOUNT_DETAIL &&
-        <ModalFrame title="계좌 상세보기" close={true} target={<AccountDetail detail={details} />} />
+        <ModalFrame title="계좌 상세보기" close={true} target={<AccountDetail />} />
       }
     </OuterList>
   )

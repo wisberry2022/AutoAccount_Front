@@ -4,6 +4,7 @@ import axios from "axios";
 import { AjaxState } from "../../recoil/state/AjaxState";
 import { AjaxType, URLType } from "../../classes/types/RecoilStateTypes";
 import { ListData } from "../../classes/types/DataTypes";
+import { UserClickedAccount } from "../../recoil/state/AccountState";
 
 
 type _AjaxFunc = () => void;
@@ -54,13 +55,24 @@ const usePutAjax:AjaxHookType = (sendData:any) => {
 export {usePutAjax};
 
 type AjaxGetResultHookType = (sendData?:any) => ReturnToDataFuncType;
-type ReturnToDataFuncType = (sendData?:any) => Promise<ListData[]>
+type ReturnToDataFuncType = (sendData?:any) => Promise<any>
+
+type _InnerAjaxToolType = (url:string, modalState:string) => string;
+
+const _useAddParameter:_InnerAjaxToolType = (url, modalState) => {
+  const clicked = useRecoilValue(UserClickedAccount);  
+  if(['isAccountDetail', 'isDebitList'].includes(modalState)) {
+    return url + "/" + clicked.id;
+  }
+  return url;
+}
 
 const useGetAjax:AjaxGetResultHookType = (target) => {
     const current:URLType = useRecoilValue(AjaxState);
     const ajaxData:AjaxType = current[target];
+    const url:string = _useAddParameter(ajaxData.url, target);
     const getList:ReturnToDataFuncType = async (sendData?:any) => {
-      const result = await axios.get(ajaxData.url, sendData && sendData);
+      const result = await axios.get(url, sendData && sendData);
       return result.data;
     }
     return getList;
@@ -79,6 +91,7 @@ const useDeleteAjax:AjaxDeleteHookType = () => {
     const result = await axios.delete(ajaxData.url, sendData && {
       data:sendData
     })
+    console.log(result);
     return result.data
   }
   return deleteFunc;

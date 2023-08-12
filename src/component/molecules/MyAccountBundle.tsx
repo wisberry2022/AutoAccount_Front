@@ -26,13 +26,14 @@ const FlexItem = styled(Item)<{gap:number}>`
 type PropType = {
   serial: string
   name: string
+  id: string
 }
 
 type ForwardedProps = {
   name: string;
 }
 
-const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
+const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
   const [_, setState] = useModalState('isAccountDetail');
   const [update, setUpdate] = useModalState('isAccountUpdate');
   const [remove, setRemove] = useModalState('isAccountDelete');
@@ -47,17 +48,17 @@ const MyAccountBundle:React.FC<PropType> = ({serial, name}:PropType) => {
 
   return (
     <FlexItem gap={2}>
-      <GapFlex onClick={() => {setState('isAccountDetail')}} gap={1}>
+      <GapFlex onClick={() => (setState('isAccountDetail'), setClicked({id:id, clicked:name, serial:serial}))} gap={1}>
         <EllipsisEmphasize size={{width: "15"}} font={font}>{serial}</EllipsisEmphasize>
         <EllipsisEmphasize size={{width: "7"}} font={{fontSize:"1.1", fontWeight: "400"}}>{name}</EllipsisEmphasize>
       </GapFlex>
       <GapFlex gap={1}>
         <Button color="BW" onClick={() => {
-          setClicked({clicked:name, serial:serial});
+          setClicked({id:id, clicked:name, serial:serial});
           setUpdate('isAccountUpdate');
         }}>수정</Button>
         <Button color="WB" onClick={() => (
-          setClicked({clicked:name, serial:serial}),
+          setClicked({id:id, clicked:name, serial:serial}),
           setRemove('isAccountDelete'))}>삭제</Button>
       </GapFlex>
       {

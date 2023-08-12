@@ -26,10 +26,6 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
   const doPost = usePostAjax();
   const doPut = usePutAjax();
   const doDelete = useDeleteAjax();
-  const deleteFlag:Flag = {
-    isAccountDelete: "serial",
-    isDebitDelete: "id"
-  }
 
   const option:FlexSet = {
    justifyContent: "center",
@@ -54,9 +50,9 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
                 setState(modal);
               }
               if(val.type === "REMOVE") {
-                console.log('삭제 버튼 클릭~');
+                console.log(clicked);
                 await doDelete({
-                  [deleteFlag[modal]] : clicked.serial
+                  "id" : clicked.id
                 });
                 setState(modal);
               }

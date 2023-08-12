@@ -4,44 +4,38 @@ type dataId = {
   id: number;
 };
 
-
-type Debit = {
+export type Debit = {
   deposit: string,
   name: string,
   amount: number,
   debitDate: string
 };
 
-export type {Debit};
-
-type LabelInputPair = dataId & {
+export type LabelInputPair = dataId & {
   id: number;
   label: LabelOption;
   input: InputOption;
 }
 
-export type {LabelInputPair};
-
-type AccountData = {
+export type AccountData = {
   id: number;
   name: string;
   serial: string;
 }
 
-export type {AccountData};
-
-type DetailData = dataId & {
+export type DetailData = dataId & {
   main: string;
-  sub: string;
+  sub: any;
 }
 
-export type {DetailData};
-
-type ListData = {
+export type ListData = {
+  id: string;
   name: string;
   serial: string;
   balance: number;
   owner: string;
 }
 
-export type {ListData};
+export type Detail = ListData & {
+  debitCount: number;
+}
