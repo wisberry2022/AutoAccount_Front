@@ -21,6 +21,7 @@ type PropType = {
 }
 
 const ModifyBox:React.FC<PropType> = ({dataArr, buttonArr}:PropType) => {
+	
 	return (
 		<InputSizingFlex>
 			<VerticalMarginFlex>

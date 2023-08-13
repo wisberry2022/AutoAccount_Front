@@ -4,8 +4,7 @@ import { FontSet, InputOption, LabelOption, Scale } from "../../classes/types/St
 import Emphasize from "../atoms/Text/Emphasize";
 import { styled } from "styled-components";
 import { CustomSizingInput } from "../atoms/inputs/StyledInput";
-import { useFindCurrentInputStateSetter } from "../../hooks/recoil/useFindCurrentInputState";
-import { useRef } from "react";
+import { useFindCurrentInputState, useFindCurrentInputStateSetter } from "../../hooks/recoil/useFindCurrentInputState";
 
 const RegularSizeEmphasize = styled(Emphasize)`
   width: 6rem;
@@ -17,14 +16,9 @@ type PropType = {
   font?: FontSet
 };
 
-type RefPropType = {
-  size: Scale
-  input: InputOption
-}
 
 const LabelInput:React.FC<PropType> = ({label, input}:PropType) => {
   const setState = useFindCurrentInputStateSetter(input.name);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const font:FontSet = {
     fontSize: "1.2"

@@ -3,7 +3,7 @@ export type ModalState = {
 }
 
 export type InfoState = {
-  [key in string]:number | string | null
+  [key in string]:number | string | Date | null
 }
 
 export type StateMap = {
@@ -28,4 +28,8 @@ export type ClickedAccount = {
   clicked: string | undefined | null;
   id: string;
   serial?: string;
+}
+
+export type AssignStateType = {
+  state: boolean;
 }

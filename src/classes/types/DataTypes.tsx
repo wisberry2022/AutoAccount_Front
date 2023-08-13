@@ -5,6 +5,8 @@ type dataId = {
 };
 
 export type Debit = {
+  id: string,
+  withdrawal: string,
   deposit: string,
   name: string,
   amount: number,

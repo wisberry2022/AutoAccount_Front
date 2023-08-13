@@ -13,6 +13,7 @@ import AlertFrame from "../../pages/modal/AlertFrame";
 import { EllipsisEmphasize } from "../atoms/Text/StyledEmphasize";
 import { forwardRef, useRef } from "react";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
+import { useGetAjax } from "../../hooks/ajax/useAjax";
 
 const FlexItem = styled(Item)<{gap:number}>`
   outline: 1px solid #111;
@@ -52,14 +53,17 @@ const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
         <EllipsisEmphasize size={{width: "15"}} font={font}>{serial}</EllipsisEmphasize>
         <EllipsisEmphasize size={{width: "7"}} font={{fontSize:"1.1", fontWeight: "400"}}>{name}</EllipsisEmphasize>
       </GapFlex>
-      <GapFlex gap={1}>
-        <Button color="BW" onClick={() => {
+      <GapFlex gap={.5}>
+        <Button color="BW" onClick={(e) => {
+          e.stopPropagation();
           setClicked({id:id, clicked:name, serial:serial});
           setUpdate('isAccountUpdate');
         }}>수정</Button>
-        <Button color="WB" onClick={() => (
-          setClicked({id:id, clicked:name, serial:serial}),
-          setRemove('isAccountDelete'))}>삭제</Button>
+        <Button color="WB" onClick={(e) => {
+          e.stopPropagation();
+          setClicked({id:id, clicked:name, serial:serial});
+          setRemove('isAccountDelete');
+        }}>삭제</Button>
       </GapFlex>
       {
         update &&

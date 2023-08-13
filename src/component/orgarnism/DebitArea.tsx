@@ -8,6 +8,12 @@ import { ButtonSet } from "../../classes/types/StyleTypes";
 import { getInputComponent } from "../../recoil/state/DefaultState";
 import { useRecoilValue } from "recoil";
 import useModalState from "../../hooks/recoil/useModalState";
+import { UserClickedAccount } from "../../recoil/state/AccountState";
+import { useEffect, useState } from "react";
+import { useGetAjax } from "../../hooks/ajax/useAjax";
+import { AjaxState } from "../../recoil/state/AjaxState";
+import { URLType } from "../../classes/types/RecoilStateTypes";
+import { DebitState } from "../../recoil/state/DebitState";
 
 const WrapperBorderList = styled(List)`
   margin-block-end: 0;
@@ -26,24 +32,25 @@ const WrapperBorderList = styled(List)`
 `
 
 const DebitArea:React.FC = () => {
-  const normalDebit:Debit = {
-    deposit: "3028558834191",
-    name: "일반통장",
-    amount: 300000,
-    debitDate: new Date().toLocaleDateString()
-  };
+  const clicked = useRecoilValue(UserClickedAccount);
+  const doDebitList = useGetAjax('isDebitList');
+  const debitState = useRecoilValue(DebitState);
+  const [list, setList] = useState<Debit[]>([]);
 
-  const installmentDebit:Debit = {
-    deposit: "1038291045123",
-    name: "적금통장",
-    amount: 500000,
-    debitDate: new Date().toLocaleDateString()
-  };
+  useEffect(() => {
+    doDebitList()
+      .then(res => setList(res.result))
+  }, [clicked, debitState]);
   
+
   return (  
     <WrapperBorderList>
-      <DebitBundle data={normalDebit} />
-      <DebitBundle data={installmentDebit} />
+      {
+        Array.isArray(list) && 
+        list?.map(val => {
+          return <DebitBundle key={val.id} data={val} />
+        })
+      }
     </WrapperBorderList>
   )
 }

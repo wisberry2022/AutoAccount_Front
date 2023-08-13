@@ -2,6 +2,7 @@ import { SetterOrUpdater, useRecoilState, useRecoilValue, useSetRecoilState } fr
 import { getInputState } from "../../recoil/state/InputState";
 import useFindCurrentModal from "./useFindCurrentModal";
 import { InfoState } from "../../classes/types/RecoilStateTypes";
+import { UserClickedAccount } from "../../recoil/state/AccountState";
 
 
 type CustomSetterType = (value:string) => void;

@@ -25,6 +25,9 @@ const AlignSelfButton = styled(Button)`
   align-self: center;
 `;
 
+const CustomSizingHorizon = styled(HorizonFlex)`
+  width: 25rem;
+`;
 
 type PropType = {
   data:Debit
@@ -65,6 +68,7 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
 
   const horizonOption:FlexSet = {
     gap: "3",
+    justifyContent: "flex-start",
     alignItems: "center"
   }
 
@@ -86,15 +90,15 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
 
   return (
     <PaddingItem margin={margin}>
-      <GapFlex gap={8} >
-        <HorizonFlex option={horizonOption}>
+      <GapFlex gap={4} >
+        <CustomSizingHorizon option={horizonOption}>
           <VerticalFlex option={option}>
             <TextAlignEmphasize font={nameFont}>{data.name}</TextAlignEmphasize>
             <TextAlignEmphasize font={amountFont}>{data.amount}원</TextAlignEmphasize>
             <TextAlignEmphasize font={depositFont}>{data.deposit}</TextAlignEmphasize>
           </VerticalFlex>
           <Emphasize font={dateFont}>{data.debitDate}</Emphasize>
-        </HorizonFlex>
+        </CustomSizingHorizon>
         <GapFlex gap={.5}>
           <AlignSelfButton color="WB" onClick={() => setDebitUpdate('isDebitUpdate')}>수정</AlignSelfButton>
           <AlignSelfButton color="BW" onClick={() => setDebitDelete('isDebitDelete')}>삭제</AlignSelfButton>

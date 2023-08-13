@@ -6,8 +6,9 @@ import { CustomColoringButton } from "../atoms/buttons/StyledButton";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import { useDeleteAjax, usePostAjax, usePutAjax } from "../../hooks/ajax/useAjax";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { getInputState } from "../../recoil/state/InputState";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
+import { AssignStateType, InfoState } from "../../classes/types/RecoilStateTypes";
+import { DebitState } from "../../recoil/state/DebitState";
 
 type PropType = {
   names: Array<ButtonSet>,
@@ -27,19 +28,40 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
   const doPut = usePutAjax();
   const doDelete = useDeleteAjax();
 
+  const setDebit = useSetRecoilState(DebitState);
+
   const option:FlexSet = {
    justifyContent: "center",
    gap: gap.toString() 
   }
   
+  type ReturnRequestData = (data:InfoState) => InfoState;
+
+  const convertToDebitAssignRequestData:ReturnRequestData = (data) => {
+    if(modal === 'isDebitAssign') {
+      let requestData:InfoState = {
+        withdrawal: clicked.serial as string,
+        deposit: data.serial,
+        name: data.name,
+        amount: Number.parseFloat(data.balance as string),
+        date: new Date()
+      };
+      return requestData;
+    }
+    return data;
+  }
+
   return (
     <HorizonFlex option={option}>
       {names.map((val,idx) => {
         return (
           <CustomColoringButton onClick={
-            async () => {
+            async (e) => {
+              e.stopPropagation();
               if(val.type === "ASSIGN") {
-                await doPost(data);
+                let request:InfoState = convertToDebitAssignRequestData(data);
+                await doPost(request);
+                modal === "isDebitAssign" && setDebit(prev => ({state: !prev.state}));   
                 setState(modal);
               }
               if(val.type === "MODIFY") {
@@ -50,7 +72,6 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
                 setState(modal);
               }
               if(val.type === "REMOVE") {
-                console.log(clicked);
                 await doDelete({
                   "id" : clicked.id
                 });

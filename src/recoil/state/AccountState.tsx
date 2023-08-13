@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { ClickedAccount } from "../../classes/types/RecoilStateTypes";
+import { AssignStateType, ClickedAccount } from "../../classes/types/RecoilStateTypes";
 
 const UserClickedAccount = atom<ClickedAccount>({
   key: "UserClickedAccount",
@@ -12,3 +12,11 @@ const UserClickedAccount = atom<ClickedAccount>({
 
 export {UserClickedAccount};
 
+const AccountAssignState = atom<AssignStateType>({
+  key: "AccountAssignState",
+  default: {
+    state: false
+  }
+})
+
+export {AccountAssignState};

@@ -33,7 +33,6 @@ const getInputState = atomFamily<InfoState, string>({
         'isDebitUpdate': DebitModifyState
       }
       
-      console.log(param);
 
       if(['isAccountAssign', 
         'isAccountUpdate', 

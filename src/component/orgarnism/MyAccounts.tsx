@@ -8,7 +8,7 @@ import useModalState from "../../hooks/recoil/useModalState";
 import useAjaxState from "../../hooks/ajax/useAjaxState";
 import { useEffect, useState } from "react";
 import { useGetAjax } from "../../hooks/ajax/useAjax";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
 
 const OuterList = styled(List)`
@@ -32,14 +32,23 @@ const OuterList = styled(List)`
 const MyAccounts:React.FC = () => {
   const [ACCOUNT_DETAIL, _] = useModalState('isAccountDetail');
   const ajaxState:boolean = useAjaxState('isAccountAssign');
+  const deleteState:boolean = useAjaxState('isAccountDelete');
+  const updateState:boolean = useAjaxState('isAccountUpdate');
   const getList = useGetAjax('isAccountList');
   const [list, setList] = useState<ListData[]>([]);
-  const clicked = useRecoilValue(UserClickedAccount);
+  const [clicked, setClicked] = useRecoilState(UserClickedAccount);
+
 
   useEffect(() => {
+    console.log('MyAccounts 렌더링', clicked.id);
     const result:Promise<ListData[]> = getList();
-    result.then(res => setList(res));
-  }, [ajaxState, getList]);
+    result.then(res => {
+      setList(res);
+      setClicked({id:res[0].id, clicked:res[0].name, serial:res[0].serial});
+    });
+  }, [ajaxState, deleteState, updateState]);
+
+  
 
   return (
     <OuterList>
