@@ -1,11 +1,22 @@
 import { atom } from "recoil";
-import { AssignStateType } from "../../classes/types/RecoilStateTypes";
+import { ClickedAccount, ExpenseType } from "../../classes/types/RecoilStateTypes";
 
-const DebitState = atom<AssignStateType>({
+const DebitState = atom<ClickedAccount>({
   key: "DebitState",
   default: {
-    state: true
+    clicked: "",
+    id: "",
+    serial: ""
   }
 })
 
 export {DebitState};
+
+const ExpectTotalExpense = atom<ExpenseType>({
+  key: "ExpectTotalExpense",
+  default: {
+    expense: 0
+  }
+})
+
+export {ExpectTotalExpense};

@@ -31,10 +31,44 @@ const SerialFormSet = atom<LabelInputPair>({
       id:"serial", 
       type:"text", 
       name:"serial", 
-      placeholder:"변경할 계좌번호를 입력하세요"
+      placeholder:"등록할 계좌번호를 입력하세요"
     },
     label:{
       htmlFor: "serial",
+      label: "계좌번호"
+    }
+  }
+});
+
+const DebitSerialFormSet = atom<LabelInputPair>({
+  key: "DebitSerialFormSet",
+  default: {
+    id:9, 
+    input:{
+      id:"deposit", 
+      type:"text", 
+      name:"deposit", 
+      placeholder:"변경할 계좌번호를 입력하세요"
+    },
+    label:{
+      htmlFor: "deposit",
+      label: "계좌번호"
+    }
+  }
+});
+
+const UpdateForSerialFormSet = atom<LabelInputPair>({
+  key: "UpdateSerialFormSet",
+  default: {
+    id:8, 
+    input:{
+      id:"update-serial", 
+      type:"text", 
+      name:"deposit", 
+      placeholder:"변경할 계좌번호를 입력하세요"
+    },
+    label:{
+      htmlFor: "update-serial",
       label: "계좌번호"
     }
   }
@@ -128,7 +162,7 @@ const DebitDateFormSet = atom<LabelInputPair>({
   }
 });
 
-const BeforeNameFormSet = atom<LabelInputPair>({
+const UpdateNameFormSet = atom<LabelInputPair>({
   key: "BeforeNameFormSet",
   default: {
     id:7, 
@@ -152,12 +186,14 @@ const getInputComponent = atomFamily<LabelInputPair, string>({
     get: param => ({get}) => {
       const stateMap:{[key : string]:RecoilState<LabelInputPair>} = {
         'serial':SerialFormSet,
+        'deposit':DebitSerialFormSet,
         'balance':BalanceFormSet,
         'amount':AmountFormSet, 
         'owner':OwnerFormSet,
         'name':AccountNameFormSet,
-        'nameForUpdate': BeforeNameFormSet,
-        'date':DebitDateFormSet
+        'nameForUpdate': UpdateNameFormSet,
+        'date':DebitDateFormSet,
+        'depositForUpdate': UpdateForSerialFormSet
       }
       
       const targetState = Object.keys(stateMap)

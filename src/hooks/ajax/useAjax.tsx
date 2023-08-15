@@ -3,9 +3,7 @@ import useFindCurrentModal from "../recoil/useFindCurrentModal";
 import axios from "axios";
 import { AjaxState } from "../../recoil/state/AjaxState";
 import { AjaxType, URLType } from "../../classes/types/RecoilStateTypes";
-import { ListData } from "../../classes/types/DataTypes";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
-
 
 type _AjaxFunc = () => void;
 type _InitialAjaxType = () => [string, AjaxType, _AjaxFunc];
@@ -19,7 +17,7 @@ const _initialAjax:_InitialAjaxType = () => {
         ...prev,
         [current]: {
           ...prev[current],
-          state: true
+          state: !prev[current].state
         }
       }
     });
@@ -42,11 +40,8 @@ export {usePostAjax};
 
 const usePutAjax:AjaxHookType = (sendData:any) => {
   const [_, ajax, ajaxFunc] = _initialAjax();
-  const doPut = async (beforeData:any, afterData:any) => {
-    await axios.put(ajax.url, {
-      before: beforeData.before,
-      ...afterData,
-    });
+  const doPut = async (sendData:any) => {
+    await axios.put(ajax.url, sendData);
     ajaxFunc();
   }
   return doPut;

@@ -8,30 +8,34 @@ import { MarginItem } from "../atoms/list/StyledItem";
 import useModalState from "../../hooks/recoil/useModalState";
 import ModalFrame from "../../pages/modal/ModalFrame";
 import ModifyBox from "./ModifyBox";
-import { useRecoilValue } from "recoil";
-import { AssignModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
+import { SetterOrUpdater, useRecoilValue, useSetRecoilState } from "recoil";
+import { ModifyModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import AlertFrame from "../../pages/modal/AlertFrame";
+import { DebitState } from "../../recoil/state/DebitState";
+import { ClickedAccount } from "../../classes/types/RecoilStateTypes";
 
 const PaddingItem = styled(MarginItem)`
   padding: 2rem 1.5rem;
   border: .1rem solid #aaa;
-`;
+  `;
 
 const TextAlignEmphasize = styled(Emphasize)`
   text-align: left;
-`
+  `
 
 const AlignSelfButton = styled(Button)`
   align-self: center;
-`;
+  `;
 
 const CustomSizingHorizon = styled(HorizonFlex)`
   width: 25rem;
-`;
+  `;
 
 type PropType = {
   data:Debit
 }
+
+type setModalWorksFuncType = (modal:string) => void
 
 const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
   const font:FontSet = {
@@ -76,17 +80,25 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
     bottom: 1.5,
   }
 
+  const setDebitState:SetterOrUpdater<ClickedAccount> = useSetRecoilState(DebitState);
+
   const [DEBIT_UPDATE, setDebitUpdate] = useModalState('isDebitUpdate');
   const [DEBIT_DELETE, setDebitDelete] = useModalState('isDebitDelete');
 
   const dataArr:LabelInputPair[] = [
-    useRecoilValue(getInputComponent('serial')),
-    useRecoilValue(getInputComponent('balance')),
+    useRecoilValue(getInputComponent('depositForUpdate')),
+    useRecoilValue(getInputComponent('amount')),
     useRecoilValue(getInputComponent('name'))
 
   ];
 
-  const buttons:ButtonSet[] = useRecoilValue(AssignModalButtons)
+  const buttons:ButtonSet[] = useRecoilValue(ModifyModalButtons);
+
+
+  const setDebitWorks:setModalWorksFuncType = (modal:string) => (
+    setDebitUpdate(modal),
+    setDebitState({clicked:data.name, id:data.id, serial:data.deposit})
+  );
 
   return (
     <PaddingItem margin={margin}>
@@ -100,8 +112,8 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
           <Emphasize font={dateFont}>{data.debitDate}</Emphasize>
         </CustomSizingHorizon>
         <GapFlex gap={.5}>
-          <AlignSelfButton color="WB" onClick={() => setDebitUpdate('isDebitUpdate')}>수정</AlignSelfButton>
-          <AlignSelfButton color="BW" onClick={() => setDebitDelete('isDebitDelete')}>삭제</AlignSelfButton>
+          <AlignSelfButton color="WB" onClick={() => setDebitWorks('isDebitUpdate')}>수정</AlignSelfButton>
+          <AlignSelfButton color="BW" onClick={() => setDebitWorks('isDebitDelete')}>삭제</AlignSelfButton>
         </GapFlex>
         {
           DEBIT_UPDATE &&

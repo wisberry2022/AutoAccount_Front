@@ -19,9 +19,10 @@ const DebitAssign:React.FC = () => {
 	const [DEBIT_ASSIGN, _] = useModalState('isDebitAssign');
 
 	const assignData:LabelInputPair[] = [
-		useRecoilValue(getInputComponent('serial')),
+		// useRecoilValue(getInputComponent('serial')),
+		useRecoilValue(getInputComponent('deposit')),
 		useRecoilValue(getInputComponent('name')),
-		useRecoilValue(getInputComponent('balance')),
+		useRecoilValue(getInputComponent('amount')),
 		useRecoilValue(getInputComponent('owner')),
 		useRecoilValue(getInputComponent('date'))
 	]

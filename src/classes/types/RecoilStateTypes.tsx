@@ -14,7 +14,6 @@ export type InputAtom = {
   [key in string]: number | string | null
 }
 
-
 export type AjaxType = {
   url: string;
   state: boolean;
@@ -32,4 +31,8 @@ export type ClickedAccount = {
 
 export type AssignStateType = {
   state: boolean;
+}
+
+export type ExpenseType = {
+  expense: number;
 }

@@ -32,6 +32,10 @@ const AjaxState = atom<URLType>({
       url: "/mysalary/api/v1/debit",
       state: false
     },
+    isDebitUpdate: {
+      url: "/mysalary/api/v1/debit",
+      state: false
+    },
     isDebitDelete: {
       url: "/mysalary/api/v1/debit",
       state: false

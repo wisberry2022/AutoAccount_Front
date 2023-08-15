@@ -44,7 +44,10 @@ const MyAccounts:React.FC = () => {
     const result:Promise<ListData[]> = getList();
     result.then(res => {
       setList(res);
-      setClicked({id:res[0].id, clicked:res[0].name, serial:res[0].serial});
+      setClicked({
+        id:res[0]?.id ? res[0].id : "", 
+        clicked:res[0]?.name ? res[0].name : "", 
+        serial:res[0]?.serial ? res[0].serial : ""});
     });
   }, [ajaxState, deleteState, updateState]);
 
