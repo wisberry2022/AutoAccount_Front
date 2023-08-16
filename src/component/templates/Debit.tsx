@@ -8,28 +8,27 @@ import { useRecoilValue } from "recoil";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
 import axios from "axios";
 import useAjaxState from "../../hooks/ajax/useAjaxState";
+import useModalState from "../../hooks/recoil/useModalState";
+import ModalFrame from "../../pages/modal/ModalFrame";
+import DebitDetail from "../orgarnism/DebitDetail";
+import ExpectExpense from "../orgarnism/ExpectExpense";
 
 const VerticlaSizingFlex = styled(VerticalFlex)`
 	height: 64.2vh;
 `;
 
 const Debit:React.FC = () => {
-	const clicked = useRecoilValue(UserClickedAccount);
-	const [expense, setExpense] = useState<number>(0); 
-	const debitAssign = useAjaxState('isDebitAssign');
-	const debitUpdate = useAjaxState('isDebitUpdate');
-	const debitDelete = useAjaxState('isDebitDelete');
-
-	useEffect(() => {
-		axios.get(`mysalary/api/v1/account/amount/${clicked.id}`)
-			.then(res => setExpense(res.data.result));
-	}, [clicked, debitAssign, debitUpdate, debitDelete]);
+	const [DEBIT_DETAIL, _] = useModalState('isDebitDetail');
 
 	return (
 		<VerticlaSizingFlex option={{justifyContent:"flex-start"}}>
 			<DebitAssign />
 			<DebitArea />
-			<DescribeBox border=".1rem solid #aaa" main="총 지출금액" sub={`${typeof expense === "number" ? expense : 0}원`} gap="3"  />
+			<ExpectExpense />
+			{
+				DEBIT_DETAIL && 
+				<ModalFrame title="자동이체 상세보기" close={true} target={<DebitDetail />}/>
+			}
 		</VerticlaSizingFlex>		
 	)
 }

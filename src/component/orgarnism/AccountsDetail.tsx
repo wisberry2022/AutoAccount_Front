@@ -2,11 +2,9 @@ import { styled } from "styled-components";
 import { Detail, DetailData } from "../../classes/types/DataTypes";
 import { VerticalFlex } from "../atoms/div/StyledFlex";
 import DescribeBox from "../molecules/DescribeBox";
-import { useRecoilValue } from "recoil";
-import { UserClickedAccount } from "../../recoil/state/AccountState";
 import useFindCurrentModal from "../../hooks/recoil/useFindCurrentModal";
 import { useGetAjax } from "../../hooks/ajax/useAjax";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const DetailWrapperFlex = styled(VerticalFlex)`
   padding: 1rem;

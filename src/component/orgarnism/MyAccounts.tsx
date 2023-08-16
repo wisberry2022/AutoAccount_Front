@@ -40,7 +40,6 @@ const MyAccounts:React.FC = () => {
 
 
   useEffect(() => {
-    console.log('MyAccounts 렌더링', clicked.id);
     const result:Promise<ListData[]> = getList();
     result.then(res => {
       setList(res);

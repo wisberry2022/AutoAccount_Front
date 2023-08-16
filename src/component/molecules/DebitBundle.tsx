@@ -84,26 +84,29 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
 
   const [DEBIT_UPDATE, setDebitUpdate] = useModalState('isDebitUpdate');
   const [DEBIT_DELETE, setDebitDelete] = useModalState('isDebitDelete');
+  const [DEBIT_DETAIL, setDebitDetail] = useModalState('isDebitDetail');
 
   const dataArr:LabelInputPair[] = [
     useRecoilValue(getInputComponent('depositForUpdate')),
     useRecoilValue(getInputComponent('amount')),
     useRecoilValue(getInputComponent('name'))
-
   ];
 
   const buttons:ButtonSet[] = useRecoilValue(ModifyModalButtons);
 
-
   const setDebitWorks:setModalWorksFuncType = (modal:string) => (
     setDebitUpdate(modal),
-    setDebitState({clicked:data.name, id:data.id, serial:data.deposit})
+    setDebitState(modal === "isDebitUpdate" ? {amount:data.amount, name:data.name, clicked:data.name, id:data.id, serial:data.deposit} : {clicked:data.name, id:data.id, serial:data.deposit})
   );
+
 
   return (
     <PaddingItem margin={margin}>
       <GapFlex gap={4} >
-        <CustomSizingHorizon option={horizonOption}>
+        <CustomSizingHorizon onClick={() => {
+          setDebitDetail('isDebitDetail');
+          setDebitState({clicked:data.name, id:data.id, serial:data.deposit});
+        }} option={horizonOption}>
           <VerticalFlex option={option}>
             <TextAlignEmphasize font={nameFont}>{data.name}</TextAlignEmphasize>
             <TextAlignEmphasize font={amountFont}>{data.amount}원</TextAlignEmphasize>

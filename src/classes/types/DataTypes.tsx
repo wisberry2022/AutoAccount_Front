@@ -10,7 +10,8 @@ export type Debit = {
   deposit: string,
   name: string,
   amount: number,
-  debitDate: string
+  debitDate: string,
+  date?: Date
 };
 
 export type LabelInputPair = dataId & {

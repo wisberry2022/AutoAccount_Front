@@ -36,7 +36,6 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
   
 
   const convertToAssignRequestData:ReturnRequestData = (data) => {
-    console.log('before convert', data);
     if(modal === 'isDebitAssign') {
       let requestData:InfoState = {
         withdrawal: clicked.serial as string,
@@ -65,7 +64,6 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
     };
   }
   
-
   return (
     <HorizonFlex option={option}>
       {names.map((val,idx) => {
