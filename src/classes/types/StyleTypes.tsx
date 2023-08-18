@@ -1,59 +1,46 @@
-type Colors = "BW" | "WB";
+type InputType = "checkbox" | "radio" | "hidden" | "tel" | "text" | "password" | "date";
+type ButtonType = "ASSIGN" | "MODIFY" | "CANCEL" | "REMOVE" | "OKAY";
 
-export type {Colors};
+export type Colors = "BW" | "WB";
 
-type ColorSet = {
+export type ColorSet = {
 	bgColor: string;
 	color: string;
 }
 
-export type {ColorSet};
-
-type InputType = "checkbox" | "radio" | "hidden" | "tel" | "text" | "password" | "date";
-
-type LabelOption = {
+export type LabelOption = {
 	htmlFor: string;
 	label: string;
 }
 
-export type {LabelOption};
-
-type InputOption = {
+export type InputOption = {
 	id: string;
 	type: InputType;
 	name?: string;
 	placeholder?: string;
 }
 
-export type {InputOption}
-
-type Scale = {
+export type Scale = {
 	padding?: string
 	margin?: string
 	width: string
 	height?: string
 }
 
-export type {Scale};
-
-type Margin = {
+export type Margin = {
 	top?: number,
 	right?: number,
 	bottom?: number,
 	left?: number
 }
 
-export type {Margin};
-
-type FlexSet = {
+export type FlexSet = {
 	justifyContent?: string
 	alignItems?: string
 	gap?: string	
 }
 
-export type {FlexSet};
-
-type BorderSet = {
+export type BorderSet = {
 	top?: number;
 	right?: number;
 	bottom?: number;
@@ -62,23 +49,16 @@ type BorderSet = {
 	radius?: string;
 }
 
-export type {BorderSet};
-
-type ButtonType = "ASSIGN" | "MODIFY" | "CANCEL" | "REMOVE" | "OKAY";
-
-type ButtonSet = {
+export type ButtonSet = {
 	color: ColorSet;
 	name: string;
 	type: ButtonType;
 }
 
-export type {ButtonSet};
 
-type FontSet = {
+export type FontSet = {
 	fontSize?: string;
 	fontWeight?: string;
 	letterSpacing?: string;
 	lineHeight?: string;
 }
-
-export type {FontSet};

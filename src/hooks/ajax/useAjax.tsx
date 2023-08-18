@@ -5,9 +5,9 @@ import { AjaxState } from "../../recoil/state/AjaxState";
 import { AjaxType, URLType } from "../../classes/types/RecoilStateTypes";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
 import { DebitState } from "../../recoil/state/DebitState";
+import { _AjaxFunc, _InitialAjaxType, _InnerAjaxToolType } from "../../classes/func/InnerFuncTypes";
+import { AjaxDeleteHookType, AjaxGetResultHookType, AjaxHookType, ReturnToAnyType, ReturnToDataFuncType } from "../../classes/func/FuncTypes";
 
-type _AjaxFunc = () => void;
-type _InitialAjaxType = () => [string, AjaxType, _AjaxFunc];
 
 const _initialAjax:_InitialAjaxType = () => {
   const current = useFindCurrentModal();
@@ -26,35 +26,6 @@ const _initialAjax:_InitialAjaxType = () => {
   return [current, ajax[current], ajaxFunc];
 }
 
-type AjaxHookType = (sendData?:any) => any;
-
-const usePostAjax:AjaxHookType = () => {
-  const [_, ajax, ajaxFunc] = _initialAjax(); 
-  const doPost = async (sendData:any) => {
-    await axios.post(ajax.url, sendData);
-    ajaxFunc();
-  }
-  return doPost;
-};
-
-export {usePostAjax};
-
-const usePutAjax:AjaxHookType = (sendData:any) => {
-  const [_, ajax, ajaxFunc] = _initialAjax();
-  const doPut = async (sendData:any) => {
-    await axios.put(ajax.url, sendData);
-    ajaxFunc();
-  }
-  return doPut;
-}
-
-export {usePutAjax};
-
-type AjaxGetResultHookType = (sendData?:any) => ReturnToDataFuncType;
-type ReturnToDataFuncType = (sendData?:any) => Promise<any>
-
-type _InnerAjaxToolType = (url:string, modalState:string) => string;
-
 const _useAddParameter:_InnerAjaxToolType = (url, modalState) => {
   const account = useRecoilValue(UserClickedAccount);  
   const debit = useRecoilValue(DebitState);
@@ -69,13 +40,29 @@ const _useAddParameter:_InnerAjaxToolType = (url, modalState) => {
   return url;
 }
 
-const useGetAjax:AjaxGetResultHookType = (target) => {
+export const usePostAjax:AjaxHookType = () => {
+  const [_, ajax, ajaxFunc] = _initialAjax(); 
+  const doPost = async (sendData:any) => {
+    await axios.post(ajax.url, sendData);
+    ajaxFunc();
+  }
+  return doPost;
+};
+
+export const usePutAjax:AjaxHookType = (sendData:any) => {
+  const [_, ajax, ajaxFunc] = _initialAjax();
+  const doPut = async (sendData:any) => {
+    await axios.put(ajax.url, sendData);
+    ajaxFunc();
+  }
+  return doPut;
+}
+
+
+export const useGetAjax:AjaxGetResultHookType = (target) => {
     const current:URLType = useRecoilValue(AjaxState);
     const ajaxData:AjaxType = current[target];
     const url:string = _useAddParameter(ajaxData.url, target);
-    // if(target === "isDebitList") {
-    //   console.log(url);
-    // }
     const getList:ReturnToDataFuncType = async (sendData?:any) => {
       const result = await axios.get(url, sendData && sendData);
       return result.data;
@@ -83,12 +70,7 @@ const useGetAjax:AjaxGetResultHookType = (target) => {
     return getList;
 }
 
-export {useGetAjax};
-
-type AjaxDeleteHookType = () => ReturnToAnyType;
-type ReturnToAnyType = (sendData?:any) => Promise<any>
-
-const useDeleteAjax:AjaxDeleteHookType = () => {
+export const useDeleteAjax:AjaxDeleteHookType = () => {
   const [_, ajax, ajaxFunc] = _initialAjax();
   const deleteFunc:ReturnToAnyType = async (sendData?:any) => {
     const result = await axios.delete(ajax.url, sendData && {
@@ -99,5 +81,3 @@ const useDeleteAjax:AjaxDeleteHookType = () => {
   }
   return deleteFunc;
 }
-
-export {useDeleteAjax};
