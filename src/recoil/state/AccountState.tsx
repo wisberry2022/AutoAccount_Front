@@ -5,7 +5,7 @@ const UserClickedAccount = atom<ClickedAccount>({
   key: "UserClickedAccount",
   default: {
     clicked: "",
-    id: "",
+    id: 0,
     serial: ""
   }
 });

@@ -44,7 +44,7 @@ const MyAccounts:React.FC = () => {
     result.then(res => {
       setList(res);
       setClicked({
-        id:res[0]?.id ? res[0].id : "", 
+        id:res[0]?.id ? Number.parseInt(res[0].id) : 0, 
         clicked:res[0]?.name ? res[0].name : "", 
         serial:res[0]?.serial ? res[0].serial : ""});
     });

@@ -53,7 +53,7 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
     if(modal === 'isDebitUpdate') {
       let requestData:InfoState = {
         ...data,
-        withdrawal: clicked.id as string,
+        withdrawal: clicked.id as number,
         beforeDeposit: debitState.serial as string
       }
       return requestData;

@@ -96,7 +96,7 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
 
   const setDebitWorks:setModalWorksFuncType = (modal:string) => (
     setDebitUpdate(modal),
-    setDebitState(modal === "isDebitUpdate" ? {amount:data.amount, name:data.name, clicked:data.name, id:data.id, serial:data.deposit} : {clicked:data.name, id:data.id, serial:data.deposit})
+    setDebitState(modal === "isDebitUpdate" ? {amount:data.amount, name:data.name, clicked:data.name, id:Number.parseInt(data.id), serial:data.deposit} : {clicked:data.name, id:Number.parseInt(data.id), serial:data.deposit})
   );
 
 
@@ -105,7 +105,7 @@ const DebitBundle:React.FC<PropType> = ({data}:PropType) => {
       <GapFlex gap={4} >
         <CustomSizingHorizon onClick={() => {
           setDebitDetail('isDebitDetail');
-          setDebitState({clicked:data.name, id:data.id, serial:data.deposit});
+          setDebitState({clicked:data.name, id:Number.parseInt(data.id), serial:data.deposit});
         }} option={horizonOption}>
           <VerticalFlex option={option}>
             <TextAlignEmphasize font={nameFont}>{data.name}</TextAlignEmphasize>

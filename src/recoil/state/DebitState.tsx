@@ -5,7 +5,7 @@ const DebitState = atom<ClickedAccount>({
   key: "DebitState",
   default: {
     clicked: "",
-    id: "",
+    id: 0,
     serial: "",
     amount: 0,
     name: ""

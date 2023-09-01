@@ -14,8 +14,8 @@ const ExpectExpense:React.FC = () => {
 	const debitDelete = useAjaxState('isDebitDelete');
 
   useEffect(() => {
-		axios.get(`mysalary/api/v1/account/amount/${clicked.id}`)
-			.then(res => setExpense(res.data.result));
+		axios.get(`http://localhost:8080/mysalary/api/v1/account/${clicked.id}/amount`)
+			.then(res => setExpense(res.data.result));		
 	}, [clicked, debitAssign, debitUpdate, debitDelete]);
   
   return (

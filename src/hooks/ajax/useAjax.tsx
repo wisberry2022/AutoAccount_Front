@@ -30,10 +30,12 @@ const _useAddParameter:_InnerAjaxToolType = (url, modalState) => {
   const account = useRecoilValue(UserClickedAccount);  
   const debit = useRecoilValue(DebitState);
 
-
   if(['isAccountDetail', 'isDebitList', 'isDebitDetail'].includes(modalState)) {
-    if(modalState === "isDebitDetail") {
+    if(modalState === "isDebitDetail") { 
       return url + "/" + debit.id;
+    }
+    if(modalState === "isDebitList") {
+      return url + "/" + account.id + "/debit"
     }
     return url + "/" + account.id;
   }
