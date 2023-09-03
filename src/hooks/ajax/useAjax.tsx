@@ -1,9 +1,9 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import useFindCurrentModal from "../recoil/useFindCurrentModal";
 import axios from "axios";
 import { AjaxState } from "../../recoil/state/AjaxState";
 import { AjaxType, URLType } from "../../classes/types/RecoilStateTypes";
-import { UserClickedAccount } from "../../recoil/state/AccountState";
+import { ExpectedState, UserClickedAccount } from "../../recoil/state/AccountState";
 import { DebitState } from "../../recoil/state/DebitState";
 import { _AjaxFunc, _InitialAjaxType, _InnerAjaxToolType } from "../../classes/func/InnerFuncTypes";
 import { AjaxDeleteHookType, AjaxGetResultHookType, AjaxHookType, ReturnToAnyType, ReturnToDataFuncType } from "../../classes/func/FuncTypes";
@@ -60,13 +60,20 @@ export const usePutAjax:AjaxHookType = (sendData:any) => {
   return doPut;
 }
 
-
 export const useGetAjax:AjaxGetResultHookType = (target) => {
     const current:URLType = useRecoilValue(AjaxState);
+    const [clicked, setClicked] = useRecoilState(UserClickedAccount);
+    const setExpected = useSetRecoilState(ExpectedState);
+
     const ajaxData:AjaxType = current[target];
     const url:string = _useAddParameter(ajaxData.url, target);
     const getList:ReturnToDataFuncType = async (sendData?:any) => {
       const result = await axios.get(url, sendData && sendData);
+
+      if(target === "isDebitList") {
+        const total = await axios.get(`http://localhost:8080/mysalary/api/v1/account/${clicked.id}/amount`);
+        setExpected({expense:total.data.result});
+      }
       return result.data;
     }
     return getList;

@@ -9,6 +9,7 @@ import { useRecoilValue } from "recoil";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
 import { InfoState } from "../../classes/types/RecoilStateTypes";
 import { DebitState } from "../../recoil/state/DebitState";
+import { FlagState } from "../../recoil/state/FlagState";
 
 type PropType = {
   names: Array<ButtonSet>,
@@ -23,6 +24,7 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
   const modal:string = useFindCurrentModal();
   const clicked = useRecoilValue(UserClickedAccount);
   const debitState = useRecoilValue(DebitState);
+  const modifyFlag = useRecoilValue(FlagState);
   const [data, setData] = useFindCurrentInputState();
   const doPost = usePostAjax();
   const doPut = usePutAjax();
@@ -50,6 +52,7 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
   }
 
   const convertToModifyRequestData:ReturnRequestData = (data) => {
+    console.log('convertToModifyRequestData: ', data);
     if(modal === 'isDebitUpdate') {
       let requestData:InfoState = {
         ...data,
@@ -60,7 +63,7 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
     }
     return {
       ...data,
-      before:clicked.clicked as string
+      before:modifyFlag.clicked as string
     };
   }
   
@@ -84,13 +87,13 @@ const ButtonBox:React.FC<PropType> = ({names, gap}:PropType) => {
               if(["CANCEL", "OKAY"].includes(val.type)) {
                 setState(modal);
               }
-              if(val.type === "REMOVE") {
-                
+              if(val.type === "REMOVE") { 
                 await doDelete({
-                  "id" : modal === "isAccountDelete" ? clicked.id : debitState.id
+                  "id" : modal === "isAccountDelete" ? modifyFlag.id : debitState.id
                 });
                 setState(modal);
               }
+              setData({});
             }
           } key={idx} color={val.color}>{val.name}</CustomColoringButton>
         )

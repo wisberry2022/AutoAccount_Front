@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 import { Debit } from "../../classes/types/DataTypes";
 import List from "../atoms/list/List";
 import DebitBundle from "../molecules/DebitBundle";
-import { useRecoilValue } from "recoil";
-import { UserClickedAccount } from "../../recoil/state/AccountState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { ExpectedState, UserClickedAccount } from "../../recoil/state/AccountState";
 import { useEffect, useState } from "react";
 import { useGetAjax } from "../../hooks/ajax/useAjax";
 import useAjaxState from "../../hooks/ajax/useAjaxState";
@@ -24,6 +24,8 @@ const WrapperBorderList = styled(List)`
   }
 `
 
+type FuncType = (data:any) => void
+
 const DebitArea:React.FC = () => {
   const clicked = useRecoilValue(UserClickedAccount);
   const doDebitList = useGetAjax('isDebitList');
@@ -32,17 +34,25 @@ const DebitArea:React.FC = () => {
   const debitDeleteState = useAjaxState('isDebitDelete');
   const [list, setList] = useState<Debit[]>([]);
 
+  const rerender:FuncType = (result) => {
+    if(result.result === "No Value Present" || result.result === 0) {
+      doDebitList().then(res => setList(res.result));
+      return;
+    }
+    setList(result.result);
+  }
+
   useEffect(() => {
     doDebitList()
-      .then(res => setList(res.result))
+      .then(res => {
+        rerender(res)
+      });
   }, [clicked, debitState, debitUpdateState, debitDeleteState]);
-  
-
   return (  
     <WrapperBorderList>
       {
         Array.isArray(list) && 
-        list?.map(val => {
+        list.map(val => {
           return <DebitBundle key={val.id} data={val} />
         })
       }

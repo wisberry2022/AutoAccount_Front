@@ -29,6 +29,7 @@ export type ClickedAccount = {
   serial?: string;
   amount?: number;
   name?: string;
+  expected?: number;
 }
 
 export type AssignStateType = {

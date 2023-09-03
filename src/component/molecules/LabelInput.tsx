@@ -9,6 +9,8 @@ import useFindCurrentModal from "../../hooks/recoil/useFindCurrentModal";
 import { useRecoilValue } from "recoil";
 import { DebitState } from "../../recoil/state/DebitState";
 import { ClickedAccount } from "../../classes/types/RecoilStateTypes";
+import { useEffect, useState } from "react";
+import { UserClickedAccount } from './../../recoil/state/AccountState';
 
 const RegularSizeEmphasize = styled(Emphasize)`
   width: 6rem;
@@ -20,21 +22,32 @@ type PropType = {
   font?: FontSet
 };
 
+type FuncType = (value:any, flag?:boolean) => void;
 
 const LabelInput:React.FC<PropType> = ({label, input}:PropType) => {
   const setState = useFindCurrentInputStateSetter(input.name);
   const modal:string = useFindCurrentModal();
   const debitStates = useRecoilValue(DebitState);
 
+  const defaultToState:FuncType = (value, isConvertString=false) => {
+    if(isConvertString) {
+      setState(value.toString() as string);
+      return;
+    }
+    setState(value as string);
+  }
 
   const getDefaultValue = (input:InputOption, value:ClickedAccount) => {
     if(input.name === "amount") {
+      defaultToState(value.amount, true)
       return value.amount;
     }
     if(input.name === "deposit") {
+      defaultToState(value.serial);
       return value.serial;
     }
     if(input.name === "name") {
+      defaultToState(value.name);
       return value.name;
     }
   }

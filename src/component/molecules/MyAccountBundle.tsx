@@ -14,6 +14,7 @@ import { EllipsisEmphasize } from "../atoms/Text/StyledEmphasize";
 import { forwardRef, useRef } from "react";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
 import { useGetAjax } from "../../hooks/ajax/useAjax";
+import { FlagState } from "../../recoil/state/FlagState";
 
 const FlexItem = styled(Item)<{gap:number}>`
   outline: 1px solid #111;
@@ -39,6 +40,7 @@ const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
   const [update, setUpdate] = useModalState('isAccountUpdate');
   const [remove, setRemove] = useModalState('isAccountDelete');
   const [clicked, setClicked] = useRecoilState(UserClickedAccount);
+  const [dataModifyFlag, setFlag] = useRecoilState(FlagState);
 
   const inputDatas:LabelInputPair[] = [
     useRecoilValue(getInputComponent('nameForUpdate'))
@@ -56,12 +58,12 @@ const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
       <GapFlex gap={.5}>
         <Button color="BW" onClick={(e) => {
           e.stopPropagation();
-          setClicked({id:Number.parseInt(id), clicked:name, serial:serial});
+          setFlag({id:Number.parseInt(id), clicked:name, serial:serial});
           setUpdate('isAccountUpdate');
         }}>수정</Button>
         <Button color="WB" onClick={(e) => {
           e.stopPropagation();
-          setClicked({id:Number.parseInt(id), clicked:name, serial:serial});
+          setFlag({id:Number.parseInt(id), clicked:name, serial:serial});
           setRemove('isAccountDelete');
         }}>삭제</Button>
       </GapFlex>
