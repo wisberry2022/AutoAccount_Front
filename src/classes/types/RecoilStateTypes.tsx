@@ -1,3 +1,5 @@
+type THEME = "DARK" | "BRIGHT";
+
 export type ModalState = {
   [key in string]:boolean;
 }
@@ -38,4 +40,18 @@ export type AssignStateType = {
 
 export type ExpenseType = {
   expense: number;
+}
+
+export type ThemeType = {
+  mode: THEME;
+}
+
+export type CSSByThemeType = {
+  outline: string;
+  bgColor: string;
+  color: string;
+}
+
+export type ThemeObjectType = {
+  [key in string]:CSSByThemeType
 }

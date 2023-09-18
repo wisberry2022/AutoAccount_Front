@@ -31,6 +31,7 @@ const LabelInput:React.FC<PropType> = ({label, input}:PropType) => {
 
   const defaultToState:FuncType = (value, isConvertString=false) => {
     if(isConvertString) {
+      console.log('err: ', value);
       setState(value.toString() as string);
       return;
     }
@@ -39,7 +40,7 @@ const LabelInput:React.FC<PropType> = ({label, input}:PropType) => {
 
   const getDefaultValue = (input:InputOption, value:ClickedAccount) => {
     if(input.name === "amount") {
-      defaultToState(value.amount, true)
+      defaultToState(value.amount, modal !== "isDebitAssign" ? true : false)
       return value.amount;
     }
     if(input.name === "deposit") {
@@ -66,9 +67,9 @@ const LabelInput:React.FC<PropType> = ({label, input}:PropType) => {
   return (
     <GapFlex gap={5}>
       <RegularSizeEmphasize>
-        <Label font={font}  htmlFor={label.htmlFor}>{label.label}</Label>
+        <Label font={font} htmlFor={label.htmlFor}>{label.label}</Label>
       </RegularSizeEmphasize>
-      <CustomSizingInput defaultValue={modal === "isDebitUpdate" ? defaultValue : undefined} onChange={(e) => setState(e.target.value)} size={size} {...input} />
+      <CustomSizingInput defaultValue={modal.includes("Update") ? defaultValue : undefined} onChange={(e) => setState(e.target.value)} size={size} {...input} />
     </GapFlex>
   )
 }

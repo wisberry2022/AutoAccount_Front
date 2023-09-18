@@ -11,13 +11,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ModifyModalButtons, getInputComponent } from "../../recoil/state/DefaultState";
 import AlertFrame from "../../pages/modal/AlertFrame";
 import { EllipsisEmphasize } from "../atoms/Text/StyledEmphasize";
-import { forwardRef, useRef } from "react";
 import { UserClickedAccount } from "../../recoil/state/AccountState";
-import { useGetAjax } from "../../hooks/ajax/useAjax";
 import { FlagState } from "../../recoil/state/FlagState";
+import { CSSByThemeType } from "../../classes/types/RecoilStateTypes";
+import ThemeSelector from "../../recoil/selector/ThemeSelector";
 
-const FlexItem = styled(Item)<{gap:number}>`
-  outline: 1px solid #111;
+const ThemeFlexItem = styled(Item)<{gap:number, theme:CSSByThemeType}>`
+  outline: ${prop => prop.theme.outline};
   display: flex;
   align-items: center;
   gap: ${prop => prop.gap + "rem"};
@@ -31,11 +31,8 @@ type PropType = {
   id: string
 }
 
-type ForwardedProps = {
-  name: string;
-}
-
 const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
+  const themeObj = useRecoilValue(ThemeSelector);
   const [_, setState] = useModalState('isAccountDetail');
   const [update, setUpdate] = useModalState('isAccountUpdate');
   const [remove, setRemove] = useModalState('isAccountDelete');
@@ -50,7 +47,7 @@ const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
   const font:FontSet = {fontSize:"1.7", fontWeight:"600"}
 
   return (
-    <FlexItem gap={2}>
+    <ThemeFlexItem gap={2} theme={themeObj}>
       <GapFlex onClick={() => (setState('isAccountDetail'), setClicked({id:Number.parseInt(id), clicked:name, serial:serial}))} gap={1}>
         <EllipsisEmphasize size={{width: "15"}} font={font}>{serial}</EllipsisEmphasize>
         <EllipsisEmphasize size={{width: "7"}} font={{fontSize:"1.1", fontWeight: "400"}}>{name}</EllipsisEmphasize>
@@ -75,7 +72,7 @@ const MyAccountBundle:React.FC<PropType> = ({id, serial, name}:PropType) => {
         remove &&
         <AlertFrame title="정말 계좌를 삭제하시겠습니까?" />
       }
-    </FlexItem>
+    </ThemeFlexItem>
   )
 }
 

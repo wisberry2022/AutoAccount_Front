@@ -69,6 +69,7 @@ export const useGetAjax:AjaxGetResultHookType = (target) => {
     const url:string = _useAddParameter(ajaxData.url, target);
     const getList:ReturnToDataFuncType = async (sendData?:any) => {
       const result = await axios.get(url, sendData && sendData);
+      console.log('useGetAjax:', result);
 
       if(target === "isDebitList") {
         const total = await axios.get(`http://localhost:8080/mysalary/api/v1/account/${clicked.id}/amount`);

@@ -40,6 +40,7 @@ const DebitDetail:React.FC = () => {
   type ReturnStringFunc = (target:string, detail:Debit) => any;
 
   const toSub:ReturnStringFunc = (target, detail) => {
+    console.log("DebitDetail: ", detail);
     if(target === "출금계좌") {
       return detail.withdrawal;
     }
