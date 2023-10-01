@@ -1,13 +1,22 @@
 import { atom } from "recoil";
-import { ClickedAccount } from "../../classes/types/RecoilStateTypes";
+import {
+  ClickedAccount,
+  RenderFlagType,
+} from "../../classes/types/RecoilStateTypes";
 
-const FlagState = atom<ClickedAccount>({
+export const FlagState = atom<ClickedAccount>({
   key: "FlagState",
   default: {
     clicked: "",
     id: 0,
-    serial: ""
-  }
+    serial: "",
+  },
 });
 
-export {FlagState};
+export const renderState = atom<RenderFlagType>({
+  key: "renderState",
+  default: {
+    account: false,
+    debit: false,
+  },
+});

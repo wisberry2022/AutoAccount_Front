@@ -37,7 +37,7 @@ const MyAccounts:React.FC = () => {
   const getList = useGetAjax('isAccountList');
   const [list, setList] = useState<ListData[]>([]);
   const [clicked, setClicked] = useRecoilState(UserClickedAccount);
-
+  
 
   useEffect(() => {
     const result:Promise<ListData[]> = getList();
