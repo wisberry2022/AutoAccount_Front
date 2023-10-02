@@ -1,14 +1,14 @@
-import { VerticalFlex } from "../atoms/div/StyledFlex";
-import AssignArea from "../orgarnism/AssignArea";
-import MyAccounts from "../orgarnism/MyAccounts";
+import { LayoutVerticalFlex } from "../atoms/div/StyledFlex";
+import Register from "../molecules/Register";
+import AccountList from "../organisms/list/AccountList";
 
-const MyAccount:React.FC = () => {
+const MyAccount: React.FC = () => {
   return (
-    <VerticalFlex option={{justifyContent:"flex-start"}}>
-      <AssignArea />
-      <MyAccounts />
-    </VerticalFlex>
-  )
-}
+    <LayoutVerticalFlex option={{ justifyContent: "flex-start" }}>
+      <Register content="내 계좌 등록하기" />
+      <AccountList />
+    </LayoutVerticalFlex>
+  );
+};
 
 export default MyAccount;
