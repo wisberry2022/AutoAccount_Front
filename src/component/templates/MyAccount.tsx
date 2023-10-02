@@ -1,6 +1,6 @@
 import { LayoutVerticalFlex } from "../atoms/div/StyledFlex";
 import Register from "../molecules/Register";
-import AccountList from "../organisms/AccountList";
+import AccountList from "../organisms/list/AccountList";
 
 const MyAccount: React.FC = () => {
   return (

@@ -57,8 +57,17 @@ export const VerticalModalFlex = styled(VerticalFlex)`
 
 export const LargeHorizonFlex = styled(HorizonFlex)`
   border: 0.1rem solid #d9d9d9;
-
   font-size: 2rem;
   font-weight: 700;
   cursor: pointer;
+`;
+
+export const NoneScrollBarFlex = styled(VerticalFlex)<{ height?: number }>`
+  justify-content: flex-start;
+  height: ${(prop) => (prop.height ? `${prop.height}%` : "35rem")};
+  overflow-y: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

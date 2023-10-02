@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import { HorizonFlex, ViewCenterFlex } from "./component/atoms/div/StyledFlex";
 import PageTitle from "./component/organisms/title/PageTitle";
 import MyAccount from "./component/templates/MyAccount";
-import Debit from "./component/templates/Debit";
+import Debit from "./component/templates/Debits";
 
 const VerticalCenterFlex = styled(ViewCenterFlex)`
   flex-direction: column;
