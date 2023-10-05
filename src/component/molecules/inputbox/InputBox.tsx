@@ -1,12 +1,5 @@
-import styled from "styled-components";
-
 import { VerticalFlex } from "../../atoms/div/StyledFlex";
-import { CustomSizingInput } from "../../atoms/inputs/StyledInput";
-
-const RegisterInput = styled(CustomSizingInput)`
-  border: 0.1rem solid #d9d9d9;
-  padding: 0.8rem;
-`;
+import { RegisterInput } from "../../atoms/inputs/StyledInput";
 
 type propType = {
   modalType: string;
@@ -19,10 +12,10 @@ const InputBox: React.FC<propType> = ({ modalType }) => {
       <RegisterInput size={{ width: "30" }} placeholder="계좌이름" />
       <RegisterInput
         size={{ width: "30" }}
-        placeholder={modalType === "AccountRegister" ? "잔액" : "이체금액"}
+        placeholder={modalType === "Account" ? "잔액" : "이체금액"}
       />
       <RegisterInput size={{ width: "30" }} placeholder="계좌주" />
-      {modalType === "DebitRegister" && (
+      {modalType === "Debit" && (
         <RegisterInput
           size={{ width: "30" }}
           type="date"

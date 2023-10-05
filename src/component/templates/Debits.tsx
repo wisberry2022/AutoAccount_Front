@@ -1,21 +1,34 @@
 import { LayoutVerticalFlex } from "../atoms/div/StyledFlex";
 import RegisterModal from "../organisms/modal/RegisterModal";
-import { useModal } from "../../hooks/modal/useModal";
 import TotalExpense from "../molecules/TotalExpense";
 import DebitList from "../organisms/list/DebitList";
 import Register from "../molecules/Register";
-import { useRecoilValue } from "recoil";
-import { modalState } from "../../recoil/state/ModalState";
+import { usePopup } from "../../hooks/popup/usePopup";
+import { VoidtoVoid } from "../../classes/func/FuncTypes";
 
 const Debits: React.FC = () => {
-  const modal = useRecoilValue(modalState);
+  const [isPop, openPop, closePop, togglePop] = usePopup();
+
+  const toggle: VoidtoVoid = () => {
+    togglePop();
+  };
+
+  const register: VoidtoVoid = () => {
+    closePop();
+  };
+
+  const cancel: VoidtoVoid = () => {
+    closePop();
+  };
 
   return (
     <LayoutVerticalFlex option={{ justifyContent: "flex-start" }}>
-      <Register modalType="DebitRegister" />
+      <Register modalType="Debit" toggle={toggle} />
       <DebitList />
       <TotalExpense />
-      {modal.DebitRegister && <RegisterModal modalType="DebitRegister" />}
+      {isPop && (
+        <RegisterModal register={register} cancel={cancel} modalType="Debit" />
+      )}
     </LayoutVerticalFlex>
   );
 };

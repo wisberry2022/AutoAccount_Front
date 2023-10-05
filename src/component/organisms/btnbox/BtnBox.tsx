@@ -1,22 +1,13 @@
-import { useModal } from "../../../hooks/modal/useModal";
 import { HorizonFlex } from "../../atoms/div/StyledFlex";
 import Button from "../../atoms/buttons/Button";
+import { VoidtoVoid } from "../../../classes/func/FuncTypes";
 
 type propType = {
-  modalType: string;
+  register: VoidtoVoid;
+  cancel: VoidtoVoid;
 };
 
-const BtnBox: React.FC<propType> = ({ modalType }) => {
-  const toggleModal = useModal(modalType);
-
-  const register = (e: any) => {
-    toggleModal(e);
-  };
-
-  const cancel = (e: any) => {
-    toggleModal(e);
-  };
-
+const BtnBox: React.FC<propType> = ({ register, cancel }) => {
   return (
     <HorizonFlex>
       <Button color="BW" onClick={register}>

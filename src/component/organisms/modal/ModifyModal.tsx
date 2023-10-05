@@ -1,9 +1,9 @@
-import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
-import { objType } from "../../../classes/types/DataTypes";
-import { ModalTitle } from "../../atoms/title/TitleStyle";
-import InputBox from "../../molecules/inputbox/InputBox";
-import BtnBox from "../btnbox/BtnBox";
 import { VoidtoVoid } from "../../../classes/func/FuncTypes";
+import { objType } from "../../../classes/types/DataTypes";
+import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
+import { ModalTitle } from "../../atoms/title/TitleStyle";
+import ModifyInputBox from "../../molecules/inputbox/ModifyInputBox";
+import BtnBox from "../btnbox/BtnBox";
 
 type propType = {
   modalType: string;
@@ -12,18 +12,18 @@ type propType = {
 };
 
 const titles: objType = {
-  Account: "내 계좌 등록하기",
-  Debit: "자동이체 등록하기",
+  Account: "내 계좌 수정",
+  Debit: "자동이체 수정",
 };
 
-const RegisterModal: React.FC<propType> = ({ modalType, register, cancel }) => {
+const ModifyModal: React.FC<propType> = ({ modalType, register, cancel }) => {
   return (
     <VerticalModalFlex>
       <ModalTitle title={titles[modalType]} />
-      <InputBox modalType={modalType} />
+      <ModifyInputBox modalType={modalType} />
       <BtnBox register={register} cancel={cancel} />
     </VerticalModalFlex>
   );
 };
 
-export default RegisterModal;
+export default ModifyModal;

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 import { CustomSizingFlex } from "../atoms/div/StyledFlex";
-import { useModal } from "../../hooks/modal/useModal";
 import Emphasize from "../atoms/Text/Emphasize";
-import { MouseEventHandler } from "react";
 import { objType } from "../../classes/types/DataTypes";
+import { VoidtoVoid } from "../../classes/func/FuncTypes";
 
 type propType = {
   modalType: string;
+  toggle: VoidtoVoid;
 };
 
 const CustomFlex = styled(CustomSizingFlex)`
@@ -19,16 +19,14 @@ const CustomFlex = styled(CustomSizingFlex)`
 `;
 
 const titles: objType = {
-  AccountRegister: "내 계좌 등록하기",
-  DebitRegister: "자동이체 등록하기",
+  Account: "내 계좌 등록하기",
+  Debit: "자동이체 등록하기",
 };
 
-const Register: React.FC<propType> = ({ modalType }) => {
-  const toggleModal = useModal(modalType);
-
+const Register: React.FC<propType> = ({ modalType, toggle }) => {
   return (
     <CustomFlex
-      onClick={toggleModal}
+      onClick={toggle}
       size={{
         width: "40",
       }}

@@ -1,8 +1,41 @@
+import { VoidtoVoid } from "../../classes/func/FuncTypes";
+import { usePopup } from "../../hooks/popup/usePopup";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import DebitInfo from "../molecules/info/DebitInfo";
 import ModifyBox from "../molecules/modifies/ModifyBox";
+import ModifyModal from "./modal/ModifyModal";
+import RemoveAlert from "./modal/RemoveAlert";
 
 const Debit: React.FC = () => {
+  const [isModifyPop, openModifyPop, closeModifyPop, toggleModifyPop] =
+    usePopup();
+  const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
+    usePopup();
+
+  const modifyRegister: VoidtoVoid = () => {
+    closeModifyPop();
+  };
+
+  const modifyCancel: VoidtoVoid = () => {
+    closeModifyPop();
+  };
+
+  const modifyToggle: VoidtoVoid = () => {
+    toggleModifyPop();
+  };
+
+  const removeOk: VoidtoVoid = () => {
+    closeRemovePop();
+  };
+
+  const removeCancel: VoidtoVoid = () => {
+    closeRemovePop();
+  };
+
+  const removeToggle: VoidtoVoid = () => {
+    toggleRemovePop();
+  };
+
   return (
     <HorizonFlex
       style={{
@@ -13,7 +46,21 @@ const Debit: React.FC = () => {
       option={{ justifyContent: "space-between" }}
     >
       <DebitInfo />
-      <ModifyBox />
+      <ModifyBox modifyToggle={modifyToggle} removeToggle={removeToggle} />
+      {isModifyPop && (
+        <ModifyModal
+          register={modifyRegister}
+          cancel={modifyCancel}
+          modalType="Debit"
+        />
+      )}
+      {isRemovePop && (
+        <RemoveAlert
+          register={removeOk}
+          cancel={removeCancel}
+          modalType="Debit"
+        />
+      )}
     </HorizonFlex>
   );
 };
