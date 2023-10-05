@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import Emphasize from "../atoms/Text/Emphasize";
+
 import { CustomSizingFlex } from "../atoms/div/StyledFlex";
+import Emphasize from "../atoms/Text/Emphasize";
+import { objType } from "../../classes/types/DataTypes";
+import { VoidtoVoid } from "../../classes/func/FuncTypes";
 
 type propType = {
-  content: string;
+  modalType: string;
+  toggle: VoidtoVoid;
 };
 
 const CustomFlex = styled(CustomSizingFlex)`
@@ -14,9 +18,15 @@ const CustomFlex = styled(CustomSizingFlex)`
   cursor: pointer;
 `;
 
-const Register: React.FC<propType> = ({ content }) => {
+const titles: objType = {
+  Account: "내 계좌 등록하기",
+  Debit: "자동이체 등록하기",
+};
+
+const Register: React.FC<propType> = ({ modalType, toggle }) => {
   return (
     <CustomFlex
+      onClick={toggle}
       size={{
         width: "40",
       }}
@@ -27,7 +37,7 @@ const Register: React.FC<propType> = ({ content }) => {
           fontWeight: "600",
         }}
       >
-        {content}
+        {titles[modalType]}
       </Emphasize>
     </CustomFlex>
   );

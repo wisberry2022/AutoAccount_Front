@@ -5,31 +5,31 @@ type dataId = {
 };
 
 export type Debit = {
-  id: string,
-  withdrawal: string,
-  deposit: string,
-  name: string,
-  amount: number,
-  debitDate: string,
-  date?: Date
+  id: string;
+  withdrawal: string;
+  deposit: string;
+  name: string;
+  amount: number;
+  debitDate: string;
+  date?: Date;
 };
 
 export type LabelInputPair = dataId & {
   id: number;
   label: LabelOption;
   input: InputOption;
-}
+};
 
 export type AccountData = {
   id: number;
   name: string;
   serial: string;
-}
+};
 
 export type DetailData = dataId & {
   main: string;
   sub: any;
-}
+};
 
 export type ListData = {
   id: string;
@@ -37,8 +37,12 @@ export type ListData = {
   serial: string;
   balance: number;
   owner: string;
-}
+};
 
 export type Detail = ListData & {
   debitCount: number;
-}
+};
+
+export type objType = {
+  [key in string]: any;
+};
