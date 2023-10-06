@@ -2,20 +2,22 @@ import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
 import DetailHeader from "../../organisms/popup/DetailHeader";
 import DetailBody from "../../organisms/popup/DetailBody";
 import { MouseEventHandler } from "react";
+import { objType } from "../../../classes/types/DataTypes";
 
 type propType = {
   close: MouseEventHandler<SVGAElement>;
-  title: string;
+  modalType: string;
 };
 
-const DetailDialog: React.FC<propType> = ({ close, title }) => {
+const titles: objType = {
+  Account: "계좌 상세보기",
+  Debit: "자동이체 상세보기",
+};
+
+const DetailDialog: React.FC<propType> = ({ close, modalType }) => {
   return (
-    <VerticalModalFlex
-      onClick={() => console.log("클릭!")}
-      style={{ width: "40%" }}
-      option={{ gap: "2.5" }}
-    >
-      <DetailHeader close={close} title={title} />
+    <VerticalModalFlex style={{ width: "40%" }} option={{ gap: "2.5" }}>
+      <DetailHeader close={close} title={titles[modalType]} />
       <DetailBody />
     </VerticalModalFlex>
   );

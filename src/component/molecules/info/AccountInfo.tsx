@@ -22,7 +22,7 @@ const AccountInfo: React.FC = () => {
         BNK 일반
       </Emphasize>
       <Emphasize font={{ fontSize: "1.8" }}>12345678910</Emphasize>
-      {isPop && <DetailDialog title="계좌 상세보기" close={close} />}
+      {isPop && <DetailDialog modalType="Account" close={close} />}
     </VerticalFlex>
   );
 };
