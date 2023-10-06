@@ -24,7 +24,7 @@ const DebitInfo: React.FC = () => {
         <Emphasize font={{ fontSize: "1.1" }}>12345678910</Emphasize>
       </HorizonFlex>
       <Emphasize font={{ fontSize: "1.8" }}>400000원</Emphasize>
-      {isPop && <DetailDialog title="자동이체 상세보기" close={close} />}
+      {isPop && <DetailDialog modalType="Debit" close={close} />}
       {/* {isPop && <div>hi</div>} */}
     </VerticalFlex>
   );
