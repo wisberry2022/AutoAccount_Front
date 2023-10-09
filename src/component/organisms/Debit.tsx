@@ -1,4 +1,5 @@
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
+import { Debit as DataType } from "../../classes/types/DataTypes";
 import { usePopup } from "../../hooks/popup/usePopup";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import DebitInfo from "../molecules/info/DebitInfo";
@@ -6,7 +7,11 @@ import ModifyBox from "../molecules/modifies/ModifyBox";
 import ModifyModal from "./modal/ModifyModal";
 import RemoveAlert from "./modal/RemoveAlert";
 
-const Debit: React.FC = () => {
+type propType = {
+  debit: DataType;
+};
+
+const Debit: React.FC<propType> = ({ debit }) => {
   const [isModifyPop, openModifyPop, closeModifyPop, toggleModifyPop] =
     usePopup();
   const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
@@ -45,7 +50,7 @@ const Debit: React.FC = () => {
       }}
       option={{ justifyContent: "space-between" }}
     >
-      <DebitInfo />
+      <DebitInfo debit={debit} />
       <ModifyBox modifyToggle={modifyToggle} removeToggle={removeToggle} />
       {isModifyPop && (
         <ModifyModal

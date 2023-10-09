@@ -10,7 +10,6 @@ export type Debit = {
   deposit: string;
   name: string;
   amount: number;
-  debitDate: string;
   date?: Date;
 };
 
@@ -31,15 +30,16 @@ export type DetailData = dataId & {
   sub: any;
 };
 
-export type ListData = {
+export type Account = {
   id: string;
   name: string;
   serial: string;
   balance: number;
   owner: string;
+  debits: Debit[];
 };
 
-export type Detail = ListData & {
+export type Detail = Account & {
   debitCount: number;
 };
 

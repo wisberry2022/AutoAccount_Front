@@ -1,10 +1,11 @@
+import { MouseEventHandler } from "react";
 import { VoidtoVoid } from "../../../classes/func/FuncTypes";
 import { VerticalFlex, HorizonFlex } from "../../atoms/div/StyledFlex";
 import { HiPencil, HiTrash } from "react-icons/hi";
 
 type propType = {
-  modifyToggle: VoidtoVoid;
-  removeToggle: VoidtoVoid;
+  modifyToggle: MouseEventHandler<SVGElement>;
+  removeToggle: MouseEventHandler<SVGElement>;
 };
 
 const ModifyBox: React.FC<propType> = ({ modifyToggle, removeToggle }) => {
