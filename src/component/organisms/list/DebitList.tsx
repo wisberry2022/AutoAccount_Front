@@ -3,7 +3,7 @@ import { NoneScrollBarFlex } from "../../atoms/div/StyledFlex";
 import Debit from "../Debit";
 
 type propType = {
-  debits: DataType[];
+  debits: DataType[] | undefined;
 };
 
 const DebitList: React.FC<propType> = ({ debits }) => {

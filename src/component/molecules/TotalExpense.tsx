@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import Emphasize from "../atoms/Text/Emphasize";
-import { Account } from "../../classes/types/DataTypes";
 
 const BorderRadiusFlex = styled(HorizonFlex)`
   border: 0.1rem solid #d9d9d9;
@@ -11,17 +10,17 @@ const BorderRadiusFlex = styled(HorizonFlex)`
 `;
 
 type propType = {
-  account: Account;
+  expense: number | undefined;
 };
 
-const TotalExpense: React.FC<propType> = ({ account }) => {
+const TotalExpense: React.FC<propType> = ({ expense }) => {
   return (
     <BorderRadiusFlex option={{ justifyContent: "space-between" }}>
       <Emphasize font={{ fontSize: "1.4", fontWeight: "700" }}>
         총 지출금액
       </Emphasize>
       <Emphasize font={{ fontSize: "1.4", fontWeight: "700" }}>
-        {account?.expense}원
+        {expense}원
       </Emphasize>
     </BorderRadiusFlex>
   );
