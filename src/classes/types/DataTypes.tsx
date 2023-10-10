@@ -36,6 +36,7 @@ export type Account = {
   serial: string;
   balance: number;
   owner: string;
+  expense: number;
   debits: Debit[];
 };
 

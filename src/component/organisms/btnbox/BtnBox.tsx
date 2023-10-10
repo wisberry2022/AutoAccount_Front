@@ -9,6 +9,7 @@ type propType = {
 };
 
 const BtnBox: React.FC<propType> = ({ register, cancel }) => {
+  
   const registerEvent: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     register();

@@ -8,10 +8,15 @@ import Register from "../molecules/Register";
 import { useContext } from "react";
 import { DataContext } from "../../App";
 import { useDebit } from "../../hooks/useDebit";
+import { useRecoilValue } from "recoil";
+import { accountState } from "../../recoil/states/ClickedState";
+import { findById } from "../../utils/FuncSet";
 
 const Debits: React.FC = () => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
   const debits = useDebit();
+  const accounts = useContext(DataContext);
+  const current = useRecoilValue(accountState);
 
   const toggle: VoidtoVoid = () => {
     togglePop();
@@ -29,7 +34,7 @@ const Debits: React.FC = () => {
     <LayoutVerticalFlex option={{ justifyContent: "flex-start" }}>
       <Register modalType="Debit" toggle={toggle} />
       <DebitList debits={debits} />
-      <TotalExpense />
+      <TotalExpense account={findById(accounts, current.id)} />
       {isPop && (
         <RegisterModal register={register} cancel={cancel} modalType="Debit" />
       )}
