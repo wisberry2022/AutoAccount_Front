@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { accountAxios } from "../../viewdata/AxiosInstance";
-import { Account } from "../../classes/types/DataTypes";
+import { Account } from "../../types/DataTypes";
 
 type _AxiosFuncType = (
   setter: React.Dispatch<React.SetStateAction<Account[]>>

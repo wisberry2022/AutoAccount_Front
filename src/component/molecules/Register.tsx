@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { CustomSizingFlex } from "../atoms/div/StyledFlex";
 import Emphasize from "../atoms/Text/Emphasize";
-import { objType } from "../../classes/types/DataTypes";
+import { objType } from "../../types/DataTypes";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
 
 type propType = {

@@ -1,4 +1,4 @@
-import { Debit as DataType } from "../../../classes/types/DataTypes";
+import { Debit as DataType } from "../../../types/DataTypes";
 import { NoneScrollBarFlex } from "../../atoms/div/StyledFlex";
 import Debit from "../Debit";
 

@@ -1,4 +1,4 @@
-import { Account as DataType } from "../../../classes/types/DataTypes";
+import { Account as DataType } from "../../../types/DataTypes";
 import { NoneScrollBarFlex } from "../../atoms/div/StyledFlex";
 import Account from "../Account";
 

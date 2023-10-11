@@ -5,7 +5,7 @@ import { HorizonFlex, ViewCenterFlex } from "./component/atoms/div/StyledFlex";
 import PageTitle from "./component/organisms/title/PageTitle";
 import MyAccount from "./component/templates/MyAccount";
 import Debit from "./component/templates/Debits";
-import { Account } from "./classes/types/DataTypes";
+import { Account } from "./types/DataTypes";
 import { useGetAccount } from "./hooks/axios/useGetAccount";
 
 const VerticalCenterFlex = styled(ViewCenterFlex)`

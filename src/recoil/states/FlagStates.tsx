@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { SimpleFlagType } from "../../classes/types/RecoilStateTypes";
+import { SimpleFlagType } from "../../types/RecoilStateTypes";
 
 export const updateFlag = atom<SimpleFlagType>({
   key: "updateFlag",

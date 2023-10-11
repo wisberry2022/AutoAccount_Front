@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { useContext } from "react";
 
 import { accountState } from "../recoil/states/ClickedState";
-import { Account } from "../classes/types/DataTypes";
+import { Account } from "../types/DataTypes";
 import { findById } from "../utils/FuncSet";
 import { DataContext } from "../App";
 
@@ -15,7 +15,7 @@ export const useGetAccount = () => {
   useEffect(() => {
     if (accounts.length) {
       current.id
-        ? setData(findById(accounts, current.id))
+        ? setData(findById(accounts, current.id)[0])
         : setData(accounts[0]);
     }
   }, [accounts, current]);

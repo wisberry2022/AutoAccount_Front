@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { FontSet } from "../../../classes/types/StyleTypes";
+import { FontSet } from "../../../types/StyleTypes";
 
 const Emphasize = styled.strong<{font?:FontSet}>`
     display: block;

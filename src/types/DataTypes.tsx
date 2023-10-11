@@ -1,5 +1,3 @@
-import { InputOption, LabelOption } from "./StyleTypes";
-
 type dataId = {
   id: number;
 };
@@ -13,23 +11,6 @@ export type Debit = {
   date?: Date;
 };
 
-export type LabelInputPair = dataId & {
-  id: number;
-  label: LabelOption;
-  input: InputOption;
-};
-
-export type AccountData = {
-  id: number;
-  name: string;
-  serial: string;
-};
-
-export type DetailData = dataId & {
-  main: string;
-  sub: any;
-};
-
 export type Account = {
   id: string;
   name: string;
@@ -37,12 +18,21 @@ export type Account = {
   balance: number;
   owner: string;
   expense: number;
+  debitCount: number;
   debits: Debit[];
 };
 
-export type Detail = Account & {
-  debitCount: number;
-};
+export type DetailDataType = {
+  id: number;
+  name: string;
+  serial: string;
+  amount: number;
+  owner: string;
+  debitCounts: number;
+  withdrawal: string;
+  expense: number;
+  date: Date;
+}
 
 export type objType = {
   [key in string]: any;

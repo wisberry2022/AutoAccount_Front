@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { FlexSet, Scale } from "../../../classes/types/StyleTypes";
+import { FlexSet, Scale } from "../../../types/StyleTypes";
 import Flex from "../../../component/atoms/div/Flex";
 import { ViewCenterFlex, CustomSizingFlex, HorizonFlex, VerticalFlex } from "../../../component/atoms/div/StyledFlex";
 

@@ -1,6 +1,6 @@
 import { useSetRecoilState } from "recoil";
 
-import { Account as DataType } from "../../classes/types/DataTypes";
+import { Account as DataType } from "../../types/DataTypes";
 import { accountState } from "../../recoil/states/ClickedState";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
 import { HorizonFlex } from "./../atoms/div/StyledFlex";

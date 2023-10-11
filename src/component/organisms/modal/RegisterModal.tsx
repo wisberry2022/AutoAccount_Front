@@ -1,5 +1,5 @@
 import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
-import { objType } from "../../../classes/types/DataTypes";
+import { objType } from "../../../types/DataTypes";
 import { ModalTitle } from "../../atoms/title/TitleStyle";
 import InputBox from "../../molecules/inputbox/InputBox";
 import BtnBox from "../btnbox/BtnBox";

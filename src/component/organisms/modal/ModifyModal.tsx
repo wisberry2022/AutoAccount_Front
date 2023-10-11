@@ -1,5 +1,5 @@
 import { VoidtoVoid } from "../../../classes/func/FuncTypes";
-import { objType } from "../../../classes/types/DataTypes";
+import { objType } from "../../../types/DataTypes";
 import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
 import { ModalTitle } from "../../atoms/title/TitleStyle";
 import ModifyInputBox from "../../molecules/inputbox/ModifyInputBox";

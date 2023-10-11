@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { AccountState } from "../../classes/types/RecoilStateTypes";
+import { AccountState } from "../../types/RecoilStateTypes";
 
 export const accountState = atom<AccountState>({
   key: "accountState",

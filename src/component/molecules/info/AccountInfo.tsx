@@ -2,9 +2,8 @@ import { VerticalFlex } from "../../atoms/div/StyledFlex";
 import { usePopup } from "../../../hooks/popup/usePopup";
 import Emphasize from "../../atoms/Text/Emphasize";
 import DetailDialog from "../../templates/popup/DetailDialog";
-import { VoidtoVoid } from "../../../classes/func/FuncTypes";
 import { MouseEventHandler } from "react";
-import { Account } from "../../../classes/types/DataTypes";
+import { Account } from "../../../types/DataTypes";
 
 type propType = {
   data: Account;
@@ -12,6 +11,7 @@ type propType = {
 
 const AccountInfo: React.FC<propType> = ({ data }) => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
+
   const close: MouseEventHandler<SVGAElement> = (e) => {
     e.stopPropagation();
     closePop();
@@ -31,7 +31,13 @@ const AccountInfo: React.FC<propType> = ({ data }) => {
         {data.name}
       </Emphasize>
       <Emphasize font={{ fontSize: "1.8" }}>{data.serial}</Emphasize>
-      {isPop && <DetailDialog modalType="Account" close={close} />}
+      {isPop && (
+        <DetailDialog
+          modalType="Account"
+          close={close}
+          id={Number.parseInt(data.id)}
+        />
+      )}
     </VerticalFlex>
   );
 };

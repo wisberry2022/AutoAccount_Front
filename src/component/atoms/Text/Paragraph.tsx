@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { FontSet } from "../../../classes/types/StyleTypes";
+import { FontSet } from "../../../types/StyleTypes";
 
 const Paragraph = styled.p<{font?:FontSet}>`
   font-size: ${prop => prop.font?.fontSize ? prop.font.fontSize + "rem" : "1.3rem"};

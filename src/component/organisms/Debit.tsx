@@ -1,5 +1,5 @@
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
-import { Debit as DataType } from "../../classes/types/DataTypes";
+import { Debit as DataType } from "../../types/DataTypes";
 import { usePopup } from "../../hooks/popup/usePopup";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import DebitInfo from "../molecules/info/DebitInfo";

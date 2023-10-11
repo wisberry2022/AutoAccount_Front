@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Input from "./Input";
-import { BorderSet, Scale } from "../../../classes/types/StyleTypes";
+import { BorderSet, Scale } from "../../../types/StyleTypes";
 
 export const BorderedInput = styled(Input)<{ border?: BorderSet }>`
   border: ${(prop) => prop.border && prop.border.border};

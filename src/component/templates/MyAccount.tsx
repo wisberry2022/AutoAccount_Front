@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { LayoutVerticalFlex } from "../atoms/div/StyledFlex";
 import RegisterModal from "../organisms/modal/RegisterModal";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
-import { Account } from "../../classes/types/DataTypes";
+import { Account } from "../../types/DataTypes";
 import AccountList from "../organisms/list/AccountList";
 import { usePopup } from "../../hooks/popup/usePopup";
 import Register from "../molecules/Register";

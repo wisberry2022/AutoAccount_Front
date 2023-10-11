@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Margin, Scale } from "../../../classes/types/StyleTypes";
+import { Margin, Scale } from "../../../types/StyleTypes";
 import Item from "./Item";
 
 const CustomSizingItem = styled(Item)<{size:Scale}>`
