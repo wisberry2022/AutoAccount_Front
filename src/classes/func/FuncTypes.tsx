@@ -8,3 +8,4 @@ export type ReturnToAnyType = (sendData?: any) => Promise<any>;
 export type VoidtoVoid = () => void;
 export type NormalFuncType = (data?: any) => any;
 export type hookType = (current: string) => MouseEventHandler<HTMLDivElement>;
+export type ParamToVoid<P1> = (param1:P1) => void;

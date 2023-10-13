@@ -1,27 +1,32 @@
-import { VerticalFlex } from "../../atoms/div/StyledFlex";
+import {useSetRecoilState} from "recoil";
+import {ChangeEventHandler} from "react";
+
+import {registerState} from "../../../recoil/states/AxiosStates";
 import { RegisterInput } from "../../atoms/inputs/StyledInput";
+import { VerticalFlex } from "../../atoms/div/StyledFlex";
+import {inputMapper} from "../../../viewdata/configs/Config";
+import {valueMapper} from "../../../types/DataTypes";
 
 type propType = {
   modalType: string;
+  handler: ChangeEventHandler<HTMLInputElement>;
 };
 
-const InputBox: React.FC<propType> = ({ modalType }) => {
+const InputBox: React.FC<propType> = ({ modalType, handler }) => {
+  const keys:string[] = Object.keys(inputMapper).filter(key => inputMapper[key][modalType]);
+
   return (
     <VerticalFlex style={{ marginBottom: "1.5rem" }}>
-      <RegisterInput size={{ width: "30" }} placeholder="계좌번호" />
-      <RegisterInput size={{ width: "30" }} placeholder="계좌이름" />
-      <RegisterInput
-        size={{ width: "30" }}
-        placeholder={modalType === "Account" ? "잔액" : "이체금액"}
-      />
-      <RegisterInput size={{ width: "30" }} placeholder="계좌주" />
-      {modalType === "Debit" && (
-        <RegisterInput
-          size={{ width: "30" }}
-          type="date"
-          placeholder="이체일자"
-        />
-      )}
+      {keys.map((key,idx) => {
+        return (
+          <RegisterInput
+            key={idx}
+            size={{width:"30"}}
+            onChange={handler}
+            {...inputMapper[key][modalType]}
+          />
+        )
+      })}
     </VerticalFlex>
   );
 };

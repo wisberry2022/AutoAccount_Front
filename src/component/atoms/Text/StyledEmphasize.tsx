@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Emphasize from "./Emphasize";
-import { Scale } from "../../../classes/types/StyleTypes";
+import { Scale } from "../../../types/StyleTypes";
 
 const CustomSizingEmphasize = styled(Emphasize)<{size:Scale}>`
   padding: ${prop => prop.size && prop.size.padding};

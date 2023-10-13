@@ -1,5 +1,5 @@
 import { VoidtoVoid } from "../../../classes/func/FuncTypes";
-import { objType } from "../../../classes/types/DataTypes";
+import { objType } from "../../../types/DataTypes";
 import Emphasize from "../../atoms/Text/Emphasize";
 import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
 import BtnBox from "../btnbox/BtnBox";

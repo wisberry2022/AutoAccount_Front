@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { FlexSet, Scale } from "../../../classes/types/StyleTypes";
+import { FlexSet, Scale } from "../../../types/StyleTypes";
 import Flex from "./Flex";
 
 export const CustomSizingFlex = styled.div<{ debug?: boolean; size: Scale }>`

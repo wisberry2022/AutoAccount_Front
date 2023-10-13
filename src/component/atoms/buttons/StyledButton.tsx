@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import Button from "./Button";
-import { ColorSet } from "../../../classes/types/StyleTypes";
-import { CSSByThemeType, ThemeType } from "../../../classes/types/RecoilStateTypes";
+import { ColorSet } from "../../../types/StyleTypes";
+import { CSSByThemeType, ThemeType } from "../../../types/RecoilStateTypes";
 
 const CustomColoringButton = styled(Button)<{color:ColorSet}>`
   background-color: ${prop => prop.color && prop.color.bgColor};

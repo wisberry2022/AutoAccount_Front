@@ -1,21 +1,20 @@
+import { Debit as DataType } from "../../../types/DataTypes";
 import { NoneScrollBarFlex } from "../../atoms/div/StyledFlex";
 import Debit from "../Debit";
 
-const DebitList: React.FC = () => {
+type propType = {
+  debits: DataType[] | undefined;
+};
+
+const DebitList: React.FC<propType> = ({ debits }) => {
   return (
     <NoneScrollBarFlex
       style={{ marginBottom: "2.5rem" }}
       option={{ gap: ".7" }}
     >
-      <Debit />
-      <Debit />
-      <Debit />
-      <Debit />
-      <Debit />
-      <Debit />
-      <Debit />
-      <Debit />
-      <Debit />
+      {debits?.map((debit) => {
+        return <Debit key={debit.id} debit={debit} />;
+      })}
     </NoneScrollBarFlex>
   );
 };

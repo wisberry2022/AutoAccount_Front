@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import NormalText from "./NormalText";
-import { Scale } from "../../../classes/types/StyleTypes";
+import { Scale } from "../../../types/StyleTypes";
 
 const CustomSizingNormalText = styled(NormalText)<{size:Scale}>`
   padding: ${prop => prop.size && prop.size.padding};

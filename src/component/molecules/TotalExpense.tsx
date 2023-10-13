@@ -9,14 +9,18 @@ const BorderRadiusFlex = styled(HorizonFlex)`
   width: 37rem;
 `;
 
-const TotalExpense: React.FC = () => {
+type propType = {
+  expense: number | undefined;
+};
+
+const TotalExpense: React.FC<propType> = ({ expense }) => {
   return (
     <BorderRadiusFlex option={{ justifyContent: "space-between" }}>
       <Emphasize font={{ fontSize: "1.4", fontWeight: "700" }}>
         총 지출금액
       </Emphasize>
       <Emphasize font={{ fontSize: "1.4", fontWeight: "700" }}>
-        3600000원
+        {expense}원
       </Emphasize>
     </BorderRadiusFlex>
   );

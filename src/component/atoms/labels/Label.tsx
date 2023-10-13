@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { FontSet } from "../../../classes/types/StyleTypes";
+import { FontSet } from "../../../types/StyleTypes";
 
 const Label = styled.label.attrs((prop:any) => ({
   htmlFor:prop.htmlFor

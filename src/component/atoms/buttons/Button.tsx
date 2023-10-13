@@ -1,5 +1,5 @@
 import { css, styled } from "styled-components";
-import { Colors } from "../../../classes/types/StyleTypes";
+import { Colors } from "../../../types/StyleTypes";
 
 const Button = styled.button<{color:Colors}>`
     border: .1rem solid #ddd;

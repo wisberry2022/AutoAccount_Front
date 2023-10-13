@@ -3,8 +3,13 @@ import { usePopup } from "../../../hooks/popup/usePopup";
 import { HorizonFlex, VerticalFlex } from "../../atoms/div/StyledFlex";
 import Emphasize from "../../atoms/Text/Emphasize";
 import DetailDialog from "../../templates/popup/DetailDialog";
+import { Debit } from "../../../types/DataTypes";
 
-const DebitInfo: React.FC = () => {
+type propType = {
+  debit: Debit;
+};
+
+const DebitInfo: React.FC<propType> = ({ debit }) => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
 
   const close: MouseEventHandler<SVGAElement> = (e) => {
@@ -19,12 +24,18 @@ const DebitInfo: React.FC = () => {
     >
       <HorizonFlex>
         <Emphasize font={{ fontSize: "1.1", fontWeight: "300" }}>
-          BNK 일반
+          {debit.name}
         </Emphasize>
-        <Emphasize font={{ fontSize: "1.1" }}>12345678910</Emphasize>
+        <Emphasize font={{ fontSize: "1.1" }}>{debit.deposit}</Emphasize>
       </HorizonFlex>
-      <Emphasize font={{ fontSize: "1.8" }}>400000원</Emphasize>
-      {isPop && <DetailDialog modalType="Debit" close={close} />}
+      <Emphasize font={{ fontSize: "1.8" }}>{debit.amount}원</Emphasize>
+      {isPop && (
+        <DetailDialog
+          modalType="Debit"
+          close={close}
+          id={Number.parseInt(debit.id)}
+        />
+      )}
       {/* {isPop && <div>hi</div>} */}
     </VerticalFlex>
   );
