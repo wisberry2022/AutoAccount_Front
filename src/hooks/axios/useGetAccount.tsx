@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { accountAxios } from "../../viewdata/AxiosInstance";
+import {axiosInstance} from "../../viewdata/AxiosInstance";
 import { Account } from "../../types/DataTypes";
+import {useRecoilValue} from "recoil";
+import {axiosRenewalFlag} from "../../recoil/states/FlagStates";
+import {SimpleFlagType} from "../../types/RecoilStateTypes";
 
-type _AxiosFuncType = (
-  setter: React.Dispatch<React.SetStateAction<Account[]>>
+type _AxiosFuncType<T> = (
+  setter: React.Dispatch<React.SetStateAction<T[]>>
 ) => void;
 
-const _getAxios: _AxiosFuncType = async (setter) => {
-  const response = await accountAxios.get("/");
+const _getAxios: _AxiosFuncType<Account> = async (setter) => {
+  const response = await axiosInstance.get("/api/v1/account");
   try {
     setter(response.data);
   } catch (e) {
@@ -16,11 +19,12 @@ const _getAxios: _AxiosFuncType = async (setter) => {
 };
 
 export const useGetAccount = (): Account[] => {
-  const [datas, setData] = useState<Account[]>([]);
+  const [data, setData] = useState<Account[]>([]);
+  const isRenewal = useRecoilValue<SimpleFlagType>(axiosRenewalFlag);
 
   useEffect(() => {
     _getAxios(setData);
-  }, []);
+  }, [isRenewal.update]);
 
-  return datas;
+  return data;
 };

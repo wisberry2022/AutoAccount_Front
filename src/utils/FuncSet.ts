@@ -18,8 +18,14 @@ export const getDetailData:GetDetailFunc<Account | Debit> = (data) => {
   return _getDetailObj(Object.keys(data), data);
 }
 
+export const convertStrToNumber = (name:string, value:string):string | number => {
+  return ["amount", "balance"].includes(name) ?
+    Number.parseInt(value) :
+    value;
+}
+
 type mappedType = {
-  [key in string]: string;
+  [key : string]: string;
 }
 
 const _getDetailObj = (keys:string[], data:any):DetailDataType => {

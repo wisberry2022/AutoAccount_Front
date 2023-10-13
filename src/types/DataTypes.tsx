@@ -35,5 +35,21 @@ export type DetailDataType = {
 }
 
 export type objType = {
-  [key in string]: any;
+  [key:string]: any;
 };
+
+export type inputAttrType<T> = {
+  [key:string]:T
+}
+
+export type mapType<T> = {
+  [key:string]:inputAttrType<T>
+}
+
+export type valueMapper = {
+  [key:string]:mapType<string | boolean>;
+}
+
+export type ConfigType<T> = {
+  [key:string]:T
+}

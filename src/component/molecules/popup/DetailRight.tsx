@@ -11,8 +11,8 @@ type valueObj = {
   [key in string]:string;
 }
 
-type valueMapped = {
-  [key in string]: valueObj;
+type valueMap = {
+  [key : string]: valueObj;
 }
 
 const normalMapped: valueObj = {
@@ -23,7 +23,7 @@ const normalMapped: valueObj = {
   name: "통장이름"
 }
 
-const valueMapped:valueMapped = {
+const valueMapped:valueMap = {
   serial: {Debit:"입금계좌"},
   amount: {Account:"잔액", Debit:"이체금액"},
 }
@@ -76,27 +76,6 @@ const DetailRight: React.FC<propType> = ({detail, modalType}) => {
           )
         })
       }
-      {/*<HorizonFlex*/}
-      {/*  style={{ width: "100%" }}*/}
-      {/*  option={{ justifyContent: "space-between" }}*/}
-      {/*>*/}
-      {/*  <NormalText>잔액</NormalText>*/}
-      {/*  <NormalText style={{ fontWeight: "600" }}>50000원</NormalText>*/}
-      {/*</HorizonFlex>*/}
-      {/*<HorizonFlex*/}
-      {/*  style={{ width: "100%" }}*/}
-      {/*  option={{ justifyContent: "space-between" }}*/}
-      {/*>*/}
-      {/*  <NormalText>계좌주</NormalText>*/}
-      {/*  <NormalText style={{ fontWeight: "600" }}>왕인서</NormalText>*/}
-      {/*</HorizonFlex>*/}
-      {/*<HorizonFlex*/}
-      {/*  style={{ width: "100%" }}*/}
-      {/*  option={{ justifyContent: "space-between" }}*/}
-      {/*>*/}
-      {/*  <NormalText>등록 된 자동이체 수</NormalText>*/}
-      {/*  <NormalText style={{ fontWeight: "600" }}>9개</NormalText>*/}
-      {/*</HorizonFlex>*/}
     </VerticalFlex>
   );
 };

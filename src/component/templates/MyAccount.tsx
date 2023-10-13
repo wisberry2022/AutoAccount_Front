@@ -1,16 +1,18 @@
 import { useContext } from "react";
 
-import { LayoutVerticalFlex } from "../atoms/div/StyledFlex";
 import RegisterModal from "../organisms/modal/RegisterModal";
+import { LayoutVerticalFlex } from "../atoms/div/StyledFlex";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
-import { Account } from "../../types/DataTypes";
+import {useRegister} from "../../hooks/axios/useRegister";
 import AccountList from "../organisms/list/AccountList";
 import { usePopup } from "../../hooks/popup/usePopup";
+import { Account } from "../../types/DataTypes";
 import Register from "../molecules/Register";
 import { DataContext } from "../../App";
 
 const MyAccount: React.FC = () => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
+  const save:VoidtoVoid = useRegister("Account");
   const accounts: Account[] = useContext(DataContext);
 
   const toggle: VoidtoVoid = () => {
@@ -18,6 +20,7 @@ const MyAccount: React.FC = () => {
   };
 
   const register: VoidtoVoid = () => {
+    save();
     closePop();
   };
 
