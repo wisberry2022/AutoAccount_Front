@@ -1,4 +1,5 @@
-import {Account, Debit, DetailDataType} from "../types/DataTypes";
+import {Account, Debit, DetailDataType, objType} from "../types/DataTypes";
+import {modifyInputMapper} from "../viewdata/configs/Config";
 
 type FindFuncType<T> = (list: T[], id: number) => any[];
 
@@ -22,6 +23,12 @@ export const convertStrToNumber = (name:string, value:string):string | number =>
   return ["amount", "balance"].includes(name) ?
     Number.parseInt(value) :
     value;
+}
+
+export const getModifyData = (data:any, modalType:string):objType => {
+  return Object.keys(modifyInputMapper[modalType]).reduce((acc,cur) => {
+    return {...acc, [cur]:data[cur]}
+  }, {} as objType);
 }
 
 type mappedType = {

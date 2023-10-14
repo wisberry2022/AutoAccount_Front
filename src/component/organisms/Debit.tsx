@@ -1,9 +1,10 @@
+import {Debit as DataType, objType} from "../../types/DataTypes";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
-import { Debit as DataType } from "../../types/DataTypes";
+import ModifyBox from "../molecules/modifies/ModifyBox";
 import { usePopup } from "../../hooks/popup/usePopup";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
+import {useModify} from "../../hooks/axios/useModify";
 import DebitInfo from "../molecules/info/DebitInfo";
-import ModifyBox from "../molecules/modifies/ModifyBox";
 import ModifyModal from "./modal/ModifyModal";
 import RemoveAlert from "./modal/RemoveAlert";
 
@@ -16,8 +17,11 @@ const Debit: React.FC<propType> = ({ debit }) => {
     usePopup();
   const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
     usePopup();
+  const [modData, fulfillInput, modifyingInfo, ] = useModify(debit, "Debit");
+
 
   const modifyRegister: VoidtoVoid = () => {
+    modifyingInfo(debit.id);
     closeModifyPop();
   };
 
@@ -55,7 +59,10 @@ const Debit: React.FC<propType> = ({ debit }) => {
       {isModifyPop && (
         <ModifyModal
           register={modifyRegister}
+          modifyData={modData}
+          handler={fulfillInput}
           cancel={modifyCancel}
+          id={Number.parseInt(debit.id)}
           modalType="Debit"
         />
       )}

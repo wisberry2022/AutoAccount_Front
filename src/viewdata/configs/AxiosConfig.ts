@@ -4,5 +4,9 @@ export const axiosConfig:ConfigType<objType> = {
 	register: {
 		Account: "/api/v1/account",
 		Debit: "/api/v1/debit",
+	},
+	modify: {
+		Account: "/api/v1/account",
+		Debit: "/api/v1/debit",
 	}
 }

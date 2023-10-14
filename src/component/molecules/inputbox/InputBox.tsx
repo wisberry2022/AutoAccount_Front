@@ -1,11 +1,8 @@
-import {useSetRecoilState} from "recoil";
 import {ChangeEventHandler} from "react";
 
-import {registerState} from "../../../recoil/states/AxiosStates";
 import { RegisterInput } from "../../atoms/inputs/StyledInput";
-import { VerticalFlex } from "../../atoms/div/StyledFlex";
 import {inputMapper} from "../../../viewdata/configs/Config";
-import {valueMapper} from "../../../types/DataTypes";
+import { VerticalFlex } from "../../atoms/div/StyledFlex";
 
 type propType = {
   modalType: string;
