@@ -1,15 +1,16 @@
 import { useSetRecoilState } from "recoil";
+import {MouseEventHandler} from "react";
 
-import { Account as DataType } from "../../types/DataTypes";
 import { accountState } from "../../recoil/states/ClickedState";
+import {Account as DataType} from "../../types/DataTypes";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
 import { HorizonFlex } from "./../atoms/div/StyledFlex";
 import AccountInfo from "../molecules/info/AccountInfo";
 import ModifyBox from "../molecules/modifies/ModifyBox";
 import { usePopup } from "../../hooks/popup/usePopup";
+import {useModify} from "../../hooks/axios/useModify";
 import ModifyModal from "./modal/ModifyModal";
 import RemoveAlert from "./modal/RemoveAlert";
-import { MouseEventHandler } from "react";
 
 type propType = {
   data: DataType;
@@ -21,8 +22,10 @@ const Account: React.FC<propType> = ({ data }) => {
     usePopup();
   const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
     usePopup();
+  const [modData, fulfillInput, modifyingInfo, ] = useModify(data, "Account");
 
   const modifyRegister: VoidtoVoid = () => {
+    modifyingInfo(data.id);
     closeModifyPop();
   };
 
@@ -67,7 +70,10 @@ const Account: React.FC<propType> = ({ data }) => {
       {isModifyPop && (
         <ModifyModal
           register={modifyRegister}
+          modifyData={modData}
           cancel={modifyCancel}
+          id={Number.parseInt(data.id)}
+          handler={fulfillInput}
           modalType="Account"
         />
       )}

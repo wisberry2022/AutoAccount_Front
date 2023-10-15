@@ -67,3 +67,34 @@ export const inputMapper:valueMapper = {
 		}
 	}
 }
+
+export const modifyInputMapper:valueMapper = {
+	Account: {
+		name: {
+			type: "text",
+			name: "name",
+			id: "name",
+			placeholder: "계좌이름"
+		}
+	},
+	Debit: {
+		name: {
+			type: "text",
+			name: "name",
+			id: "name",
+			placeholder: "계좌이름"
+		},
+		amount: {
+			type: "text",
+			name: "amount",
+			id: "amount",
+			placeholder: "이체금액"
+		},
+		deposit: {
+			type: "text",
+			name: "deposit",
+			id: "amount",
+			placeholder: "입금계좌"
+		}
+	}
+}
