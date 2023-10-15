@@ -8,5 +8,9 @@ export const axiosConfig:ConfigType<objType> = {
 	modify: {
 		Account: "/api/v1/account",
 		Debit: "/api/v1/debit",
+	},
+	remove: {
+		Account: "/api/v1/account",
+		Debit: "/api/v1/debit"
 	}
 }
