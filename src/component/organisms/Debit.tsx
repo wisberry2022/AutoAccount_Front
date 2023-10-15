@@ -4,6 +4,7 @@ import ModifyBox from "../molecules/modifies/ModifyBox";
 import { usePopup } from "../../hooks/popup/usePopup";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import {useModify} from "../../hooks/axios/useModify";
+import {useDelete} from "../../hooks/axios/useDelete";
 import DebitInfo from "../molecules/info/DebitInfo";
 import ModifyModal from "./modal/ModifyModal";
 import RemoveAlert from "./modal/RemoveAlert";
@@ -18,7 +19,7 @@ const Debit: React.FC<propType> = ({ debit }) => {
   const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
     usePopup();
   const [modData, fulfillInput, modifyingInfo, ] = useModify(debit, "Debit");
-
+  const removeFunc = useDelete("Debit");
 
   const modifyRegister: VoidtoVoid = () => {
     modifyingInfo(debit.id);
@@ -34,6 +35,7 @@ const Debit: React.FC<propType> = ({ debit }) => {
   };
 
   const removeOk: VoidtoVoid = () => {
+    removeFunc(debit.id);
     closeRemovePop();
   };
 

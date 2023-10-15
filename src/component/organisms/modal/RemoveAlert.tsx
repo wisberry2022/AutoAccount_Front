@@ -19,7 +19,7 @@ const RemoveAlert: React.FC<propType> = ({ modalType, register, cancel }) => {
   return (
     <VerticalModalFlex option={{ gap: "1.5" }}>
       <Emphasize font={{ fontSize: "1.5" }}>{titles[modalType]}</Emphasize>
-      <BtnBox register={register} cancel={register} />
+      <BtnBox register={register} cancel={cancel} />
     </VerticalModalFlex>
   );
 };

@@ -7,6 +7,7 @@ import { VoidtoVoid } from "../../classes/func/FuncTypes";
 import { HorizonFlex } from "./../atoms/div/StyledFlex";
 import AccountInfo from "../molecules/info/AccountInfo";
 import ModifyBox from "../molecules/modifies/ModifyBox";
+import {useDelete} from "../../hooks/axios/useDelete";
 import { usePopup } from "../../hooks/popup/usePopup";
 import {useModify} from "../../hooks/axios/useModify";
 import ModifyModal from "./modal/ModifyModal";
@@ -23,6 +24,7 @@ const Account: React.FC<propType> = ({ data }) => {
   const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
     usePopup();
   const [modData, fulfillInput, modifyingInfo, ] = useModify(data, "Account");
+  const removeFunc = useDelete("Account");
 
   const modifyRegister: VoidtoVoid = () => {
     modifyingInfo(data.id);
@@ -39,6 +41,7 @@ const Account: React.FC<propType> = ({ data }) => {
   };
 
   const removeOk: VoidtoVoid = () => {
+    removeFunc(data.id);
     closeRemovePop();
   };
 
