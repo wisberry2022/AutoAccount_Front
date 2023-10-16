@@ -57,8 +57,9 @@ const DetailRight: React.FC<propType> = ({detail, modalType}) => {
           const key = getValueMapped(modalType, data, ['serial','amount'].includes(data) ? true : false)
           return (
               <HorizonFlex
-                  style={{ width: "100%" }}
-                  option={{ justifyContent: "space-between" }}
+                key={idx}
+                style={{ width: "100%" }}
+                option={{ justifyContent: "space-between" }}
               >
                 <NormalText>{key}</NormalText>
                 <NormalText style={{ fontWeight: "600" }}>
