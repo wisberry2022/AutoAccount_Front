@@ -1,9 +1,10 @@
 import { useSetRecoilState } from "recoil";
 import {MouseEventHandler} from "react";
 
+import {ParamToVoid, VoidtoVoid} from "../../classes/func/FuncTypes";
 import { accountState } from "../../recoil/states/ClickedState";
 import {Account as DataType} from "../../types/DataTypes";
-import { VoidtoVoid } from "../../classes/func/FuncTypes";
+import {useAfterDelete} from "../../hooks/useAfterDelete";
 import { HorizonFlex } from "./../atoms/div/StyledFlex";
 import AccountInfo from "../molecules/info/AccountInfo";
 import ModifyBox from "../molecules/modifies/ModifyBox";
@@ -25,6 +26,7 @@ const Account: React.FC<propType> = ({ data }) => {
     usePopup();
   const [modData, fulfillInput, modifyingInfo, ] = useModify(data, "Account");
   const removeFunc = useDelete("Account");
+  const afterDelete = useAfterDelete();
 
   const modifyRegister: VoidtoVoid = () => {
     modifyingInfo(data.id);
@@ -41,6 +43,7 @@ const Account: React.FC<propType> = ({ data }) => {
   };
 
   const removeOk: VoidtoVoid = () => {
+    afterDelete(data.id);
     removeFunc(data.id);
     closeRemovePop();
   };
