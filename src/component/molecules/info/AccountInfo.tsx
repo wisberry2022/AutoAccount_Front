@@ -1,15 +1,17 @@
-import { VerticalFlex } from "../../atoms/div/StyledFlex";
+import {HorizonFlex, VerticalFlex} from "../../atoms/div/StyledFlex";
 import { usePopup } from "../../../hooks/popup/usePopup";
 import Emphasize from "../../atoms/Text/Emphasize";
 import DetailDialog from "../../templates/popup/DetailDialog";
 import { MouseEventHandler } from "react";
 import { Account } from "../../../types/DataTypes";
+import {FcApproval} from "react-icons/fc";
 
 type propType = {
   data: Account;
+  isCurrent: boolean;
 };
 
-const AccountInfo: React.FC<propType> = ({ data }) => {
+const AccountInfo: React.FC<propType> = ({ data , isCurrent}) => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
 
   const close: MouseEventHandler<SVGAElement> = (e) => {
@@ -27,9 +29,12 @@ const AccountInfo: React.FC<propType> = ({ data }) => {
       onClick={toggle}
       option={{ gap: "0", alignItems: "flex-start" }}
     >
-      <Emphasize font={{ fontSize: "1.1", fontWeight: "300" }}>
-        {data.name}
-      </Emphasize>
+      <HorizonFlex>
+        <Emphasize font={{ fontSize: "1.1", fontWeight: "300" }}>
+          {data.name}
+        </Emphasize>
+        {isCurrent && <FcApproval style={{fontSize:"1.2rem"}} />}
+      </HorizonFlex>
       <Emphasize font={{ fontSize: "1.8" }}>{data.serial}</Emphasize>
       {isPop && (
         <DetailDialog

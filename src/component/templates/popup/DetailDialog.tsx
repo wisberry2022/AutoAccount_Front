@@ -1,11 +1,11 @@
 import { MouseEventHandler, useContext } from "react";
 
+import {findById, getDetailData, getId} from "../../../utils/FuncSet";
 import { accountState } from "../../../recoil/states/ClickedState";
 import {Account, Debit, objType} from "../../../types/DataTypes";
 import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
 import DetailHeader from "../../organisms/popup/DetailHeader";
 import DetailBody from "../../organisms/popup/DetailBody";
-import {findById, getDetailData} from "../../../utils/FuncSet";
 import { DataContext } from "../../../App";
 import { useRecoilValue } from "recoil";
 
@@ -18,10 +18,6 @@ type propType = {
 const titles: objType = {
   Account: "계좌 상세보기",
   Debit: "자동이체 상세보기",
-};
-
-const getId = (datas: Account[], id: number) => {
-  return id ? id : Number.parseInt(datas[0].id);
 };
 
 const DetailDialog: React.FC<propType> = ({ close, modalType, id }) => {

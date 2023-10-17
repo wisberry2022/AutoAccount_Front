@@ -1,9 +1,9 @@
-import { useSetRecoilState } from "recoil";
 import {MouseEventHandler} from "react";
+import {useRecoilState} from "recoil";
 
 import {ParamToVoid, VoidtoVoid} from "../../classes/func/FuncTypes";
+import {Account as DataType, starSet} from "../../types/DataTypes";
 import { accountState } from "../../recoil/states/ClickedState";
-import {Account as DataType} from "../../types/DataTypes";
 import {useAfterDelete} from "../../hooks/useAfterDelete";
 import { HorizonFlex } from "./../atoms/div/StyledFlex";
 import AccountInfo from "../molecules/info/AccountInfo";
@@ -16,15 +16,16 @@ import RemoveAlert from "./modal/RemoveAlert";
 
 type propType = {
   data: DataType;
+  findId: (id:number) => number;
 };
 
-const Account: React.FC<propType> = ({ data }) => {
-  const setCurrent = useSetRecoilState(accountState);
+const Account: React.FC<propType> = ({ data, findId}) => {
+  const [curr, setCurrent] = useRecoilState(accountState);
   const [isModifyPop, openModifyPop, closeModifyPop, toggleModifyPop] =
     usePopup();
   const [isRemovePop, openRemovePop, closeRemovePop, toggleRemovePop] =
     usePopup();
-  const [modData, fulfillInput, modifyingInfo, ] = useModify(data, "Account");
+  const [modData, fulfillInput, modifyingInfo] = useModify(data, "Account");
   const removeFunc = useDelete("Account");
   const afterDelete = useAfterDelete();
 
@@ -71,7 +72,7 @@ const Account: React.FC<propType> = ({ data }) => {
       }}
       option={{ justifyContent: "space-between" }}
     >
-      <AccountInfo data={data} />
+      <AccountInfo data={data} isCurrent={findId(curr.id) === Number.parseInt(data.id) ? true : false} />
       <ModifyBox removeToggle={removeToggle} modifyToggle={modifyToggle} />
       {isModifyPop && (
         <ModifyModal

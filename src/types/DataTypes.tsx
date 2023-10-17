@@ -53,3 +53,7 @@ export type valueMapper = {
 export type ConfigType<T> = {
   [key:string]:T
 }
+
+export type starSet = {
+  [key:number]:boolean;
+}

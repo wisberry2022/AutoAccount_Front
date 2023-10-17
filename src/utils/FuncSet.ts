@@ -35,6 +35,10 @@ type mappedType = {
   [key : string]: string;
 }
 
+export const getId = (data:Account[], id:number) => {
+  return id ? id : Number.parseInt(data[0].id);
+}
+
 const _getDetailObj = (keys:string[], data:any):DetailDataType => {
   return keys.reduce((acc,cur, idx) => {return {
     ...acc,
