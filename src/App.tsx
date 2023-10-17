@@ -17,12 +17,13 @@ export const DataContext = createContext<Account[]>([]);
 const App = (): React.ReactElement => {
   const accounts: Account[] = useGetAccount();
 
+
   return (
     <DataContext.Provider value={accounts}>
       <VerticalCenterFlex>
         <PageTitle title="통장관리 프로그램 v1.0.0" />
         <HorizonFlex option={{ gap: "2.5" }}>
-          <MyAccount />
+          <MyAccount  accounts={accounts}/>
           <Debit />
         </HorizonFlex>
       </VerticalCenterFlex>

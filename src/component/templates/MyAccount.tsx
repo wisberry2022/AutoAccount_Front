@@ -10,10 +10,14 @@ import { Account } from "../../types/DataTypes";
 import Register from "../molecules/Register";
 import { DataContext } from "../../App";
 
-const MyAccount: React.FC = () => {
+type propType = {
+  accounts: Account[];
+}
+
+const MyAccount: React.FC<propType> = ({accounts}) => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
   const save:VoidtoVoid = useRegister("Account");
-  const accounts: Account[] = useContext(DataContext);
+  // const accounts: Account[] = useContext(DataContext);
 
   const toggle: VoidtoVoid = () => {
     togglePop();
