@@ -10,7 +10,6 @@ import BtnBox from "../btnbox/BtnBox";
 type propType = {
   modalType: string;
   id:number;
-  modifyData: objType;
   register: VoidtoVoid;
   cancel: VoidtoVoid;
   handler: ChangeEventHandler<HTMLInputElement>
@@ -21,7 +20,7 @@ const titles: objType = {
   Debit: "자동이체 수정",
 };
 
-const ModifyModal: React.FC<propType> = ({ id, handler, modifyData, modalType, register, cancel }) => {
+const ModifyModal: React.FC<propType> = ({ id, handler, modalType, register, cancel }) => {
   return (
     <VerticalModalFlex
       onClick={(e) => {
@@ -30,7 +29,6 @@ const ModifyModal: React.FC<propType> = ({ id, handler, modifyData, modalType, r
       <ModalTitle title={titles[modalType]} />
       <ModifyInputBox
         handler={handler}
-        defaultValues={modifyData}
         modalType={modalType} />
       <BtnBox register={register} cancel={cancel} />
     </VerticalModalFlex>
