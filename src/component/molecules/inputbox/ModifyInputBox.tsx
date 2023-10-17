@@ -1,18 +1,19 @@
-import {ChangeEventHandler} from "react";
+import {ChangeEventHandler, useContext} from "react";
 
 import {modifyInputMapper} from "../../../viewdata/configs/Config";
 import { RegisterInput } from "../../atoms/inputs/StyledInput";
 import { VerticalFlex } from "../../atoms/div/StyledFlex";
-import {objType} from "../../../types/DataTypes";
+import {useDefaultValue} from "../../../context/DefaultValueContext";
 
 type propType = {
-  defaultValues: objType;
   modalType: string;
   handler: ChangeEventHandler<HTMLInputElement>
 };
 
-const ModifyInputBox: React.FC<propType> = ({ defaultValues, modalType, handler }) => {
+const ModifyInputBox: React.FC<propType> = ({ modalType, handler }) => {
   const keys:string[] = Object.keys(modifyInputMapper[modalType]);
+  const defaultValues = useDefaultValue(modalType);
+
   return <VerticalFlex style={{ marginBottom: "1.5rem" }}>
     {keys.map((key:string, idx:number) => {
       return (

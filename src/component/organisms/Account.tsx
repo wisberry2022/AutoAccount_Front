@@ -1,11 +1,11 @@
 import {MouseEventHandler} from "react";
 import {useRecoilState} from "recoil";
 
-import {ParamToVoid, VoidtoVoid} from "../../classes/func/FuncTypes";
 import {Account as DataType, starSet} from "../../types/DataTypes";
 import { accountState } from "../../recoil/states/ClickedState";
 import {useAfterDelete} from "../../hooks/useAfterDelete";
 import { HorizonFlex } from "./../atoms/div/StyledFlex";
+import {VoidtoVoid} from "../../classes/func/FuncTypes";
 import AccountInfo from "../molecules/info/AccountInfo";
 import ModifyBox from "../molecules/modifies/ModifyBox";
 import {useDelete} from "../../hooks/axios/useDelete";
@@ -13,6 +13,7 @@ import { usePopup } from "../../hooks/popup/usePopup";
 import {useModify} from "../../hooks/axios/useModify";
 import ModifyModal from "./modal/ModifyModal";
 import RemoveAlert from "./modal/RemoveAlert";
+import { DefaultValueContext } from "../../context/DefaultValueContext";
 
 type propType = {
   data: DataType;
@@ -63,6 +64,7 @@ const Account: React.FC<propType> = ({ data, findId}) => {
   };
 
   return (
+    <DefaultValueContext.Provider value={{Account:modData}}>
     <HorizonFlex
       onClick={setId}
       style={{
@@ -77,7 +79,6 @@ const Account: React.FC<propType> = ({ data, findId}) => {
       {isModifyPop && (
         <ModifyModal
           register={modifyRegister}
-          modifyData={modData}
           cancel={modifyCancel}
           id={Number.parseInt(data.id)}
           handler={fulfillInput}
@@ -92,6 +93,7 @@ const Account: React.FC<propType> = ({ data, findId}) => {
         />
       )}
     </HorizonFlex>
+    </DefaultValueContext.Provider>
   );
 };
 

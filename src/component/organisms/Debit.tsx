@@ -1,5 +1,5 @@
-import {Debit as DataType, objType} from "../../types/DataTypes";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
+import {Debit as DataType} from "../../types/DataTypes";
 import ModifyBox from "../molecules/modifies/ModifyBox";
 import { usePopup } from "../../hooks/popup/usePopup";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
@@ -8,6 +8,7 @@ import {useDelete} from "../../hooks/axios/useDelete";
 import DebitInfo from "../molecules/info/DebitInfo";
 import ModifyModal from "./modal/ModifyModal";
 import RemoveAlert from "./modal/RemoveAlert";
+import {DefaultValueContext} from "../../context/DefaultValueContext";
 
 type propType = {
   debit: DataType;
@@ -48,6 +49,7 @@ const Debit: React.FC<propType> = ({ debit }) => {
   };
 
   return (
+    <DefaultValueContext.Provider value={{Debit:modData}}>
     <HorizonFlex
       style={{
         border: ".1rem solid #d9d9d9",
@@ -61,7 +63,6 @@ const Debit: React.FC<propType> = ({ debit }) => {
       {isModifyPop && (
         <ModifyModal
           register={modifyRegister}
-          modifyData={modData}
           handler={fulfillInput}
           cancel={modifyCancel}
           id={Number.parseInt(debit.id)}
@@ -76,6 +77,7 @@ const Debit: React.FC<propType> = ({ debit }) => {
         />
       )}
     </HorizonFlex>
+    </DefaultValueContext.Provider>
   );
 };
 
