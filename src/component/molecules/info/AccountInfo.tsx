@@ -1,10 +1,13 @@
+import {FcApproval} from "react-icons/fc";
+import { MouseEventHandler } from "react";
+import {useRecoilValue} from "recoil";
+
 import {HorizonFlex, VerticalFlex} from "../../atoms/div/StyledFlex";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
+import DetailDialog from "../../templates/popup/DetailDialog";
 import { usePopup } from "../../../hooks/popup/usePopup";
 import Emphasize from "../../atoms/Text/Emphasize";
-import DetailDialog from "../../templates/popup/DetailDialog";
-import { MouseEventHandler } from "react";
 import { Account } from "../../../types/DataTypes";
-import {FcApproval} from "react-icons/fc";
 
 type propType = {
   data: Account;
@@ -13,6 +16,7 @@ type propType = {
 
 const AccountInfo: React.FC<propType> = ({ data , isCurrent}) => {
   const [isPop, openPop, closePop, togglePop] = usePopup();
+  const theme = useRecoilValue(themeSelector);
 
   const close: MouseEventHandler<SVGAElement> = (e) => {
     e.stopPropagation();
@@ -30,12 +34,12 @@ const AccountInfo: React.FC<propType> = ({ data , isCurrent}) => {
       option={{ gap: "0", alignItems: "flex-start" }}
     >
       <HorizonFlex>
-        <Emphasize font={{ fontSize: "1.1", fontWeight: "300" }}>
+        <Emphasize theme={theme} font={{ fontSize: "1.1", fontWeight: "300" }}>
           {data.name}
         </Emphasize>
         {isCurrent && <FcApproval style={{fontSize:"1.2rem"}} />}
       </HorizonFlex>
-      <Emphasize font={{ fontSize: "1.8" }}>{data.serial}</Emphasize>
+      <Emphasize theme={theme} font={{ fontSize: "1.8" }}>{data.serial}</Emphasize>
       {isPop && (
         <DetailDialog
           modalType="Account"

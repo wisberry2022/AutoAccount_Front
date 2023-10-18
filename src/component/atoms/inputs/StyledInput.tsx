@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import Input from "./Input";
 import { BorderSet, Scale } from "../../../types/StyleTypes";
+import {ThemeObjectType} from "../../../types/ThemeType";
 
 export const BorderedInput = styled(Input)<{ border?: BorderSet }>`
   border: ${(prop) => prop.border && prop.border.border};
@@ -14,7 +15,9 @@ export const CustomSizingInput = styled(Input)<{ size: Scale }>`
   height: ${(prop) => prop.size && prop.size.height + "rem"};
 `;
 
-export const RegisterInput = styled(CustomSizingInput)`
+export const RegisterInput = styled(CustomSizingInput)<{theme?:ThemeObjectType}>`
   border: 0.1rem solid #d9d9d9;
   padding: 0.8rem;
+	color: ${prop => prop.theme?.color && prop.theme.color};
+	background-color: ${prop => prop.theme?.bgColor && prop.theme.bgColor};
 `;

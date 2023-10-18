@@ -1,6 +1,8 @@
 import NormalText from "../../atoms/Text/NormalText";
 import { HorizonFlex, VerticalFlex } from "../../atoms/div/StyledFlex";
 import {DetailDataType} from "../../../types/DataTypes";
+import {useRecoilValue} from "recoil";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
 
 type propType = {
   detail: DetailDataType;
@@ -46,6 +48,7 @@ const getDataByType = (modalType:string, data:DetailDataType):any => {
 
 const DetailRight: React.FC<propType> = ({detail, modalType}) => {
   const rested = getDataByType(modalType, detail);
+  const theme=  useRecoilValue(themeSelector);
   const values = Object.values(rested) as (keyof DetailDataType)[];
   return (
     <VerticalFlex
@@ -61,8 +64,8 @@ const DetailRight: React.FC<propType> = ({detail, modalType}) => {
                 style={{ width: "100%" }}
                 option={{ justifyContent: "space-between" }}
               >
-                <NormalText>{key}</NormalText>
-                <NormalText style={{ fontWeight: "600" }}>
+                <NormalText theme={theme}>{key}</NormalText>
+                <NormalText theme={theme} style={{ fontWeight: "600" }}>
                   {
                   key === "이체일자" ? values[idx].slice(0, 10) : values[idx]
                   }

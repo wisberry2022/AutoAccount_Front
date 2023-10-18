@@ -6,6 +6,8 @@ import { VoidtoVoid } from "../../../classes/func/FuncTypes";
 import { ModalTitle } from "../../atoms/title/TitleStyle";
 import { objType } from "../../../types/DataTypes";
 import BtnBox from "../btnbox/BtnBox";
+import {useRecoilValue} from "recoil";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
 
 type propType = {
   modalType: string;
@@ -21,8 +23,11 @@ const titles: objType = {
 };
 
 const ModifyModal: React.FC<propType> = ({ id, handler, modalType, register, cancel }) => {
+  const theme = useRecoilValue(themeSelector);
+
   return (
     <VerticalModalFlex
+      theme={theme}
       onClick={(e) => {
         e.stopPropagation()
       }}>

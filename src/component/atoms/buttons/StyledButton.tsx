@@ -1,9 +1,11 @@
 import { styled } from "styled-components";
-import Button from "./Button";
-import { ColorSet } from "../../../types/StyleTypes";
-import { CSSByThemeType, ThemeType } from "../../../types/RecoilStateTypes";
 
-const CustomColoringButton = styled(Button)<{color:ColorSet}>`
+import {CSSByThemeType} from "../../../types/ThemeType";
+import { ColorSet } from "../../../types/StyleTypes";
+import Button from "./Button";
+
+
+const CustomColoringButton = styled(Button)<{color?:ColorSet}>`
   background-color: ${prop => prop.color && prop.color.bgColor};
   color: ${prop => prop.color && prop.color.color};
 `;
@@ -11,7 +13,7 @@ const CustomColoringButton = styled(Button)<{color:ColorSet}>`
 export {CustomColoringButton};
 
 const SwitchingButton = styled.button<{theme:CSSByThemeType}>`
-  border: .1rem solid #ddd;
+  border: .1rem solid #d9d9d9;
   border-radius: 5rem;
   width: 7rem;
   height: 3rem;

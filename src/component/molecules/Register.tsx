@@ -4,6 +4,8 @@ import { CustomSizingFlex } from "../atoms/div/StyledFlex";
 import Emphasize from "../atoms/Text/Emphasize";
 import { objType } from "../../types/DataTypes";
 import { VoidtoVoid } from "../../classes/func/FuncTypes";
+import {useRecoilValue} from "recoil";
+import {themeSelector} from "../../recoil/selectors/ThemeSelector";
 
 type propType = {
   modalType: string;
@@ -24,6 +26,8 @@ const titles: objType = {
 };
 
 const Register: React.FC<propType> = ({ modalType, toggle }) => {
+  const theme = useRecoilValue(themeSelector);
+
   return (
     <CustomFlex
       onClick={toggle}
@@ -32,6 +36,7 @@ const Register: React.FC<propType> = ({ modalType, toggle }) => {
       }}
     >
       <Emphasize
+        theme={theme}
         font={{
           fontSize: "2",
           fontWeight: "600",
