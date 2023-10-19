@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { FlexSet, Scale } from "../../../types/StyleTypes";
 import Flex from "./Flex";
+import {ThemeObjectType} from "../../../types/ThemeType";
 
 export const CustomSizingFlex = styled.div<{ debug?: boolean; size: Scale }>`
   outline: ${(prop) => prop.debug && ".1rem solid #000"};
@@ -10,20 +11,23 @@ export const CustomSizingFlex = styled.div<{ debug?: boolean; size: Scale }>`
   height: ${(prop) => prop.size && prop.size.height + "rem"};
 `;
 
-export const ViewCenterFlex = styled(Flex)`
+export const ViewCenterFlex = styled(Flex)<{theme?:ThemeObjectType}>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+	background-color: ${prop => prop.theme?.bgColor && prop.theme.bgColor}
 `;
 
-export const VerticalFlex = styled(Flex)<{ option?: FlexSet }>`
+export const VerticalFlex = styled(Flex)<{ option?: FlexSet, theme?:ThemeObjectType }>`
   flex-direction: column;
   justify-content: ${(prop) =>
     prop.option?.justifyContent ? prop.option.justifyContent : "center"};
   align-items: ${(prop) =>
     prop.option?.alignItems ? prop.option.alignItems : "center"};
   gap: ${(prop) => (prop.option?.gap ? prop.option.gap + "rem" : ".5rem")};
+  background-color: ${prop => prop.theme?.bgColor && prop.theme.bgColor}
+
 `;
 
 export const LayoutVerticalFlex = styled(VerticalFlex)`
@@ -44,7 +48,7 @@ export const GapFlex = styled(Flex)<{ gap: number }>`
   gap: ${(prop) => prop.gap + "rem"};
 `;
 
-export const VerticalModalFlex = styled(VerticalFlex)`
+export const VerticalModalFlex = styled(VerticalFlex)<{theme?:ThemeObjectType}>`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -52,7 +56,7 @@ export const VerticalModalFlex = styled(VerticalFlex)`
   z-index: 999;
   border: 0.1rem solid #aaa;
   padding: 3rem;
-  background-color: #fff;
+  background-color: ${prop => prop.theme?.bgColor && prop.theme.bgColor}
 `;
 
 export const LargeHorizonFlex = styled(HorizonFlex)`

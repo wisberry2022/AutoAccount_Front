@@ -1,5 +1,7 @@
 import { styled } from "styled-components";
 import { ThirdTitle, Title } from "./Title";
+import {useRecoilValue} from "recoil";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
 
 const CenterTitle = styled(Title)`
   position: absolute;
@@ -15,7 +17,9 @@ type PropType = {
 };
 
 const ModalTitle: React.FC<PropType> = ({ title }: PropType) => {
-  return <ThirdTitle>{title}</ThirdTitle>;
+  const theme = useRecoilValue(themeSelector);
+
+  return <ThirdTitle theme={theme}>{title}</ThirdTitle>;
 };
 
 export { ModalTitle };

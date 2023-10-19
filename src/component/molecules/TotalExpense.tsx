@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import {useRecoilValue} from "recoil";
+
+import {themeSelector} from "../../recoil/selectors/ThemeSelector";
 import { HorizonFlex } from "../atoms/div/StyledFlex";
 import Emphasize from "../atoms/Text/Emphasize";
 
@@ -14,12 +17,14 @@ type propType = {
 };
 
 const TotalExpense: React.FC<propType> = ({ expense }) => {
+  const theme = useRecoilValue(themeSelector);
+
   return (
     <BorderRadiusFlex option={{ justifyContent: "space-between" }}>
-      <Emphasize font={{ fontSize: "1.4", fontWeight: "700" }}>
+      <Emphasize theme={theme} font={{ fontSize: "1.4", fontWeight: "700" }}>
         총 지출금액
       </Emphasize>
-      <Emphasize font={{ fontSize: "1.4", fontWeight: "700" }}>
+      <Emphasize theme={theme} font={{ fontSize: "1.4", fontWeight: "700" }}>
         {expense}원
       </Emphasize>
     </BorderRadiusFlex>

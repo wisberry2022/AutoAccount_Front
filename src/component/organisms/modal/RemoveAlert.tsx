@@ -3,6 +3,8 @@ import { objType } from "../../../types/DataTypes";
 import Emphasize from "../../atoms/Text/Emphasize";
 import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
 import BtnBox from "../btnbox/BtnBox";
+import {useRecoilValue} from "recoil";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
 
 type propType = {
   modalType: string;
@@ -16,9 +18,11 @@ const titles: objType = {
 };
 
 const RemoveAlert: React.FC<propType> = ({ modalType, register, cancel }) => {
+  const theme = useRecoilValue(themeSelector);
+
   return (
-    <VerticalModalFlex option={{ gap: "1.5" }}>
-      <Emphasize font={{ fontSize: "1.5" }}>{titles[modalType]}</Emphasize>
+    <VerticalModalFlex theme={theme} option={{ gap: "1.5" }}>
+      <Emphasize theme={theme} font={{ fontSize: "1.5" }}>{titles[modalType]}</Emphasize>
       <BtnBox register={register} cancel={cancel} />
     </VerticalModalFlex>
   );

@@ -1,5 +1,5 @@
 import {ChangeEventHandler} from "react";
-import {useSetRecoilState} from "recoil";
+import {useRecoilValue, useSetRecoilState} from "recoil";
 
 import {registerState} from "../../../recoil/states/AxiosStates";
 import { VerticalModalFlex } from "../../atoms/div/StyledFlex";
@@ -9,6 +9,7 @@ import InputBox from "../../molecules/inputbox/InputBox";
 import { objType } from "../../../types/DataTypes";
 import BtnBox from "../btnbox/BtnBox";
 import {convertStrToNumber} from "../../../utils/FuncSet";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
 
 type propType = {
   modalType: string;
@@ -23,6 +24,7 @@ const titles: objType = {
 
 const RegisterModal: React.FC<propType> = ({ modalType, register, cancel }) => {
   const setData = useSetRecoilState(registerState);
+  const theme = useRecoilValue(themeSelector);
 
   const fulfillInput:ChangeEventHandler<HTMLInputElement> = (e) => {
     const {name, value} = e.target;
@@ -35,7 +37,7 @@ const RegisterModal: React.FC<propType> = ({ modalType, register, cancel }) => {
   }
 
   return (
-    <VerticalModalFlex>
+    <VerticalModalFlex theme={theme}>
       <ModalTitle title={titles[modalType]} />
       <InputBox modalType={modalType} handler={fulfillInput}  />
       <BtnBox register={register} cancel={cancel} />

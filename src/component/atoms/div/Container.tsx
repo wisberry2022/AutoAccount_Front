@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CSSByThemeType } from "../../../types/RecoilStateTypes";
+import { CSSByThemeType } from "../../../types/ThemeType";
 
 const ThemeContainer = styled.div<{theme:CSSByThemeType}>`
   margin: 0;

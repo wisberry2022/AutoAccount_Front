@@ -8,6 +8,7 @@ import DetailHeader from "../../organisms/popup/DetailHeader";
 import DetailBody from "../../organisms/popup/DetailBody";
 import { DataContext } from "../../../App";
 import { useRecoilValue } from "recoil";
+import {themeSelector} from "../../../recoil/selectors/ThemeSelector";
 
 type propType = {
   close: MouseEventHandler<SVGAElement>;
@@ -21,6 +22,7 @@ const titles: objType = {
 };
 
 const DetailDialog: React.FC<propType> = ({ close, modalType, id }) => {
+  const theme = useRecoilValue(themeSelector);
   const accounts = useContext(DataContext);
   const current = useRecoilValue(accountState);
   const detail = findById(
@@ -31,7 +33,7 @@ const DetailDialog: React.FC<propType> = ({ close, modalType, id }) => {
   )[0];
 
   return (
-    <VerticalModalFlex style={{ width: modalType === "Account" ? "40%" : "50%" }} option={{ gap: "2.5" }}>
+    <VerticalModalFlex theme={theme} style={{ width: modalType === "Account" ? "40%" : "50%" }} option={{ gap: "2.5" }}>
       <DetailHeader close={close} title={titles[modalType]} />
       <DetailBody modalType={modalType} detail={getDetailData(detail)} />
     </VerticalModalFlex>

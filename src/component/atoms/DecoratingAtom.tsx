@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import {useSetRecoilState} from "recoil";
+import {currTheme} from "../../recoil/theme/Theme";
+import { useEffect } from "react";
 
 const CircleBtn = styled.div`
   position: relative;
@@ -10,14 +13,20 @@ const CircleBtn = styled.div`
 `
 
 type propType = {
-  isclick: boolean,
+  isClick: boolean,
 }
 
 export const Circle:React.FC<propType> = (prop) => {
-  const {isclick} = prop;
+  const {isClick} = prop;
+  const setTheme = useSetRecoilState(currTheme);
+
+  useEffect(() => {
+    setTheme(isClick ? "BRIGHT" : "DARK");
+  }, [isClick]);
+
   return (
     <CircleBtn 
-      style={{ transform : isclick ? "translateX(155%)" : "translateX(0)"}} 
+      style={{ transform : isClick ? "translateX(155%)" : "translateX(0)"}}
     />
   )
 }
