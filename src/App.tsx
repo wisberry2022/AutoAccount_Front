@@ -24,7 +24,7 @@ const App = (): React.ReactElement => {
     <DataContext.Provider value={accounts}>
       <VerticalFlex theme={theme} style={{height:"100vh"}}>
       <VerticalCenterFlex theme={theme}>
-        <PageTitle title="통장관리 프로그램 v1.0.0" />
+        <PageTitle title="통장관리 프로그램 v1.1.0" />
         <HorizonFlex option={{ gap: "2.5" }}>
           <MyAccount accounts={accounts}/>
           <Debit />
