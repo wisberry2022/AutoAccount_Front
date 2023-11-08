@@ -40,7 +40,7 @@ const RegisterModal: React.FC<propType> = ({ modalType, register, cancel }) => {
     <VerticalModalFlex theme={theme}>
       <ModalTitle title={titles[modalType]} />
       <InputBox modalType={modalType} handler={fulfillInput}  />
-      <BtnBox register={register} cancel={cancel} />
+      <BtnBox act="register" register={register} cancel={cancel} />
     </VerticalModalFlex>
   );
 };

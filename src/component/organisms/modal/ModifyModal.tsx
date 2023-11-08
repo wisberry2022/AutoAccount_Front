@@ -35,7 +35,7 @@ const ModifyModal: React.FC<propType> = ({ id, handler, modalType, register, can
       <ModifyInputBox
         handler={handler}
         modalType={modalType} />
-      <BtnBox register={register} cancel={cancel} />
+      <BtnBox act="modify" register={register} cancel={cancel} />
     </VerticalModalFlex>
   );
 };

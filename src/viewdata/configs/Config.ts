@@ -1,4 +1,4 @@
-import {valueMapper} from "../../types/DataTypes";
+import {ConfigType, valueMapper} from "../../types/DataTypes";
 
 export const inputMapper:valueMapper = {
 	withdrawal: {
@@ -89,12 +89,21 @@ export const modifyInputMapper:valueMapper = {
 			name: "amount",
 			id: "amount",
 			placeholder: "이체금액"
-		},
-		deposit: {
-			type: "text",
-			name: "deposit",
-			id: "amount",
-			placeholder: "입금계좌"
 		}
+	}
+}
+
+export const btnMaps:ConfigType<ConfigType<string>> = {
+	register: {
+		left: "등록",
+		right: "취소",
+	},
+	modify: {
+		left: "수정",
+		right: "취소"
+	},
+	remove: {
+		left: "확인",
+		right: "취소"
 	}
 }
