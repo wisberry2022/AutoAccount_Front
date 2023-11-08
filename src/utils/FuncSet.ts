@@ -22,7 +22,7 @@ export const getDetailData:GetDetailFunc<Account | Debit> = (data) => {
 export const convertStrToNumber = (name:string, value:string):string | number => {
   return ["amount", "balance"].includes(name) ?
     Number.parseInt(value) :
-    value;
+    value.trim();
 }
 
 export const getModifyData = (data:any, modalType:string):objType => {
